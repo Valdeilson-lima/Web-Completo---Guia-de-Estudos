@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Completo — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      .pulse-anim {
+        width: 80px;
+        height: 80px;
+        background: var(--accent2);
+        border-radius: 50%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-align: center;
+        animation: pulse-demo 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse-demo {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.15);
+          opacity: 0.6;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .bounce-anim {
+        width: 60px;
+        height: 60px;
+        background: var(--accent3);
+        border-radius: 6px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.65rem;
+        animation: bounce-demo 1s ease-in-out infinite alternate;
+      }
+      @keyframes bounce-demo {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-30px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ════════════════════ HEADER ════════════════════ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn current" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <!-- ════════════════════ CONTEÚDO ════════════════════ -->
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>🎨 CSS <span class="hl">Completo</span></h1>
+        <p>Guia prático para estudar CSS do zero ao avançado</p>
+      </div>
+
+      <!-- ── TOC ── -->
+      <nav class="toc">
+        <h2>📑 Sumário</h2>
+        <div class="toc-grid">
+          <a href="#s1"><span class="num">01</span> Seletores</a>
+          <a href="#s2"><span class="num">02</span> Box Model</a>
+          <a href="#s3"><span class="num">03</span> Display</a>
+          <a href="#s4"><span class="num">04</span> Flexbox</a>
+          <a href="#s5"><span class="num">05</span> Grid</a>
+          <a href="#s6"><span class="num">06</span> Position</a>
+          <a href="#s7"><span class="num">07</span> Cores &amp; Background</a>
+          <a href="#s8"><span class="num">08</span> Tipografia</a>
+          <a href="#s9"><span class="num">09</span> Unidades</a>
+          <a href="#s10"
+            ><span class="num">10</span> Transform &amp; Transition</a
+          >
+          <a href="#s11"><span class="num">11</span> Animation</a>
+          <a href="#s12"
+            ><span class="num">12</span> Pseudo-classes / Elementos</a
+          >
+          <a href="#s13"
+            ><span class="num">13</span> Variáveis (Custom Props)</a
+          >
+          <a href="#s14"
+            ><span class="num">14</span> Responsivo / Media Queries</a
+          >
+          <a href="#s15"
+            ><span class="num">15</span> Especificidade &amp; Cascade</a
+          >
+        </div>
+      </nav>
+
+      <!-- ═══════ S1 ── SELECTORS ═══════ -->
+      <section class="topic" id="s1">
+        <h2>01. Seletores</h2>
+        <p class="subtitle">Como "mirar" nos elementos certos</p>
+
+        <h3>Seletores básicos</h3>
+        <pre><code>/* Elemento / Tag */
+div   { ... }
+p     { ... }
+
+/* Classe */
+.minha-classe { ... }
+
+/* ID */
+#meu-id { ... }
+
+/* Universal */
+* { box-sizing: border-box; }</code></pre>
+
+        <h3>Combinadores</h3>
+        <pre><code>/* Filho direto */
+.pai > .filho { ... }
+
+/* Descendente (qualquer profundidade) */
+.avô .neto { ... }
+
+/* Irmão adjacente (imediatamente depois) */
+.irmao1 + .irmao2 { ... }
+
+/* Irmão geral (qualquer depois) */
+.irmao1 ~ .irmao2 { ... }</code></pre>
+
+        <h3>Seletores de atributo</h3>
+        <pre><code>[disabled]          { ... }  /* tem o atributo */
+[type="text"]       { ... }  /* igual a */
+[href^="https"]     { ... }  /* começa com */
+[src$=".jpg"]       { ... }  /* termina com */
+[class*="btn"]      { ... }  /* contém */</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Prefira usar <strong>classes</strong> em vez
+          de IDs ou tags. Classes são reutilizáveis e têm menos problemas de
+          especificidade.
+        </div>
+      </section>
+
+      <!-- ═══════ S2 ── BOX MODEL ═══════ -->
+      <section class="topic" id="s2">
+        <h2>02. Box Model</h2>
+        <p class="subtitle">
+          Todo elemento HTML é uma caixa — entenda suas camadas
+        </p>
+
+        <p>
+          O Box Model define como o tamanho e o espaçamento de um elemento são
+          calculados. São 4 camadas, de dentro para fora:
+        </p>
+
+        <div style="text-align: center">
+          <div class="spec-visual">
+            <div class="layer margin">MARGIN (espaço externo)</div>
+            <div class="layer border">BORDER (contorno)</div>
+            <div class="layer padding">PADDING (espaço interno)</div>
+            <div class="layer content">CONTEÚDO (width / height)</div>
+          </div>
+        </div>
+
+        <h3>Propriedades</h3>
+        <pre><code>/* PADDING */
+padding: 20px;                  /* todos os lados */
+padding: 10px 20px;             /* top/bottom  left/right */
+padding: 10px 15px 20px 25px;   /* top right bottom left */
+
+/* BORDER */
+border: 2px solid #333;
+border-radius: 8px;             /* cantos arredondados */
+
+/* MARGIN */
+margin: 20px;
+margin: 10px auto;              /* centraliza horizontalmente */
+margin-top: -10px;              /* valores negativos funcionam */</code></pre>
+
+        <h3>content-box vs border-box</h3>
+        <pre><code>/* Padrão — padding e border AUMENTAM o tamanho total */
+box-sizing: content-box;
+/* width: 200px + padding 20px + border 2px = 222px totais */
+
+/* Recomendado — padding e border estão DENTRO do width declarado */
+box-sizing: border-box;
+/* width: 200px já inclui padding e border */</code></pre>
+
+        <div class="note">
+          <strong>💡 Sempre use</strong>
+          <code>* { box-sizing: border-box; }</code> no início do seu CSS. Isso
+          torna o cálculo de tamanhos muito mais previsível.
+        </div>
+
+        <div class="demo-box">
+          <span class="label">🧪 Visualização:</span>
+          <div class="box-visual">
+            <div class="inner">Conteúdo (200px)</div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary)">
+            A caixa roxa é a <strong>margin</strong>, a borda rosa é a
+            <strong>border</strong>, e o azul é o
+            <strong>padding + conteúdo</strong>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════ S3 ── DISPLAY ═══════ -->
+      <section class="topic" id="s3">
+        <h2>03. Display</h2>
+        <p class="subtitle">Como o elemento se comporta na página</p>
+
+        <pre><code>display: block;        /* ocupa a linha inteira (div, p, h1) */
+display: inline;       /* fica na mesma linha (span, a, strong) */
+display: inline-block; /* inline mas aceita width/height/padding */
+display: none;         /* some da tela (não ocupa espaço) */
+display: flex;         /* ativa flexbox */
+display: grid;         /* ativa grid */</code></pre>
+
+        <h3>Diferença prática</h3>
+        <pre><code>/* block */   width: 200px; → ocupa a linha toda, mas o conteúdo tem 200px
+/* inline */  width/height são IGNORADOS
+/* inline-block */  width/height FUNCIONAM, mas fica na mesma linha</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>display: none</code> para esconder
+          elementos (diferente de <code>visibility: hidden</code> que só os
+          torna invisíveis mas mantém o espaço).
+        </div>
+      </section>
+
+      <!-- ═══════ S4 ── FLEXBOX ═══════ -->
+      <section class="topic" id="s4">
+        <h2>04. Flexbox</h2>
+        <p class="subtitle">Layout flexível em 1 dimensão (linha ou coluna)</p>
+
+        <h3>Container (pai)</h3>
+        <pre><code>.container {
+  display: flex;
+  flex-direction: row;          /* row | column | row-reverse | column-reverse */
+  flex-wrap: wrap;              /* nowrap | wrap | wrap-reverse */
+  justify-content: center;      /* main-axis: flex-start | center | space-between | space-around | space-evenly */
+  align-items: center;          /* cross-axis: flex-start | center | stretch | baseline */
+  gap: 16px;                    /* espaçamento entre os filhos */
+}</code></pre>
+
+        <h3>Itens (filhos)</h3>
+        <pre><code>.item {
+  flex: 1;                      /* cresce igualmente */
+  flex-grow: 1;                 /* fator de crescimento */
+  flex-shrink: 1;               /* fator de encolhimento */
+  flex-basis: 200px;            /* tamanho base */
+  align-self: center;           /* alinhamento individual */
+  order: 2;                     /* ordem de exibição */
+}</code></pre>
+
+        <div class="demo-box">
+          <span class="label"
+            >🧪 justify-content: center + align-items: center</span
+          >
+          <div class="flex-align-demo">
+            <div>1</div>
+            <div class="tall">2</div>
+            <div>3</div>
+            <div>4</div>
+          </div>
+        </div>
+
+        <div class="demo-box">
+          <span class="label">🧪 flex-wrap: wrap + gap</span>
+          <div class="flex-gap-demo">
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>
+            <div>Item 5</div>
+            <div>Item 6</div>
+            <div>Item 7</div>
+            <div>Item 8</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>gap</code> funciona em flex e grid, e
+          é muito mais prático do que usar margin nos filhos.
+        </div>
+      </section>
+
+      <!-- ═══════ S5 ── GRID ═══════ -->
+      <section class="topic" id="s5">
+        <h2>05. CSS Grid</h2>
+        <p class="subtitle">Layout bidimensional — linhas e colunas</p>
+
+        <h3>Container</h3>
+        <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;      /* 3 colunas iguais */
+  grid-template-columns: 200px 1fr 2fr;    /* fixa + flexível */
+  grid-template-columns: repeat(3, 1fr);   /* 3 colunas iguais */
+  grid-template-rows: 100px auto 100px;
+  gap: 16px;
+}</code></pre>
+
+        <h3>Itens</h3>
+        <pre><code>.item {
+  grid-column: 1 / 3;           /* da linha 1 à 3 */
+  grid-row: 1 / 3;
+  grid-area: header;            /* nome da área */
+}</code></pre>
+
+        <h3>Grid Areas (mais intuitivo)</h3>
+        <pre><code>.layout {
+  grid-template-areas:
+    "header  header  header"
+    "sidebar main    main"
+    "footer  footer  footer";
+}</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Grid com 3 colunas iguais (1fr)</span>
+          <div class="grid-demo">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+          </div>
+        </div>
+
+        <div class="demo-box">
+          <span class="label">🧪 Grid Areas — layout clássico</span>
+          <div class="grid-area-demo">
+            <div class="ga-header">HEADER</div>
+            <div class="ga-sidebar">SIDEBAR</div>
+            <div class="ga-main">MAIN</div>
+            <div class="ga-footer">FOOTER</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Grid é ótimo para o
+          <strong>layout macro</strong> da página. Flexbox é melhor para alinhar
+          itens dentro de cada seção. Use os dois juntos!
+        </div>
+      </section>
+
+      <!-- ═══════ S6 ── POSITION ═══════ -->
+      <section class="topic" id="s6">
+        <h2>06. Position</h2>
+        <p class="subtitle">
+          Controla como o elemento é posicionado no documento
+        </p>
+
+        <pre><code>position: static;      /* padrão — segue o fluxo normal */
+position: relative;    /* relativo à posição original */
+position: absolute;    /* relativo ao ancestral positionado mais próximo */
+position: fixed;       /* relativo à janela (viewport) */
+position: sticky;      /* alterna entre relative e fixed no scroll */</code></pre>
+
+        <div class="demo-box">
+          <span class="label"
+            >🧪 relative (azul) + absolute (rosa) + fixed simulado (verde)</span
+          >
+          <div class="pos-demo">
+            <div class="dot rel">
+              relative<br /><small>top:20 left:20</small>
+            </div>
+            <div class="dot abs">
+              absolute<br /><small>bottom:20 right:20</small>
+            </div>
+            <div class="dot fixed-sim">
+              absolute<br /><small>centralizado</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> <code>absolute</code> precisa de um
+          ancestral com <code>position: relative</code> (ou
+          absolute/fixed/sticky) como referência. Senão, ele referencia o
+          <code>&lt;body&gt;</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ S7 ── COLORS ═══════ -->
+      <section class="topic" id="s7">
+        <h2>07. Cores &amp; Background</h2>
+        <p class="subtitle">
+          Sistemas de cor, gradientes, acessibilidade e fundos
+        </p>
+
+        <h3>1. Formatos de cor</h3>
+        <pre><code>/* Nome */
+color: red;  color: tomato;  color: rebeccapurple;
+
+/* Hexadecimal */
+color: #ff0000;
+color: #f00;             /* shorthand */
+color: #ff000080;        /* 8 dígitos = com alpha */
+
+/* RGB / RGBA */
+color: rgb(255, 0, 0);
+color: rgba(255, 0, 0, 0.5);
+
+/* HSL — mais intuitivo para criar paletas */
+color: hsl(0, 100%, 50%);       /* matiz, saturação, luminosidade */
+color: hsla(0, 100%, 50%, 0.5);</code></pre>
+
+        <h3>2. HSL — a forma mais intuitiva</h3>
+        <pre><code>/* H (Hue) → 0-360 (roda de cores)
+   S (Saturation) → 0% (cinza) a 100% (cor pura)
+   L (Lightness) → 0% (preto) a 100% (branco)
+
+   Para escurecer: ↓ L     Para clarear: ↑ L
+   Para alterar tom: ← H →  Para dessaturar: ↓ S
+*/</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Roda HSL — matizes e variações</span>
+          <div
+            style="
+              display: flex;
+              gap: 6px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 8px;
+            "
+          >
+            <div
+              style="
+                background: hsl(0, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              0
+            </div>
+            <div
+              style="
+                background: hsl(30, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              30
+            </div>
+            <div
+              style="
+                background: hsl(60, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #333;
+              "
+            >
+              60
+            </div>
+            <div
+              style="
+                background: hsl(120, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              120
+            </div>
+            <div
+              style="
+                background: hsl(180, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #333;
+              "
+            >
+              180
+            </div>
+            <div
+              style="
+                background: hsl(240, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              240
+            </div>
+            <div
+              style="
+                background: hsl(300, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              300
+            </div>
+            <div
+              style="
+                background: hsl(330, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              330
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 6px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 4px;
+            "
+          >
+            <div
+              style="
+                background: hsl(210, 100%, 35%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              L35
+            </div>
+            <div
+              style="
+                background: hsl(210, 100%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              L50
+            </div>
+            <div
+              style="
+                background: hsl(210, 100%, 65%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              L65
+            </div>
+            <div
+              style="
+                background: hsl(210, 100%, 80%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #333;
+              "
+            >
+              L80
+            </div>
+            <div
+              style="
+                background: hsl(210, 40%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              S40
+            </div>
+            <div
+              style="
+                background: hsl(210, 60%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              S60
+            </div>
+            <div
+              style="
+                background: hsl(210, 80%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              S80
+            </div>
+            <div
+              style="
+                background: hsl(210, 100%, 50%);
+                width: 48px;
+                height: 48px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.55rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              S100
+            </div>
+          </div>
+        </div>
+
+        <h3>3. Contraste e acessibilidade (WCAG)</h3>
+        <pre><code>/* O contraste entre texto e fundo deve ser no MÍNIMO:
+   AA  → 4.5:1 para texto normal, 3:1 para texto grande
+   AAA → 7:1 para texto normal, 4.5:1 para texto grande
+*/</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Contraste na prática</span>
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 8px;
+            "
+          >
+            <div
+              style="background: #fff; padding: 14px 18px; border-radius: 6px"
+            >
+              <span style="color: #ccc; font-weight: 700">RUIM (1.5:1)</span>
+            </div>
+            <div
+              style="background: #fff; padding: 14px 18px; border-radius: 6px"
+            >
+              <span style="color: #999; font-weight: 700">FRACO (2.8:1)</span>
+            </div>
+            <div
+              style="background: #fff; padding: 14px 18px; border-radius: 6px"
+            >
+              <span style="color: #555; font-weight: 700">OK (5.5:1 — AA)</span>
+            </div>
+            <div
+              style="background: #fff; padding: 14px 18px; border-radius: 6px"
+            >
+              <span style="color: #111; font-weight: 700"
+                >BOM (14:1 — AAA)</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <h3>4. Gradientes</h3>
+        <pre><code>/* Linear */
+background: linear-gradient(135deg, #667eea, #764ba2);
+
+/* Radial */
+background: radial-gradient(circle, #f093fb, #f5576c);
+
+/* Cônico */
+background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+
+/* Repetindo */
+background: repeating-linear-gradient(45deg, #333, #333 10px, #555 10px, #555 20px);</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Tipos de gradiente</span>
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 8px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                width: 140px;
+                height: 70px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              linear
+            </div>
+            <div
+              style="
+                background: radial-gradient(circle, #f093fb, #f5576c);
+                width: 140px;
+                height: 70px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              radial
+            </div>
+            <div
+              style="
+                background: conic-gradient(
+                  red,
+                  yellow,
+                  lime,
+                  aqua,
+                  blue,
+                  magenta,
+                  red
+                );
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              conic
+            </div>
+            <div
+              style="
+                background: repeating-linear-gradient(
+                  45deg,
+                  #333,
+                  #333 6px,
+                  #555 6px,
+                  #555 12px
+                );
+                width: 140px;
+                height: 70px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: #ccc;
+              "
+            >
+              repeating
+            </div>
+          </div>
+        </div>
+
+        <h3>5. Background</h3>
+        <pre><code>.elemento {
+  background-color: #333;
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;           /* cobre todo o espaço */
+  background-position: center;
+  background-attachment: fixed;     /* paralaxe */
+  background: #333 url('foto.jpg') no-repeat center / cover fixed;  /* shorthand */
+}</code></pre>
+
+        <h3>6. currentColor</h3>
+        <pre><code>/* currentColor = a cor atual do elemento */
+.botao {
+  color: #6c5ce7;
+  border: 2px solid currentColor;  /* mesma cor do texto */
+}</code></pre>
+      </section>
+
+      <!-- ═══════ S8 ── TYPOGRAPHY ═══════ -->
+      <section class="topic" id="s8">
+        <h2>08. Tipografia</h2>
+        <p class="subtitle">
+          Fontes, hierarquia, alinhamento e tudo sobre texto na web
+        </p>
+
+        <h3>1. Font-family</h3>
+        <pre><code>/* Font stack (fallback) */
+font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+
+/* Famílias genéricas */
+serif → Times New Roman, Georgia
+sans-serif → Arial, Helvetica, Verdana
+monospace → Courier New, Consolas</code></pre>
+
+        <h3>2. Web Safe vs Web Fonts</h3>
+        <pre><code>/* ✅ Web-safe */
+Arial, Helvetica, sans-serif
+Times New Roman, serif
+Courier New, monospace
+Verdana, sans-serif
+Georgia, serif
+
+/* ✅ Web Fonts (Google Fonts) */
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"&gt;
+
+/* @font-face */
+@font-face {
+  font-family: 'MinhaFonte';
+  src: url('/fonts/minhafonte.woff2') format('woff2');
+  font-display: swap;
+}</code></pre>
+
+        <h3>3. Propriedades de fonte</h3>
+        <pre><code>font-size: 1rem;
+font-weight: 400;   /* 100-900 ou nomes */
+font-style: italic;
+
+/* Shorthand */
+font: italic 700 1.2rem/1.6 'Segoe UI', sans-serif;</code></pre>
+
+        <h3>4. Propriedades de texto</h3>
+        <pre><code>text-align: center;       /* left | right | justify */
+text-decoration: underline wavy red;
+text-transform: uppercase; /* lowercase | capitalize */
+line-height: 1.6;          /* sem unidade = relativo ao font-size */
+letter-spacing: 0.05em;
+word-spacing: 0.1em;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.3);</code></pre>
+
+        <h3>5. Overflow e quebra de texto</h3>
+        <pre><code>/* "..." no final */
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+
+/* Quebra de palavras longas */
+word-break: break-word;
+overflow-wrap: break-word;</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Exemplos</span>
+          <p
+            style="font-weight: 800; font-size: 1.4rem; letter-spacing: -0.02em"
+          >
+            Peso 800 · tracking negativo
+          </p>
+          <p
+            style="
+              font-weight: 300;
+              font-size: 1.1rem;
+              font-style: italic;
+              color: var(--accent2);
+            "
+          >
+            Light 300 itálico
+          </p>
+          <p
+            style="
+              font-family: Georgia, serif;
+              font-size: 1.1rem;
+              font-style: italic;
+              color: #d4a373;
+            "
+          >
+            Serifada Georgia
+          </p>
+          <div
+            style="
+              background: #1e293b;
+              padding: 10px;
+              border-radius: 6px;
+              margin-top: 6px;
+            "
+          >
+            <code
+              style="
+                font-family: var(--font-mono);
+                font-size: 0.8rem;
+                color: var(--accent3);
+              "
+              >Monospace → código</code
+            >
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              justify-content: center;
+              margin-top: 10px;
+            "
+          >
+            <span
+              style="text-decoration: underline wavy red; font-size: 0.85rem"
+              >underline wavy</span
+            >
+            <span
+              style="
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-size: 0.8rem;
+              "
+              >uppercase</span
+            >
+          </div>
+        </div>
+
+        <h3>6. Hierarquia tipográfica</h3>
+        <pre><code>/* Escala 1.25 (Major Third) */
+h1 { font-size: 2.441rem; }
+h2 { font-size: 1.953rem; }
+h3 { font-size: 1.563rem; }
+h4 { font-size: 1.25rem; }
+p  { font-size: 1rem; }
+small { font-size: 0.8rem; }</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Hierarquia visual</span>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 4px;
+              margin-top: 6px;
+            "
+          >
+            <span style="font-size: 2.2rem; font-weight: 800">h1 — Título</span>
+            <span
+              style="font-size: 1.7rem; font-weight: 700; color: var(--accent)"
+              >h2 — Seção</span
+            >
+            <span style="font-size: 1.3rem; font-weight: 600"
+              >h3 — Subseção</span
+            >
+            <span style="font-size: 1rem; font-weight: 400"
+              >p — Texto normal</span
+            >
+            <span style="font-size: 0.8rem; color: var(--text-secondary)"
+              >small — Notas</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ S9 ── UNITS ═══════ -->
+      <section class="topic" id="s9">
+        <h2>09. Unidades CSS</h2>
+        <p class="subtitle">
+          Absolutas, relativas, viewport — quando usar cada uma
+        </p>
+
+        <pre><code>/* Absolutas */
+px   /* pixel (1px = 1/96 de polegada) */
+
+/* Relativas à fonte */
+em   /* relativo ao font-size do PAI */
+rem  /* relativo ao font-size da RAIZ (html) — 1rem = 16px padrão */
+
+/* Percentual */
+%    /* relativo ao tamanho do pai */
+
+/* Viewport */
+vw   /* 1vw = 1% da largura da viewport */
+vh   /* 1vh = 1% da altura da viewport */</code></pre>
+
+        <h3>Quando usar</h3>
+        <pre><code>/* REM é rei: use para fontes, margens, paddings */
+font-size: 1rem;   padding: 1.5rem;
+
+/* EM para componentes que escalam juntos */
+.btn { font-size: 1rem; }
+.btn-small { font-size: 0.8em; }
+
+/* % para larguras relativas ao pai */
+.container { width: 80%; }
+
+/* vw/vh para seções de tela cheia */
+.hero { height: 100vh; }</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Comparação visual</span>
+          <div class="units-demo">
+            <div class="px-unit">120px</div>
+            <div class="em-unit">10em</div>
+            <div class="rem-unit">8rem</div>
+            <div class="pc-unit">40%</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Prefira <code>rem</code> para a maioria dos
+          casos. Ele respeita as configurações de acessibilidade do usuário.
+        </div>
+      </section>
+
+      <!-- ═══════ S10 ── TRANSFORM & TRANSITION ═══════ -->
+      <section class="topic" id="s10">
+        <h2>10. Transform &amp; Transition</h2>
+        <p class="subtitle">Movimente, escale, rotacione — de forma suave</p>
+
+        <h3>Transform</h3>
+        <pre><code>transform: translateX(50px);      /* move horizontal */
+transform: translateY(-20px);     /* move vertical */
+transform: rotate(45deg);         /* rotaciona */
+transform: scale(1.5);            /* aumenta */
+transform: skewX(10deg);          /* distorce */
+transform: translate(20px,20px) rotate(10deg) scale(1.1);  /* combinados */</code></pre>
+
+        <h3>Transition</h3>
+        <pre><code>transition: transform 0.3s ease;
+transition: background 0.3s, transform 0.5s;
+transition: all 0.3s;
+
+/* Easing */
+ease | linear | ease-in | ease-out | ease-in-out
+cubic-bezier(0.68, -0.55, 0.27, 1.55) /* personalizado */</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧠 Passe o mouse:</span>
+          <div style="display: flex; justify-content: center">
+            <div class="anim-target">Hover me!</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ S11 ── ANIMATION ═══════ -->
+      <section class="topic" id="s11">
+        <h2>11. Animation (@keyframes)</h2>
+        <p class="subtitle">Animações complexas sem JavaScript</p>
+
+        <pre><code>@keyframes pulse {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.elemento {
+  animation: pulse 2s ease-in-out infinite;
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}</code></pre>
+
+        <div
+          class="demo-box"
+          style="
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <div style="text-align: center">
+            <span class="label">pulse</span>
+            <div class="pulse-anim">pulse</div>
+          </div>
+          <div style="text-align: center">
+            <span class="label">bounce</span>
+            <div class="bounce-anim">bounce</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Prefira animar <code>transform</code> e
+          <code>opacity</code> em vez de <code>width</code>,
+          <code>height</code>, <code>top</code>, etc.
+        </div>
+      </section>
+
+      <!-- ═══════ S12 ── PSEUDO ═══════ -->
+      <section class="topic" id="s12">
+        <h2>12. Pseudo-classes &amp; Pseudo-elementos</h2>
+        <p class="subtitle">
+          Estilize estados especiais e partes dos elementos
+        </p>
+
+        <h3>Pseudo-classes (:)</h3>
+        <pre><code>:hover        /* mouse em cima */
+:focus        /* elemento focado */
+:active       /* no momento do clique */
+:first-child  /* primeiro filho do pai */
+:last-child   /* último filho */
+:nth-child(2) /* segundo filho (odd/even, 2n, 3n+1...) */
+:not(.classe) /* negação */
+:disabled     /* input desabilitado */</code></pre>
+
+        <h3>Pseudo-elementos (::)</h3>
+        <pre><code>::before      /* insere conteúdo ANTES */
+::after       /* insere conteúdo DEPOIS */
+::first-line  /* primeira linha */
+::first-letter/* primeira letra */
+::selection   /* texto selecionado */
+::placeholder /* placeholder do input */</code></pre>
+
+        <pre><code>/* Exemplo: */
+.btn::before { content: "→ "; }
+p::first-letter { font-size: 2em; font-weight: bold; }</code></pre>
+
+        <div class="demo-box pseudo-demo">
+          <span class="label">🧪 Exemplo</span>
+          <ul>
+            <li>Item com <a href="#">link hover</a></li>
+            <li>Marker rosa via <code>::marker</code></li>
+          </ul>
+        </div>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> <code>::before</code> e
+          <code>::after</code> precisam de <code>content: ""</code> para
+          aparecerem.
+        </div>
+      </section>
+
+      <!-- ═══════ S13 ── VARIABLES ═══════ -->
+      <section class="topic" id="s13">
+        <h2>13. Variáveis CSS (Custom Properties)</h2>
+        <p class="subtitle">Reutilize valores sem repetir código</p>
+
+        <pre><code>:root {
+  --primary: #818cf8;
+  --secondary: #f472b6;
+  --spacing: 16px;
+  --radius: 8px;
+}
+
+.btn {
+  background: var(--primary);
+  padding: var(--spacing);
+  border-radius: var(--radius);
+}
+
+/* Fallback */
+color: var(--nao-existe, #333);
+
+/* Sobrescrever em escopo */
+.card { --primary: #34d399; }</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Usando variáveis</span>
+          <div class="var-demo-box">--box-bg: #818cf8</div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Variáveis CSS são dinâmicas — podem ser
+          alteradas via JavaScript com
+          <code>element.style.setProperty('--cor', 'red')</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ S14 ── RESPONSIVO ═══════ -->
+      <section class="topic" id="s14">
+        <h2>14. Responsividade &amp; Media Queries</h2>
+        <p class="subtitle">Um layout que funciona em qualquer tela</p>
+
+        <pre><code>/* Mobile-first: comece com o estilo base (mobile) */
+
+/* Tablet (≥ 768px) */
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* Outros */
+@media (max-width: 600px) { ... }
+@media (prefers-color-scheme: dark) { ... }
+@media (print) { ... }</code></pre>
+
+        <div class="demo-box">
+          <span class="label"
+            >🧪 Redimensione — este grid muda de 3 → 2 → 1 colunas:</span
+          >
+          <div class="media-demo">
+            <div>Item</div>
+            <div>Item</div>
+            <div>Item</div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>📱 Dica:</strong> Adote <strong>Mobile First</strong> — comece
+          com o layout para celular e vá adicionando com
+          <code>@media (min-width: ...)</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ S15 ── SPECIFICITY ═══════ -->
+      <section class="topic" id="s15">
+        <h2>15. Especificidade &amp; Cascata</h2>
+        <p class="subtitle">Entenda qual regra "vence" quando há conflito</p>
+
+        <h3>A cascata (Cascading)</h3>
+        <p>
+          Se duas regras têm a mesma especificidade, a
+          <strong>última</strong> declarada vence.
+        </p>
+
+        <h3>Especificidade (peso dos seletores)</h3>
+        <pre><code>Ordem de prioridade (do mais fraco ao mais forte):
+
+1. TAG / elemento      → peso baixo      ex: div, p
+2. Classes, atributos  → peso médio      ex: .card, :hover
+3. IDs                 → peso alto       ex: #header
+4. inline style        → muito alto
+5. !important          → máxima (evite!)
+
+Cálculo = (id, classe, tag)
+div           → (0, 0, 1)
+.btn          → (0, 1, 0)
+#header .btn  → (1, 1, 0)</code></pre>
+
+        <div class="note">
+          <strong>⚠️ Regra de ouro:</strong> Evite <code>!important</code> e IDs
+          em seletores. Use <strong>classes</strong> para tudo.
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>🎯 CSS Completo — Guia prático de estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

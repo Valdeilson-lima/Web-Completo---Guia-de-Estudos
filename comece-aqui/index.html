@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comece Aqui — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn current" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>🚀 Comece <span class="hl">Aqui</span></h1>
+        <p>
+          Do zero absoluto ao primeiro código — tudo que você precisa antes de
+          programar
+        </p>
+      </div>
+
+      <section class="topic" id="s1">
+        <h2>O que é Programação Web?</h2>
+        <p class="subtitle">Entendendo o básico antes de escrever código</p>
+
+        <p>
+          Programação web é criar sites e aplicativos que funcionam no
+          navegador. São três tecnologias principais que trabalham juntas:
+        </p>
+
+        <div class="demo-box" style="text-align: center">
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <div
+              style="
+                background: var(--accent2);
+                padding: 16px 24px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="font-size: 1.1rem; color: #0b0d14">HTML</strong>
+              <p
+                style="font-size: 0.75rem; color: rgba(0, 0, 0, 0.7); margin: 0"
+              >
+                Estrutura<br />O esqueleto
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--accent);
+                padding: 16px 24px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="font-size: 1.1rem; color: #0b0d14">CSS</strong>
+              <p
+                style="font-size: 0.75rem; color: rgba(0, 0, 0, 0.7); margin: 0"
+              >
+                Estilo<br />A aparência
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--accent3);
+                padding: 16px 24px;
+                border-radius: 8px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.1rem">JavaScript</strong>
+              <p
+                style="
+                  font-size: 0.75rem;
+                  color: rgba(255, 255, 255, 0.7);
+                  margin: 0;
+                "
+              >
+                Interação<br />O comportamento
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Como a web funciona (resumo)</h3>
+        <pre><code>1. Você digita um URL no navegador (ex: google.com)
+2. O navegador faz uma requisição para um servidor
+3. O servidor responde com os arquivos (HTML, CSS, JS)
+4. O navegador monta a página e exibe na tela</code></pre>
+      </section>
+
+      <section class="topic" id="s2">
+        <h2>Ferramentas Essenciais</h2>
+        <p class="subtitle">O kit básico para começar a programar</p>
+
+        <h3>1. Navegador (você já tem)</h3>
+        <p>
+          Use o <strong>Google Chrome</strong> ou <strong>Firefox</strong>.
+          Ambos têm ferramentas para desenvolvedor (DevTools) essenciais para
+          testar e depurar seu código.
+        </p>
+
+        <h3>2. VS Code — o editor de código</h3>
+        <p>
+          O <strong>Visual Studio Code</strong> é o editor mais usado por
+          desenvolvedores web. É gratuito e existe para Windows, Mac e Linux.
+        </p>
+
+        <h4>Instalação</h4>
+        <pre><code>1. Acesse code.visualstudio.com
+2. Clique em "Download" (seu sistema é detectado automaticamente)
+3. Instale como qualquer programa
+4. Abra o VS Code</code></pre>
+
+        <h4>Extensões essenciais</h4>
+        <pre><code>🔹 Live Server (Ritwick Dey)
+   → Recarrega a página automaticamente quando você salva
+
+🔹 Prettier (Prettier)
+   → Formata seu código automaticamente
+
+🔹 ESLint (Microsoft)
+   → Ajuda a escrever JavaScript sem erros
+
+🔹 Color Highlight (Sergii N)
+   → Mostra a cor ao lado do código hexadecimal</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Como instalar extensões no VS Code</span>
+          <p style="font-size: 0.85rem; margin: 8px 0">
+            Clique no ícone de <strong>blocos</strong> na barra lateral esquerda
+            (ou Ctrl+Shift+X),<br />
+            digite o nome da extensão e clique em <strong>"Install"</strong>.
+          </p>
+        </div>
+
+        <h3>3. Terminal (prompt de comando)</h3>
+        <p>
+          O terminal é uma ferramenta de texto para dar comandos ao computador.
+          No VS Code, abra com <code>Ctrl + '</code> (acento grave).
+        </p>
+      </section>
+
+      <section class="topic" id="s3">
+        <h2>Seu Primeiro Arquivo HTML</h2>
+        <p class="subtitle">Mão no código — crie sua primeira página</p>
+
+        <h3>Passo 1: Crie uma pasta para o projeto</h3>
+        <pre><code>1. No seu computador, crie uma pasta chamada "meu-site"
+2. Abra o VS Code
+3. Clique em File &gt; Open Folder e selecione a pasta
+4. No VS Code, clique em "New File" e nomeie como "index.html"</code></pre>
+
+        <h3>Passo 2: Digite este código</h3>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Minha Primeira Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+  &lt;p&gt;Estou aprendendo HTML.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3>Passo 3: Veja no navegador</h3>
+        <pre><code>1. Clique com o botão direito no arquivo "index.html"
+2. Escolha "Open with Live Server" (se instalou a extensão)
+3 OU: abra o arquivo diretamente no navegador (dois cliques)
+4. Pronto! Sua primeira página está no ar! 🎉</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre que você salvar o arquivo (Ctrl+S), o
+          Live Server atualiza a página automaticamente. Você vê as mudanças em
+          tempo real.
+        </div>
+      </section>
+
+      <section class="topic" id="s4">
+        <h2>Estrutura de Pastas de um Projeto Web</h2>
+        <p class="subtitle">Organização desde o início</p>
+
+        <p>
+          Conforme seu projeto cresce, organizar os arquivos evita confusão. Use
+          esta estrutura como padrão:
+        </p>
+
+        <pre><code>meu-site/
+├── index.html          # Página principal
+├── css/
+│   └── style.css       # Estilos
+├── js/
+│   └── script.js       # JavaScript
+└── img/                # Imagens
+    ├── logo.png
+    └── foto.jpg</code></pre>
+
+        <p>Este mesmo guia que você está usando segue essa estrutura.</p>
+      </section>
+
+      <section class="topic" id="s5">
+        <h2>Como Estudar Programação</h2>
+        <p class="subtitle">Dicas para aprender de verdade</p>
+
+        <div class="demo-box">
+          <div
+            style="
+              display: grid;
+              gap: 16px;
+              grid-template-columns: 1fr 1fr;
+              max-width: 600px;
+              margin: 0 auto;
+            "
+          >
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="color: var(--accent); font-size: 1.2rem"
+                >30%</strong
+              >
+              <p style="font-size: 0.8rem; margin: 4px 0 0">Ler e assistir</p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="color: var(--accent2); font-size: 1.2rem"
+                >70%</strong
+              >
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                Praticar e quebrar
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="color: var(--accent3); font-size: 1.2rem"
+                >Diário</strong
+              >
+              <p style="font-size: 0.8rem; margin: 4px 0 0">30 min todo dia</p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+                text-align: center;
+              "
+            >
+              <strong style="color: var(--accent4); font-size: 1.2rem"
+                >Errar</strong
+              >
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                É parte do processo
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Regras de ouro</h3>
+        <pre><code>🔸 Programação se aprende PROGRAMANDO — não apenas lendo
+🔸 Seu melhor professor é o erro. Quebre coisas de propósito
+🔸 Não decore sintaxe. Entenda conceitos
+🔸 30 minutos por dia &gt; 4 horas no fim de semana
+🔸 Use a documentação (MDN) — ela é sua melhor amiga
+🔸 Todo programador profissional pesquisa no Google todo santo dia</code></pre>
+
+        <h3>Fluxo de aprendizado recomendado</h3>
+        <pre><code>1. 📖 Comece Aqui (você está aqui)
+2. 🏗️ HTML — a estrutura (faça o guia completo)
+3. 🎨 CSS — o estilo (faça o guia completo)
+4. ⚡ JavaScript — a interação (faça o guia completo)
+5. 🛠️ Ferramentas — Git, Terminal, DevTools
+6. 📦 Projeto prático — construa algo do zero
+7. 🗺️ Trilha — veja para onde ir depois</code></pre>
+
+        <div class="note">
+          <strong>🚀 Próximo passo:</strong> Vá para o
+          <a href="../html/">Guia de HTML</a> e comece sua jornada. Lembre-se:
+          todo expert já foi um iniciante que não desistiu.
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>🚀 Comece Aqui — Guia de Estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

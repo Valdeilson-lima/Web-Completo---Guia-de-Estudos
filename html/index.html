@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Completo — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <!-- ════════════════════ HEADER ════════════════════ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn current" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <!-- ════════════════════ CONTEÚDO ════════════════════ -->
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>📄 HTML <span class="hl">Completo</span></h1>
+        <p>Guia prático para estudar HTML do zero ao avançado</p>
+      </div>
+
+      <!-- ── TOC ── -->
+      <nav class="toc">
+        <h2>📑 Sumário</h2>
+        <div class="toc-grid">
+          <a href="#h1"><span class="num">01</span> Estrutura Básica</a>
+          <a href="#h2"><span class="num">02</span> Tags de Texto</a>
+          <a href="#h3"><span class="num">03</span> Listas</a>
+          <a href="#h4"><span class="num">04</span> Links</a>
+          <a href="#h5"><span class="num">05</span> Imagens &amp; Mídia</a>
+          <a href="#h6"><span class="num">06</span> Tabelas</a>
+          <a href="#h7"><span class="num">07</span> Formulários</a>
+          <a href="#h8"><span class="num">08</span> Semântica HTML5</a>
+          <a href="#h9"><span class="num">09</span> Atributos</a>
+          <a href="#h10"
+            ><span class="num">10</span> Entidades &amp; Símbolos</a
+          >
+          <a href="#h11"><span class="num">11</span> SEO &amp; Meta Tags</a>
+          <a href="#h12"><span class="num">12</span> Boas Práticas</a>
+        </div>
+      </nav>
+
+      <!-- ═══════ H1 ── ESTRUTURA BÁSICA ═══════ -->
+      <section class="topic" id="h1">
+        <h2>01. Estrutura Básica do HTML</h2>
+        <p class="subtitle">Todo documento HTML segue este esqueleto</p>
+
+        <pre><code>&lt;!DOCTYPE html&gt;             &lt;!-- Diz ao navegador que é HTML5 --&gt;
+&lt;html lang="pt-BR"&gt;        &lt;!-- Elemento raiz, lang define o idioma --&gt;
+&lt;head&gt;                      &lt;!-- Metadados (não aparecem na página) --&gt;
+  &lt;meta charset="UTF-8"&gt;   &lt;!-- Codificação de caracteres (acentos) --&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Título da página&lt;/title&gt;  &lt;!-- Aparece na aba do navegador --&gt;
+&lt;/head&gt;
+&lt;body&gt;                      &lt;!-- Tudo que aparece na página --&gt;
+  &lt;h1&gt;Olá, mundo!&lt;/h1&gt;
+  &lt;p&gt;Meu primeiro parágrafo.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <h1>Olá, mundo!</h1>
+            <p>Meu primeiro parágrafo.</p>
+          </div>
+        </div>
+
+        <h3>O que cada parte significa</h3>
+        <pre><code>&lt;!DOCTYPE html&gt;
+  → Instrução para o navegador renderizar no modo padrão (HTML5)
+
+&lt;html lang="pt-BR"&gt;
+  → Elemento raiz. O atributo lang ajuda leitores de tela e SEO
+
+&lt;head&gt;
+  → Metadados: charset, viewport, title, links de CSS, meta tags
+
+&lt;body&gt;
+  → Conteúdo visível: textos, imagens, vídeos, formulários, etc.</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre inclua
+          <code>meta charset="UTF-8"</code> e <code>meta name="viewport"</code>.
+          Eles são essenciais para acentos e responsividade.
+        </div>
+      </section>
+
+      <!-- ═══════ H2 ── TAGS DE TEXTO ═══════ -->
+      <section class="topic" id="h2">
+        <h2>02. Tags de Texto</h2>
+        <p class="subtitle">Títulos, parágrafos, formatação e citações</p>
+
+        <h3>Títulos (headings)</h3>
+        <pre><code>&lt;h1&gt;Título principal&lt;/h1&gt;     &lt;!-- Apenas UM por página --&gt;
+&lt;h2&gt;Seção&lt;/h2&gt;
+&lt;h3&gt;Subseção&lt;/h3&gt;
+&lt;h4&gt;Detalhe&lt;/h4&gt;
+&lt;h5&gt;Detalhe menor&lt;/h5&gt;
+&lt;h6&gt;Detalhe mínimo&lt;/h6&gt;</code></pre>
+
+        <h3>Parágrafos e formatação</h3>
+        <pre><code>&lt;p&gt;Parágrafo de texto.&lt;/p&gt;
+&lt;p&gt;Outro parágrafo.&lt;/p&gt;
+
+&lt;strong&gt;Texto importante (negrito)&lt;/strong&gt;
+&lt;em&gt;Texto com ênfase (itálico)&lt;/em&gt;
+&lt;u&gt;Texto sublinhado&lt;/u&gt;
+&lt;s&gt;Texto riscado&lt;/s&gt;
+&lt;mark&gt;Texto destacado (marca-texto)&lt;/mark&gt;
+&lt;small&gt;Texto pequeno (notas, legendas)&lt;/small&gt;
+
+&lt;br&gt;        &lt;!-- Quebra de linha (não use para espaçamento!) --&gt;
+&lt;hr&gt;        &lt;!-- Linha horizontal (separação temática) --&gt;</code></pre>
+
+        <h3>Citações</h3>
+        <pre><code>&lt;blockquote&gt;
+  Citação longa em bloco.
+&lt;/blockquote&gt;
+
+&lt;q&gt;Citação curta inline&lt;/q&gt;
+
+&lt;cite&gt;Título de obra citada&lt;/cite&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <h1>Título h1</h1>
+            <h2>Título h2</h2>
+            <h3>Título h3</h3>
+            <p>
+              <strong>Negrito</strong>, <em>itálico</em>, <u>sublinhado</u>,
+              <s>riscado</s>, <mark>destacado</mark> e <small>pequeno</small>.
+            </p>
+            <hr />
+            <blockquote
+              style="
+                border-left: 4px solid #ccc;
+                padding-left: 16px;
+                margin: 10px 0;
+                color: #555;
+              "
+            >
+              "Citação em bloco com blockquote."
+            </blockquote>
+            <p><q>Citação curta inline</q> — disse o autor.</p>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>&lt;h1&gt;</code> apenas
+          <strong>uma vez</strong>
+          por página. Ele é o título principal e importante para SEO. Siga a
+          hierarquia sem pular níveis (h1 → h2 → h3, nunca h1 → h3).
+        </div>
+      </section>
+
+      <!-- ═══════ H3 ── LISTAS ═══════ -->
+      <section class="topic" id="h3">
+        <h2>03. Listas</h2>
+        <p class="subtitle">Ordenadas, não ordenadas e de definição</p>
+
+        <h3>Lista não ordenada (ul)</h3>
+        <pre><code>&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <h3>Lista ordenada (ol)</h3>
+        <pre><code>&lt;ol&gt;
+  &lt;li&gt;Primeiro passo&lt;/li&gt;
+  &lt;li&gt;Segundo passo&lt;/li&gt;
+  &lt;li&gt;Terceiro passo&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Atributos úteis --&gt;
+&lt;ol type="A"&gt;     &lt;!-- A, B, C... (também: a, I, i, 1) --&gt;
+&lt;ol start="5"&gt;     &lt;!-- começa do 5 --&gt;
+&lt;ol reversed&gt;       &lt;!-- ordem decrescente --&gt;</code></pre>
+
+        <h3>Lista de definição (dl)</h3>
+        <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Linguagem de marcação para criar páginas web.&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Linguagem de estilo para dar aparência às páginas.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <ul>
+              <li>Item não ordenado 1</li>
+              <li>Item não ordenado 2</li>
+            </ul>
+            <ol>
+              <li>Item ordenado 1</li>
+              <li>Item ordenado 2</li>
+            </ol>
+            <dl>
+              <dt><strong>HTML</strong></dt>
+              <dd>Linguagem de marcação para criar páginas web.</dd>
+              <dt><strong>CSS</strong></dt>
+              <dd>Linguagem de estilo para dar aparência às páginas.</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>&lt;ul&gt;</code> para listas sem
+          ordem específica e <code>&lt;ol&gt;</code> quando a ordem importa
+          (passos, rankings).
+        </div>
+      </section>
+
+      <!-- ═══════ H4 ── LINKS ═══════ -->
+      <section class="topic" id="h4">
+        <h2>04. Links</h2>
+        <p class="subtitle">Navegação entre páginas, seções e recursos</p>
+
+        <pre><code>&lt;!-- Link básico --&gt;
+&lt;a href="https://google.com"&gt;Visite o Google&lt;/a&gt;
+
+&lt;!-- Abrir em nova aba --&gt;
+&lt;a href="https://google.com" target="_blank" rel="noopener noreferrer"&gt;
+  Google (nova aba)
+&lt;/a&gt;
+
+&lt;!-- Link para uma seção da própria página (âncora) --&gt;
+&lt;a href="#secao"&gt;Ir para seção&lt;/a&gt;
+&lt;!-- ... --&gt;
+&lt;h2 id="secao"&gt;Seção destino&lt;/h2&gt;
+
+&lt;!-- Link para email e telefone --&gt;
+&lt;a href="mailto:contato@exemplo.com"&gt;Enviar email&lt;/a&gt;
+&lt;a href="tel:+551199999999"&gt;Ligar&lt;/a&gt;
+
+&lt;!-- Link para download --&gt;
+&lt;a href="arquivo.pdf" download&gt;Baixar PDF&lt;/a&gt;
+
+&lt;!-- Link com título (tooltip ao passar o mouse) --&gt;
+&lt;a href="..." title="Descrição do link"&gt;Link com tooltip&lt;/a&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <p><a href="#">Link básico</a></p>
+            <p><a href="#" target="_blank">Abre em nova aba</a></p>
+            <p><a href="mailto:contato@exemplo.com">contato@exemplo.com</a></p>
+            <p><a href="#" title="Tooltip exemplo">Passe o mouse aqui</a></p>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Ao usar <code>target="_blank"</code>,
+          sempre adicione <code>rel="noopener noreferrer"</code> por segurança
+          (evita que a página alvo acesse a sua via <code>window.opener</code>).
+        </div>
+      </section>
+
+      <!-- ═══════ H5 ── IMAGENS & MÍDIA ═══════ -->
+      <section class="topic" id="h5">
+        <h2>05. Imagens &amp; Mídia</h2>
+        <p class="subtitle">Imagens, vídeos, áudio e iframes</p>
+
+        <h3>Imagens</h3>
+        <pre><code>&lt;!-- Básico — SEMPRE use alt para acessibilidade --&gt;
+&lt;img src="foto.jpg" alt="Descrição da imagem"&gt;
+
+&lt;!-- Com tamanho explícito (evita layout shift) --&gt;
+&lt;img src="foto.jpg" alt="..." width="800" height="600"&gt;
+
+&lt;!-- Responsivo com srcset --&gt;
+&lt;img
+  src="foto-600.jpg"
+  srcset="foto-600.jpg 600w, foto-1200.jpg 1200w, foto-2000.jpg 2000w"
+  sizes="(max-width: 600px) 100vw, 50vw"
+  alt="Descrição"
+&gt;
+
+&lt;!-- Figura com legenda --&gt;
+&lt;figure&gt;
+  &lt;img src="foto.jpg" alt="..."&gt;
+  &lt;figcaption&gt;Legenda da imagem&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+        <h3>Vídeo e Áudio</h3>
+        <pre><code>&lt;!-- Vídeo --&gt;
+&lt;video controls width="400"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+  Seu navegador não suporta vídeo.
+&lt;/video&gt;
+
+&lt;!-- Áudio --&gt;
+&lt;audio controls&gt;
+  &lt;source src="musica.mp3" type="audio/mpeg"&gt;
+  Seu navegador não suporta áudio.
+&lt;/audio&gt;</code></pre>
+
+        <h3>Iframe (incorporar conteúdo externo)</h3>
+        <pre><code>&lt;iframe src="https://www.google.com/maps/embed?..."&gt;&lt;/iframe&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Exemplo de imagem:</span>
+          <div class="tag-demo-output" style="text-align: center">
+            <figure>
+              <div
+                style="
+                  background: #e0e0e0;
+                  width: 200px;
+                  height: 120px;
+                  border-radius: 4px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto;
+                  color: #888;
+                  font-size: 0.8rem;
+                "
+              >
+                ◻ imagem ilustrativa
+              </div>
+              <figcaption
+                style="font-size: 0.8rem; color: #666; margin-top: 4px"
+              >
+                Legenda da imagem
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>♿ Acessibilidade:</strong> O atributo <code>alt</code> é
+          <strong>obrigatório</strong> em imagens. Para imagens decorativas, use
+          <code>alt=""</code> (vazio) — leitores de tela vão ignorá-la.
+        </div>
+      </section>
+
+      <!-- ═══════ H6 ── TABELAS ═══════ -->
+      <section class="topic" id="h6">
+        <h2>06. Tabelas</h2>
+        <p class="subtitle">Dados tabulares organizados em linhas e colunas</p>
+
+        <pre><code>&lt;table&gt;
+  &lt;caption&gt;Título da tabela&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Nome&lt;/th&gt;
+      &lt;th&gt;Idade&lt;/th&gt;
+      &lt;th&gt;Cidade&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;João&lt;/td&gt;
+      &lt;td&gt;25&lt;/td&gt;
+      &lt;td&gt;São Paulo&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Maria&lt;/td&gt;
+      &lt;td&gt;30&lt;/td&gt;
+      &lt;td&gt;Rio de Janeiro&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td colspan="3"&gt;Total: 2 pessoas&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+
+        <h3>Mesclagem de células</h3>
+        <pre><code>&lt;td colspan="2"&gt;...&lt;/td&gt;  &lt;!-- ocupa 2 colunas --&gt;
+&lt;td rowspan="3"&gt;...&lt;/td&gt;  &lt;!-- ocupa 3 linhas --&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <table>
+              <caption
+                style="
+                  caption-side: bottom;
+                  font-size: 0.8rem;
+                  color: #666;
+                  margin-top: 4px;
+                "
+              >
+                Tabela de exemplo
+              </caption>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Idade</th>
+                  <th>Cidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>João</td>
+                  <td>25</td>
+                  <td>São Paulo</td>
+                </tr>
+                <tr>
+                  <td>Maria</td>
+                  <td>30</td>
+                  <td>Rio de Janeiro</td>
+                </tr>
+                <tr>
+                  <td>Pedro</td>
+                  <td>22</td>
+                  <td>Belo Horizonte</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>&lt;thead&gt;</code>,
+          <code>&lt;tbody&gt;</code> e <code>&lt;tfoot&gt;</code> para organizar
+          a tabela semanticamente. O <code>&lt;caption&gt;</code> funciona como
+          título da tabela.
+        </div>
+      </section>
+
+      <!-- ═══════ H7 ── FORMULÁRIOS ═══════ -->
+      <section class="topic" id="h7">
+        <h2>07. Formulários</h2>
+        <p class="subtitle">
+          Coletar dados do usuário com inputs, selects e botões
+        </p>
+
+        <h3>Estrutura básica</h3>
+        <pre><code>&lt;form action="/enviar" method="post"&gt;
+
+  &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+  &lt;input type="text" id="nome" name="nome" required&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" placeholder="seu@email.com"&gt;
+
+  &lt;label for="senha"&gt;Senha:&lt;/label&gt;
+  &lt;input type="password" id="senha" name="senha" minlength="6"&gt;
+
+  &lt;label for="idade"&gt;Idade:&lt;/label&gt;
+  &lt;input type="number" id="idade" name="idade" min="0" max="150"&gt;
+
+  &lt;label for="cor"&gt;Cor favorita:&lt;/label&gt;
+  &lt;input type="color" id="cor" name="cor"&gt;
+
+  &lt;label for="data"&gt;Data:&lt;/label&gt;
+  &lt;input type="date" id="data" name="data"&gt;
+
+  &lt;fieldset&gt;
+    &lt;legend&gt;Sexo:&lt;/legend&gt;
+    &lt;input type="radio" id="masc" name="sexo" value="M"&gt;
+    &lt;label for="masc"&gt;Masculino&lt;/label&gt;
+    &lt;input type="radio" id="fem" name="sexo" value="F"&gt;
+    &lt;label for="fem"&gt;Feminino&lt;/label&gt;
+  &lt;/fieldset&gt;
+
+  &lt;label for="interesses"&gt;Interesses:&lt;/label&gt;
+  &lt;input type="checkbox" id="css" name="interesse" value="css"&gt;
+  &lt;label for="css"&gt;CSS&lt;/label&gt;
+  &lt;input type="checkbox" id="html" name="interesse" value="html"&gt;
+  &lt;label for="html"&gt;HTML&lt;/label&gt;
+
+  &lt;label for="pais"&gt;País:&lt;/label&gt;
+  &lt;select id="pais" name="pais"&gt;
+    &lt;option value=""&gt;Selecione...&lt;/option&gt;
+    &lt;option value="BR"&gt;Brasil&lt;/option&gt;
+    &lt;option value="PT"&gt;Portugal&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="msg"&gt;Mensagem:&lt;/label&gt;
+  &lt;textarea id="msg" name="msg" rows="4" cols="40"&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+  &lt;button type="reset"&gt;Limpar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Resultado visual:</span>
+          <div class="tag-demo-output">
+            <form onsubmit="return false;">
+              <div style="display: grid; gap: 8px; max-width: 400px">
+                <label for="demo-nome"><strong>Nome:</strong></label>
+                <input
+                  type="text"
+                  id="demo-nome"
+                  placeholder="Digite seu nome"
+                />
+
+                <label for="demo-email"><strong>Email:</strong></label>
+                <input
+                  type="email"
+                  id="demo-email"
+                  placeholder="seu@email.com"
+                />
+
+                <label for="demo-pais"><strong>País:</strong></label>
+                <select id="demo-pais">
+                  <option>Selecione...</option>
+                  <option>Brasil</option>
+                  <option>Portugal</option>
+                </select>
+
+                <label><strong>Interesses:</strong></label>
+                <div>
+                  <input type="checkbox" id="demo-css" />
+                  <label for="demo-css">CSS</label>
+                  <input type="checkbox" id="demo-html" />
+                  <label for="demo-html">HTML</label>
+                </div>
+
+                <label for="demo-msg"><strong>Mensagem:</strong></label>
+                <textarea
+                  id="demo-msg"
+                  rows="3"
+                  placeholder="Sua mensagem..."
+                ></textarea>
+
+                <button type="submit">Enviar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre associe <code>&lt;label&gt;</code> ao
+          <code>&lt;input&gt;</code> usando o atributo <code>for</code> igual ao
+          <code>id</code> do input. Isso melhora a acessibilidade — clicar no
+          label foca o input.
+        </div>
+      </section>
+
+      <!-- ═══════ H8 ── SEMÂNTICA HTML5 ═══════ -->
+      <section class="topic" id="h8">
+        <h2>08. Semântica HTML5</h2>
+        <p class="subtitle">Tags que dão significado ao conteúdo</p>
+
+        <h3>Tags semânticas principais</h3>
+        <pre><code>&lt;header&gt;   &lt;!-- Cabeçalho da página ou seção --&gt;
+&lt;nav&gt;       &lt;!-- Navegação principal --&gt;
+&lt;main&gt;      &lt;!-- Conteúdo principal (único por página) --&gt;
+&lt;article&gt;   &lt;!-- Conteúdo independente (post, notícia) --&gt;
+&lt;section&gt;   &lt;!-- Seção genérica com tema próprio --&gt;
+&lt;aside&gt;     &lt;!-- Conteúdo relacionado (sidebar, complemento) --&gt;
+&lt;footer&gt;    &lt;!-- Rodapé da página ou seção --&gt;
+&lt;figure&gt;    &lt;!-- Mídia com legenda (img + figcaption) --&gt;
+&lt;time&gt;      &lt;!-- Data ou hora --&gt;
+&lt;address&gt;   &lt;!-- Informações de contato --&gt;</code></pre>
+
+        <h3>Por que usar semântica?</h3>
+        <pre><code>1. Acessibilidade — leitores de tela entendem a estrutura
+2. SEO — Google dá mais relevância a conteúdo bem estruturado
+3. Manutenção — código mais legível e organizado
+4. Performance — navegadores otimizam a renderização</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Layout semântico visual:</span>
+          <div class="semantic-layout-demo">
+            <div class="sl-header">&lt;header&gt;</div>
+            <div class="sl-nav">&lt;nav&gt;</div>
+            <div class="sl-main">&lt;main&gt;</div>
+            <div class="sl-footer">&lt;footer&gt;</div>
+          </div>
+          <p
+            style="
+              font-size: 0.75rem;
+              color: var(--text-secondary);
+              margin-top: 6px;
+            "
+          >
+            Estrutura típica: header → nav → main → footer
+          </p>
+        </div>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Cada página deve ter apenas
+          <strong>um</strong> <code>&lt;main&gt;</code>. Use
+          <code>&lt;div&gt;</code> apenas quando nenhuma tag semântica for
+          adequada.
+        </div>
+      </section>
+
+      <!-- ═══════ H9 ── ATRIBUTOS ═══════ -->
+      <section class="topic" id="h9">
+        <h2>09. Atributos</h2>
+        <p class="subtitle">Globais, específicos e data-attributes</p>
+
+        <h3>Atributos globais (funcionam em qualquer tag)</h3>
+        <pre><code>&lt;div id="unico"&gt;           &lt;!-- Identificador único --&gt;
+&lt;div class="grupo"&gt;        &lt;!-- Classe (pode repetir) --&gt;
+&lt;div style="color:red"&gt;    &lt;!-- Estilo inline (evite) --&gt;
+&lt;div title="Tooltip"&gt;     &lt;!-- Texto que aparece ao passar o mouse --&gt;
+&lt;div lang="en"&gt;           &lt;!-- Idioma do elemento --&gt;
+&lt;div hidden&gt;               &lt;!-- Oculta o elemento --&gt;
+&lt;div tabindex="0"&gt;        &lt;!-- Ordem de foco no teclado --&gt;
+&lt;div role="button"&gt;       &lt;!-- Papel semântico (ARIA) --&gt;
+&lt;div aria-label="Texto"&gt;  &lt;!-- Rótulo acessível --&gt;
+
+&lt;!-- data-* — atributos personalizados (acessíveis via JS) --&gt;
+&lt;button data-user-id="123" data-status="ativo"&gt;Salvar&lt;/button&gt;
+/* JS: element.dataset.userId → "123" */</code></pre>
+
+        <h3>Atributos específicos por tag</h3>
+        <pre><code>&lt;a href="..." target="_blank"&gt;
+&lt;img src="..." alt="..." width="200" height="150"&gt;
+&lt;input type="text" name="..." placeholder="..." required disabled&gt;
+&lt;form action="/enviar" method="POST"&gt;
+&lt;video controls autoplay loop&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 data-attributes no HTML:</span>
+          <pre style="font-size: 0.75rem; margin: 0">
+&lt;button data-user-id="123" data-status="ativo"&gt;Salvar&lt;/button&gt;</pre
+          >
+          <p
+            style="
+              font-size: 0.8rem;
+              color: var(--text-secondary);
+              margin-top: 6px;
+            "
+          >
+            No JavaScript: <code>button.dataset.userId</code> →
+            <code>"123"</code>
+          </p>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>data-*</code> para armazenar dados
+          personalizados no HTML sem poluir classes ou IDs. É a forma padrão e
+          semântica de associar dados a elementos.
+        </div>
+      </section>
+
+      <!-- ═══════ H10 ── ENTIDADES & SÍMBOLOS ═══════ -->
+      <section class="topic" id="h10">
+        <h2>10. Entidades &amp; Símbolos</h2>
+        <p class="subtitle">Como exibir caracteres especiais no HTML</p>
+
+        <p>
+          Entidades HTML começam com <code>&amp;</code> e terminam com
+          <code>;</code>.
+        </p>
+
+        <pre><code>&amp;lt;   → &lt;    (less than — menor que)
+&amp;gt;   → &gt;    (greater than — maior que)
+&amp;amp;  → &amp;    (ampersand — e comercial)
+&amp;quot; → "    (double quote — aspas duplas)
+&amp;apos; → '    (apostrophe — apóstrofo)
+
+&amp;nbsp; → espaço (non-breaking space — não quebra linha)
+&amp;copy; → ©    (copyright)
+&amp;reg;  → ®    (registered)
+&amp;trade;→ ™    (trademark)
+
+&amp;deg;  → °    (grau)
+&amp;plusmn;→ ±   (mais ou menos)
+&amp;times;→ ×    (multiplicação)
+&amp;divide;→ ÷   (divisão)
+
+&amp;mdash;→ —    (travessão)
+&amp;ndash;→ –    (meia-traçãp)
+
+&amp;larr; → ←    (seta esquerda)
+&amp;rarr; → →    (seta direita)
+&amp;darr; → ↓    (seta baixo)
+&amp;uarr; → ↑    (seta cima)
+
+&amp;hearts;→ ♥   (coração)
+&amp;spades;→ ♠   (espadas)
+&amp;clubs; → ♣   (paus)
+&amp;diams; → ♦   (ouros)</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Símbolos comuns:</span>
+          <div
+            style="
+              display: flex;
+              gap: 14px;
+              justify-content: center;
+              flex-wrap: wrap;
+              font-size: 1.4rem;
+              margin-top: 6px;
+            "
+          >
+            <span title="&amp;copy;">©</span>
+            <span title="&amp;reg;">®</span>
+            <span title="&amp;trade;">™</span>
+            <span title="&amp;deg;">°</span>
+            <span title="&amp;plusmn;">±</span>
+            <span title="&amp;times;">×</span>
+            <span title="&amp;divide;">÷</span>
+            <span title="&amp;mdash;">—</span>
+            <span title="&amp;larr;">←</span>
+            <span title="&amp;rarr;">→</span>
+            <span title="&amp;hearts;">♥</span>
+            <span title="&amp;spades;">♠</span>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Se você está escrevendo um post sobre
+          HTML e quer mostrar tags como texto, use
+          <code>&amp;lt;h1&amp;gt;</code> para exibir <code>&lt;h1&gt;</code> em
+          vez de interpretar como HTML.
+        </div>
+      </section>
+
+      <!-- ═══════ H11 ── SEO & META TAGS ═══════ -->
+      <section class="topic" id="h11">
+        <h2>11. SEO &amp; Meta Tags</h2>
+        <p class="subtitle">Ajudando o Google a entender sua página</p>
+
+        <h3>Meta tags essenciais</h3>
+        <pre><code>&lt;head&gt;
+  &lt;!-- Básicas --&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Título da Página | Site&lt;/title&gt;
+  &lt;meta name="description" content="Descrição com até 160 caracteres."&gt;
+
+  &lt;!-- Open Graph (Facebook, LinkedIn, WhatsApp) --&gt;
+  &lt;meta property="og:title" content="Título"&gt;
+  &lt;meta property="og:description" content="Descrição"&gt;
+  &lt;meta property="og:image" content="https://site.com/imagem.jpg"&gt;
+  &lt;meta property="og:url" content="https://site.com"&gt;
+  &lt;meta property="og:type" content="website"&gt;
+
+  &lt;!-- Twitter Card --&gt;
+  &lt;meta name="twitter:card" content="summary_large_image"&gt;
+  &lt;meta name="twitter:title" content="Título"&gt;
+  &lt;meta name="twitter:description" content="Descrição"&gt;
+  &lt;meta name="twitter:image" content="https://site.com/imagem.jpg"&gt;
+
+  &lt;!-- Ícone da aba (favicon) --&gt;
+  &lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;
+
+  &lt;!-- Canonical (evita conteúdo duplicado) --&gt;
+  &lt;link rel="canonical" href="https://site.com/pagina"&gt;
+&lt;/head&gt;</code></pre>
+
+        <h3>Boas práticas de SEO</h3>
+        <pre><code>1. Apenas UM &lt;h1&gt; por página (título principal)
+2. Use &lt;h2&gt; a &lt;h6&gt; na hierarquia correta
+3. Atributo alt descritivo em todas as imagens
+4. URLs amigáveis (/produto/nome-do-produto)
+5. Meta description relevante (130-160 caracteres)
+6. Links internos entre páginas do seu site
+7. Mobile-friendly (viewport + design responsivo)
+8. Performance: carregamento rápido, imagens otimizadas
+9. Open Graph para redes sociais
+10. Sitemap.xml + robots.txt</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Exemplo de preview em rede social:</span>
+          <div
+            style="
+              background: #fff;
+              border-radius: 8px;
+              overflow: hidden;
+              max-width: 400px;
+              margin: 0 auto;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--accent),
+                  var(--accent2)
+                );
+                height: 120px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-weight: 700;
+              "
+            >
+              og:image
+            </div>
+            <div style="padding: 10px 14px">
+              <p
+                style="
+                  font-size: 0.7rem;
+                  color: #888;
+                  text-transform: uppercase;
+                  margin: 0 0 2px;
+                "
+              >
+                exemplo.com
+              </p>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  font-weight: 700;
+                  color: #222;
+                  margin: 0 0 4px;
+                "
+              >
+                Título (og:title)
+              </p>
+              <p style="font-size: 0.78rem; color: #555; margin: 0">
+                Descrição curta que aparece no preview do link...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> As tags Open Graph
+          <code>og:*</code> controlam como sua página aparece quando
+          compartilhada no Facebook, WhatsApp, LinkedIn e outros. Sem elas, o
+          preview fica genérico.
+        </div>
+      </section>
+
+      <!-- ═══════ H12 ── BOAS PRÁTICAS ═══════ -->
+      <section class="topic" id="h12">
+        <h2>12. Boas Práticas &amp; Checklist</h2>
+        <p class="subtitle">Código limpo, acessível e performático</p>
+
+        <h3>Checklist de qualidade HTML</h3>
+        <pre><code>☐ DOCTYPE html na primeira linha
+☐ meta charset="UTF-8"
+☐ meta name="viewport"
+☐ lang definido no &lt;html&gt;
+☐ Apenas um &lt;h1&gt;
+☐ Hierarquia de headings correta (h1 → h2 → h3)
+☐ alt descritivo em todas as imagens
+☐ Labels associados a inputs (for = id)
+☐ Uso de tags semânticas (&lt;header&gt;, &lt;main&gt;, &lt;nav&gt; etc.)
+☐ Links com target="_blank" têm rel="noopener noreferrer"
+☐ Código indentado e legível
+☐ Validação W3C sem erros (validator.w3.org)
+☐ Testado em mais de um navegador</code></pre>
+
+        <h3>O que <strong style="color: var(--accent2)">NÃO</strong> fazer</h3>
+        <pre><code>❌ Usar &lt;div&gt; para tudo (falta semântica)
+❌ Pular níveis de heading (h1 → h3)
+❌ Esquecer alt nas imagens
+❌ Usar &lt;br&gt; para espaçamento (use margin/padding no CSS)
+❌ Estilos inline (style="...") em excesso
+❌ Tags obsoletas: &lt;font&gt;, &lt;center&gt;, &lt;b&gt; (prefira &lt;strong&gt;)
+❌ Esquecer o lang no &lt;html&gt;
+❌ Conteúdo sem heading (texto solto sem &lt;h1&gt;-&lt;h6&gt;)</code></pre>
+
+        <h3>HTML vs CSS vs JS — papéis claros</h3>
+        <pre><code>HTML  → Estrutura e conteúdo (o que aparece)
+CSS   → Aparência e layout (como aparece)
+JS    → Comportamento e interação (o que faz)
+
+📌 Mantenha cada um separado:
+  - HTML sem estilos inline
+  - CSS sem JS embutido
+  - JS sem HTML dentro de strings</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧩 Resumo visual:</span>
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 6px;
+            "
+          >
+            <div
+              style="
+                background: #818cf8;
+                padding: 16px 20px;
+                border-radius: 6px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.2rem">HTML</strong><br />
+              <span style="font-size: 0.7rem">Estrutura</span>
+            </div>
+            <div
+              style="
+                background: #f472b6;
+                padding: 16px 20px;
+                border-radius: 6px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.2rem">CSS</strong><br />
+              <span style="font-size: 0.7rem">Estilo</span>
+            </div>
+            <div
+              style="
+                background: #34d399;
+                padding: 16px 20px;
+                border-radius: 6px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.2rem">JS</strong><br />
+              <span style="font-size: 0.7rem">Interação</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>📌 Regra de ouro:</strong> HTML deve ser como uma escultura —
+          cada tag tem um propósito. Se nenhuma tag semântica servir, use uma
+          <code>&lt;div&gt;</code> ou <code>&lt;span&gt;</code>. Mas primeiro
+          pergunte: "existe uma tag HTML para isso?"
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>📄 HTML Completo — Guia prático de estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

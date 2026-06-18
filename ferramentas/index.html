@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferramentas — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn current" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>🛠️ <span class="hl">Ferramentas</span> do Dev</h1>
+        <p>Terminal, Git e DevTools — o dia a dia de todo programador</p>
+      </div>
+
+      <nav class="toc">
+        <h2>📑 Seções</h2>
+        <div class="toc-grid">
+          <a href="#s1"><span class="num">01</span> Terminal</a>
+          <a href="#s2"><span class="num">02</span> Git &amp; GitHub</a>
+          <a href="#s3"><span class="num">03</span> DevTools</a>
+        </div>
+      </nav>
+
+      <!-- ═══════ S1 — TERMINAL ═══════ -->
+      <section class="topic" id="s1">
+        <h2>01. Terminal / Linha de Comando</h2>
+        <p class="subtitle">O poder do texto puro</p>
+
+        <p>
+          O terminal (ou prompt) é uma interface onde você dá comandos diretos
+          ao computador. Parece intimidante no começo, mas apenas 10 comandos
+          resolvem 90% do que você precisa.
+        </p>
+
+        <h3>Como abrir</h3>
+        <pre><code>VS Code:     Ctrl + '   (acento grave)
+Windows:     Win + R, digite "cmd" ou "powershell"
+Mac:         Cmd + Espaço, digite "Terminal"
+Linux:       Ctrl + Alt + T</code></pre>
+
+        <h3>Comandos essenciais</h3>
+        <pre><code># 📁 NAVEGAÇÃO
+pwd                     # Mostra onde você está (print working directory)
+ls                      # Lista arquivos da pasta atual
+ls -la                  # Lista detalhado (inclui ocultos)
+cd nome-da-pasta        # Entra na pasta (change directory)
+cd ..                   # Volta uma pasta
+cd ~                    # Vai para sua pasta pessoal (home)
+
+# 📂 ARQUIVOS E PASTAS
+mkdir nome              # Cria uma pasta (make directory)
+touch arquivo.txt       # Cria um arquivo vazio
+code .                  # Abre a pasta atual no VS Code
+code arquivo.html       # Abre um arquivo no VS Code
+
+# 🗑️ REMOVER (cuidado!)
+rm arquivo.txt          # Remove arquivo
+rm -rf pasta            # Remove pasta e tudo dentro (⚠️ permanente!)
+
+# 🔀 COPIAR / MOVER
+cp origem destino       # Copia arquivo
+mv origem destino       # Move ou renomeia</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use a tecla <strong>Tab</strong> para
+          auto-completar nomes de arquivos e pastas. Use seta ⬆️ para repetir
+          comandos anteriores.
+        </div>
+      </section>
+
+      <!-- ═══════ S2 — GIT ═══════ -->
+      <section class="topic" id="s2">
+        <h2>02. Git &amp; GitHub</h2>
+        <p class="subtitle">Controle de versão — o "Ctrl+Z" profissional</p>
+
+        <h3>O que é Git?</h3>
+        <p>
+          Git é um sistema que guarda
+          <strong>versões do seu código</strong> como se fossem fotos. Você pode
+          voltar no tempo, criar "galhos" (branches) para testar coisas novas, e
+          colaborar com outras pessoas sem medo de estragar tudo.
+        </p>
+
+        <h3>Instalação</h3>
+        <pre><code>Windows: baixe em git-scm.com
+Mac:     brew install git
+Linux:   sudo apt install git</code></pre>
+
+        <h3>Comandos que você vai usar todo dia</h3>
+        <pre><code># Configurar (primeira vez)
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+
+# Começar um repositório
+git init                 # Inicia o Git na pasta atual
+git status               # Mostra o que mudou (use SEMPRE!)
+
+# O ciclo de vida
+git add arquivo.html     # Prepara o arquivo para o commit
+git add .                # Prepara TODOS os arquivos
+git commit -m "Mensagem" # Tira a "foto" das mudanças
+
+# Ver histórico
+git log                  # Lista os commits
+git log --oneline        # Versão resumida
+git diff                 # Mostra o que mudou (antes do add)</code></pre>
+
+        <h3>GitHub — seu código na nuvem</h3>
+        <pre><code>1. Crie uma conta em github.com
+2. Crie um repositório (botão "New")
+3. Conecte o local com o remoto:
+
+git remote add origin https://github.com/seu-user/seu-repo.git
+git branch -M main
+git push -u origin main
+
+# Depois do primeiro push:
+git push                # Envia commits para o GitHub
+git pull                # Puxa atualizações do GitHub
+git clone URL           # Baixa um repositório inteiro</code></pre>
+
+        <h3>.gitignore</h3>
+        <p>
+          Crie um arquivo <code>.gitignore</code> na raiz do projeto para
+          ignorar pastas que não devem ir para o Git:
+        </p>
+        <pre><code>node_modules/
+.env
+.DS_Store
+dist/</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>git status</code> é seu melhor amigo.
+          Use ele antes de qualquer comando para saber exatamente o que está
+          acontecendo. E
+          <strong>sempre escreva mensagens de commit claras</strong>.
+        </div>
+      </section>
+
+      <!-- ═══════ S3 — DEVTOOLS ═══════ -->
+      <section class="topic" id="s3">
+        <h2>03. DevTools do Navegador</h2>
+        <p class="subtitle">
+          O raio-X do site — veja como qualquer página foi feita
+        </p>
+
+        <h3>Abrindo o DevTools</h3>
+        <pre><code>Chrome / Firefox / Edge:
+  F12  ou  Ctrl + Shift + I  ou  clique direito &gt; "Inspecionar"</code></pre>
+
+        <h3>Elements (Elementos)</h3>
+        <p>Mostra o HTML da página. Você pode:</p>
+        <pre><code>🔹 Inspecionar qualquer elemento clicando com direito &gt; "Inspecionar"
+🔹 Editar texto e atributos ao vivo (muda na tela, mas não salva)
+🔹 Ver o CSS aplicado a cada elemento na aba "Styles"
+🔹 Desativar/ativar estilos clicando nas caixinhas
+🔹 Ver o Box Model (margin, border, padding) visualmente</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">💡 Teste agora</span>
+          <p>
+            Aperte <strong>F12</strong> nesta página, vá na aba
+            <strong>Elements</strong>, e clique em qualquer texto para ver o
+            HTML e CSS por trás dele.
+          </p>
+        </div>
+
+        <h3>Console</h3>
+        <p>
+          O console é onde você vê mensagens do JavaScript e pode testar código
+          ao vivo:
+        </p>
+        <pre><code>// Escreva diretamente no console e veja o resultado na hora
+console.log('Olá do console!');
+2 + 2
+document.querySelector('h1').textContent = 'Novo título';
+
+// Ver erros — links em vermelho com a linha do erro
+// Útil para debugar JavaScript</code></pre>
+
+        <h3>Network (Rede)</h3>
+        <p>
+          Mostra todas as requisições que a página faz (arquivos, imagens,
+          APIs):
+        </p>
+        <pre><code>🔹 Veja quanto tempo cada arquivo levou para carregar
+🔹 Filtre por tipo (JS, CSS, Imagem)
+🔹 Veja o código de resposta (200 = ok, 404 = não encontrado)
+🔹 Simule conexão lenta (dropdown "Online" &gt; "Slow 3G")</code></pre>
+
+        <h3>Sources (Fontes)</h3>
+        <p>Mostra todos os arquivos do site. Útil para:</p>
+        <pre><code>🔹 Ver arquivos JS e CSS completos
+🔹 Colocar breakpoints no JavaScript (pausa a execução)
+🔹 Ver o valor das variáveis passo a passo</code></pre>
+
+        <h3>Lighthouse</h3>
+        <p>Faz um "checkup" completo da página:</p>
+        <pre><code>🔹 Performance (velocidade)
+🔹 Acessibilidade
+🔹 Boas práticas
+🔹 SEO
+🔹 Gera um relatório com notas e sugestões</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> O DevTools é
+          <strong>a ferramenta mais importante</strong> para um desenvolvedor
+          web. Aprender a usá-lo bem vai economizar horas de debugging. Passe um
+          tempo explorando cada aba.
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>🛠️ Ferramentas — Guia de Estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

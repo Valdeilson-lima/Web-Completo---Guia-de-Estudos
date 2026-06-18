@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto Prático — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      .preview-card {
+        background: var(--bg-elevated);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .preview-card .demo-result {
+        padding: 32px 24px;
+      }
+      .projeto-header {
+        background: linear-gradient(135deg, var(--accent4), var(--accent3));
+        padding: 40px 32px;
+        text-align: center;
+        color: #fff;
+      }
+      .projeto-header h3 {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        margin: 0;
+        color: #fff;
+      }
+      .projeto-header p {
+        margin: 8px 0 0;
+        opacity: 0.9;
+      }
+      .projeto-nav {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 16px;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border);
+      }
+      .projeto-nav a {
+        padding: 8px 16px;
+        border-radius: var(--radius);
+        background: var(--bg-elevated);
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        text-decoration: none !important;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .projeto-nav a:hover {
+        background: var(--accent);
+        color: #0b0d14;
+      }
+      .projeto-section {
+        padding: 28px 24px;
+        border-bottom: 1px solid var(--border);
+      }
+      .projeto-section:last-child {
+        border-bottom: none;
+      }
+      .projeto-section h4 {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        margin: 0 0 12px;
+        color: var(--accent);
+      }
+      .projeto-section p {
+        font-size: var(--text-sm);
+        margin: 0 0 8px;
+      }
+      .projeto-btn {
+        display: inline-block;
+        padding: 8px 20px;
+        background: var(--accent);
+        color: #0b0d14 !important;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: var(--text-sm);
+        text-decoration: none !important;
+        transition: background 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .projeto-btn:hover {
+        background: var(--accent-hover);
+      }
+      .projeto-btn.outline {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent) !important;
+      }
+      .projeto-btn.outline:hover {
+        background: var(--accent);
+        color: #0b0d14 !important;
+      }
+
+      .code-block {
+        background: var(--bg-code);
+        border-radius: var(--radius);
+        padding: 16px 20px;
+        margin: 12px 0;
+        overflow-x: auto;
+        border: 1px solid var(--border);
+      }
+      .code-block code {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: #d4d0c8;
+        line-height: 1.65;
+        white-space: pre;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn current" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>📦 Projeto <span class="hl">Prático</span></h1>
+        <p>
+          Construa um mini-portfólio do zero — HTML + CSS + JavaScript juntos
+        </p>
+      </div>
+
+      <!-- Preview -->
+      <div class="preview-card" style="margin-bottom: 32px">
+        <div class="projeto-header">
+          <h3>João Dev</h3>
+          <p>Desenvolvedor web em formação</p>
+        </div>
+        <div class="projeto-nav">
+          <a href="#">Sobre</a>
+          <a href="#">Projetos</a>
+          <a href="#">Habilidades</a>
+          <a href="#">Contato</a>
+        </div>
+        <div class="demo-result" style="text-align: center">
+          <p style="color: var(--text-secondary); margin-bottom: 12px">
+            Este é o resultado final que vamos construir.
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              justify-content: center;
+              flex-wrap: wrap;
+            "
+          >
+            <span class="projeto-btn">💾 Projeto Completo</span>
+            <span class="projeto-btn outline">📂 Código Fonte</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="topic" id="s1">
+        <h2>01. Estrutura HTML</h2>
+        <p class="subtitle">O esqueleto da página</p>
+
+        <p>
+          Crie um arquivo <code>index.html</code> com esta estrutura inicial:
+        </p>
+
+        <div class="code-block">
+          <code
+            >&lt;!DOCTYPE html&gt; &lt;html lang="pt-BR"&gt; &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt; &lt;meta name="viewport"
+            content="width=device-width"&gt; &lt;title&gt;Meu
+            Portfólio&lt;/title&gt; &lt;link rel="stylesheet"
+            href="style.css"&gt; &lt;/head&gt; &lt;body&gt; &lt;header&gt;
+            &lt;nav&gt; &lt;a href="#"&gt;Início&lt;/a&gt; &lt;a
+            href="#sobre"&gt;Sobre&lt;/a&gt; &lt;a
+            href="#projetos"&gt;Projetos&lt;/a&gt; &lt;a
+            href="#contato"&gt;Contato&lt;/a&gt; &lt;/nav&gt; &lt;/header&gt;
+            &lt;main&gt; &lt;section id="hero"&gt; &lt;h1&gt;Olá, eu sou
+            &lt;span&gt;João&lt;/span&gt;&lt;/h1&gt; &lt;p&gt;Desenvolvedor web
+            em formação&lt;/p&gt; &lt;/section&gt; &lt;section id="sobre"&gt;
+            &lt;h2&gt;Sobre Mim&lt;/h2&gt; &lt;p&gt;Texto sobre
+            você...&lt;/p&gt; &lt;/section&gt; &lt;section id="projetos"&gt;
+            &lt;h2&gt;Meus Projetos&lt;/h2&gt; &lt;div class="grid"&gt;
+            &lt;article class="card"&gt;Projeto 1&lt;/article&gt; &lt;article
+            class="card"&gt;Projeto 2&lt;/article&gt; &lt;article
+            class="card"&gt;Projeto 3&lt;/article&gt; &lt;/div&gt;
+            &lt;/section&gt; &lt;section id="contato"&gt;
+            &lt;h2&gt;Contato&lt;/h2&gt; &lt;form&gt; &lt;input type="text"
+            placeholder="Seu nome"&gt; &lt;input type="email" placeholder="Seu
+            email"&gt; &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+            &lt;/form&gt; &lt;/section&gt; &lt;/main&gt; &lt;footer&gt;
+            &lt;p&gt;© 2024 João. Feito com HTML, CSS e JS.&lt;/p&gt;
+            &lt;/footer&gt; &lt;script src="script.js"&gt;&lt;/script&gt;
+            &lt;/body&gt; &lt;/html&gt;</code
+          >
+        </div>
+
+        <div class="note">
+          <strong>🧠 O que aprendemos aqui:</strong> Usamos tags semânticas
+          (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;),
+          navegação com &lt;nav&gt;, e organizamos o conteúdo em seções claras.
+        </div>
+      </section>
+
+      <section class="topic" id="s2">
+        <h2>02. Estilo CSS</h2>
+        <p class="subtitle">Dando vida à estrutura</p>
+
+        <p>Crie <code>style.css</code> na mesma pasta e adicione:</p>
+
+        <div class="code-block">
+          <code
+            >* { margin: 0; padding: 0; box-sizing: border-box; } body {
+            font-family: 'Segoe UI', sans-serif; background: #0b0d14; color:
+            #e8e4de; line-height: 1.6; } /* NAVEGAÇÃO */ header { position:
+            fixed; top: 0; width: 100%; background: rgba(11, 13, 20, 0.9);
+            padding: 16px 24px; border-bottom: 1px solid #242a36; } nav {
+            max-width: 960px; margin: 0 auto; display: flex; gap: 24px;
+            justify-content: center; } nav a { color: #8f959e; text-decoration:
+            none; font-weight: 500; transition: color 0.2s; } nav a:hover {
+            color: #d4923a; } /* HERO */ #hero { text-align: center; padding:
+            120px 20px 60px; } #hero h1 { font-size: 2.5rem; margin-bottom: 8px;
+            } #hero h1 span { color: #d4923a; } /* SEÇÕES */ section {
+            max-width: 960px; margin: 0 auto; padding: 60px 20px; } h2 {
+            font-size: 1.8rem; margin-bottom: 24px; color: #d4923a; } /* GRID DE
+            PROJETOS */ .grid { display: grid; grid-template-columns:
+            repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; } .card {
+            background: #141820; border: 1px solid #242a36; border-radius: 8px;
+            padding: 40px 20px; text-align: center; transition: transform 0.3s;
+            cursor: pointer; } .card:hover { transform: translateY(-4px);
+            border-color: #d4923a; } /* FORMULÁRIO */ form { display: flex;
+            flex-direction: column; gap: 12px; max-width: 400px; } input {
+            padding: 12px; border: 1px solid #242a36; border-radius: 6px;
+            background: #141820; color: #e8e4de; font-size: 1rem; } button {
+            padding: 12px; background: #d4923a; color: #0b0d14; border: none;
+            border-radius: 6px; font-weight: 600; font-size: 1rem; cursor:
+            pointer; transition: background 0.2s; } button:hover { background:
+            #e0a34a; } /* FOOTER */ footer { text-align: center; padding: 24px;
+            border-top: 1px solid #242a36; color: #5c6270; font-size: 0.875rem;
+            }</code
+          >
+        </div>
+
+        <div class="note">
+          <strong>🧠 O que aprendemos aqui:</strong> Reset CSS, layout com
+          Flexbox e Grid, cards com hover, formulário estilizado, e como
+          organizar o CSS por seções.
+        </div>
+      </section>
+
+      <section class="topic" id="s3">
+        <h2>03. Interatividade com JavaScript</h2>
+        <p class="subtitle">Adicionando comportamento à página</p>
+
+        <p>Crie <code>script.js</code> na mesma pasta:</p>
+
+        <div class="code-block">
+          <code
+            >// Espera o HTML carregar
+            document.addEventListener('DOMContentLoaded', function () { // ── 1.
+            Smooth scroll nos links do menu ── const links =
+            document.querySelectorAll('nav a'); links.forEach(link => {
+            link.addEventListener('click', function (e) { e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href')); if
+            (target) { target.scrollIntoView({ behavior: 'smooth' }); } }); });
+            // ── 2. Cards: clique mostra alerta com nome ── const cards =
+            document.querySelectorAll('.card'); cards.forEach((card, index) => {
+            card.addEventListener('click', function () { alert(`Você clicou no
+            Projeto ${index + 1}`); }); }); // ── 3. Formulário: feedback sem
+            recarregar ── const form = document.querySelector('form'); if (form)
+            { form.addEventListener('submit', function (e) { e.preventDefault();
+            alert('Mensagem enviada com sucesso! (simulação)'); form.reset();
+            }); } });</code
+          >
+        </div>
+
+        <div class="note">
+          <strong>🧠 O que aprendemos aqui:</strong> Event listeners,
+          <code>scrollIntoView</code> para navegação suave, manipulação do DOM,
+          e como prevenir o comportamento padrão de formulários com
+          <code>preventDefault()</code>.
+        </div>
+      </section>
+
+      <section class="topic" id="s4">
+        <h2>04. Resultado Final</h2>
+        <p class="subtitle">Como seu projeto deve ficar</p>
+
+        <p>
+          Depois de criar os três arquivos na mesma pasta, sua estrutura deve
+          ser:
+        </p>
+
+        <div class="code-block">
+          <code
+            >meu-portfolio/ ├── index.html # Estrutura ├── style.css # Estilo
+            └── script.js # Interatividade</code
+          >
+        </div>
+
+        <p>
+          Abra o <code>index.html</code> com o Live Server e veja o resultado.
+          Agora você tem um site completo que:
+        </p>
+
+        <div class="demo-box" style="text-align: center">
+          <div
+            style="
+              display: grid;
+              gap: 12px;
+              grid-template-columns: 1fr 1fr;
+              max-width: 500px;
+              margin: 0 auto;
+            "
+          >
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🏗️</span>
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                HTML semântico<br />bem estruturado
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🎨</span>
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                CSS com layout,<br />cores e hover
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">⚡</span>
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                JS com navegação,<br />cliques e formulário
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 16px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">📱</span>
+              <p style="font-size: 0.8rem; margin: 4px 0 0">
+                Responsivo<br />(grid adaptável)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🚀 Agora é com você:</strong> Modifique as cores, adicione
+          mais seções, troque os textos, coloque suas próprias imagens. A melhor
+          forma de aprender é personalizar o projeto e, de quebra, quebrar
+          coisas de propósito para entender como consertar.
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>📦 Projeto Prático — Guia de Estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

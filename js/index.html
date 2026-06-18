@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Completo — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      .code-output {
+        background: var(--bg-elevated);
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: var(--accent2);
+        margin: 8px 0 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn current" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>⚡ JavaScript <span class="hl">Completo</span></h1>
+        <p>Guia prático para estudar JavaScript do zero ao avançado</p>
+      </div>
+
+      <nav class="toc">
+        <h2>📑 Sumário</h2>
+        <div class="toc-grid">
+          <a href="#s1"><span class="num">01</span> Introdução</a>
+          <a href="#s2"><span class="num">02</span> Variáveis &amp; Tipos</a>
+          <a href="#s3"><span class="num">03</span> Strings</a>
+          <a href="#s4"><span class="num">04</span> Números &amp; Operadores</a>
+          <a href="#s5"><span class="num">05</span> Comparação &amp; Lógicos</a>
+          <a href="#s6"><span class="num">06</span> Arrays</a>
+          <a href="#s7"><span class="num">07</span> Objetos</a>
+          <a href="#s8"><span class="num">08</span> Funções</a>
+          <a href="#s9"><span class="num">09</span> Controle de Fluxo</a>
+          <a href="#s10"><span class="num">10</span> DOM</a>
+          <a href="#s11"><span class="num">11</span> POO (Classes)</a>
+          <a href="#s12"><span class="num">12</span> Assíncrono</a>
+          <a href="#s13"><span class="num">13</span> Erros</a>
+          <a href="#s14"><span class="num">14</span> ES6+ Moderno</a>
+          <a href="#s15"><span class="num">15</span> Boas Práticas</a>
+        </div>
+      </nav>
+
+      <!-- ═══════ S1 — INTRODUÇÃO ═══════ -->
+      <section class="topic" id="s1">
+        <h2>01. Introdução ao JavaScript</h2>
+        <p class="subtitle">A linguagem que dá vida à web</p>
+
+        <h3>O que é JavaScript?</h3>
+        <p>
+          JavaScript (JS) é a linguagem de programação da web. Com ela você
+          controla o comportamento das páginas: resposta a cliques, validação de
+          formulários, animações, requisições a servidores e muito mais.
+        </p>
+
+        <h3>Onde executar JavaScript</h3>
+        <pre><code>// 1. No navegador (console do DevTools)
+console.log('Olá, mundo!');
+
+// 2. Dentro do HTML (tag &lt;script&gt;)
+&lt;script&gt;
+  alert('Olá!');
+&lt;/script&gt;
+
+// 3. Arquivo externo (recomendado)
+&lt;script src="app.js"&gt;&lt;/script&gt;</code></pre>
+
+        <h3>async vs defer</h3>
+        <pre><code>&lt;!-- async: baixa e executa assim que possível (não espera o HTML) --&gt;
+&lt;script src="app.js" async&gt;&lt;/script&gt;
+
+&lt;!-- defer: baixa em paralelo, executa só depois do HTML (recomendado) --&gt;
+&lt;script src="app.js" defer&gt;&lt;/script&gt;</code></pre>
+
+        <h3>Console do navegador</h3>
+        <pre><code>console.log('Mensagem comum');
+console.warn('Aviso amarelo');
+console.error('Erro vermelho');
+console.table([1, 2, 3]);     // Exibe como tabela
+console.time('label');         // Inicia cronômetro
+console.timeEnd('label');      // Para cronômetro</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use o atalho <strong>F12</strong> ou
+          <strong>Ctrl+Shift+I</strong> para abrir o DevTools e testar código JS
+          ao vivo no console.
+        </div>
+      </section>
+
+      <!-- ═══════ S2 — VARIÁVEIS ═══════ -->
+      <section class="topic" id="s2">
+        <h2>02. Variáveis &amp; Tipos de Dados</h2>
+        <p class="subtitle">Onde os dados são armazenados</p>
+
+        <h3>Declaração: var, let, const</h3>
+        <pre><code>// var — escopo de função, EVITE usar hoje em dia
+var nome = 'João';
+
+// let — escopo de bloco, pode reatribuir
+let idade = 25;
+idade = 26;
+
+// const — escopo de bloco, NÃO pode reatribuir
+const pi = 3.14;
+// pi = 3;  // Erro!</code></pre>
+
+        <h3>Tipos primitivos</h3>
+        <pre><code>const nome = 'Maria';          // string
+const idade = 30;              // number
+const altura = 1.75;           // number (decimais usam ponto)
+const isStudent = true;        // boolean
+const carro = null;            // null (intencionalmente vazio)
+let cidade;                    // undefined (não definido)
+const id = Symbol('id');       // symbol (único)
+const big = 9007199254740991n; // bigint (números muito grandes)</code></pre>
+
+        <h3>typeof — descobrir o tipo</h3>
+        <pre><code>typeof 'Olá';         // "string"
+typeof 42;            // "number"
+typeof true;          // "boolean"
+typeof undefined;     // "undefined"
+typeof null;          // "object" (erro histórico!)
+typeof Symbol();      // "symbol"</code></pre>
+
+        <h3>Conversão de tipos (coerção)</h3>
+        <pre><code>// Explícita (recomendado)
+Number('123');        // 123
+String(123);          // "123"
+Boolean(1);           // true
+
+// Implícita (cuidado!)
+'5' - 2;              // 3 (string vira number)
+'5' + 2;              // "52" (number vira string!)
+'5' * '2';            // 10
+
+// Truthy / Falsy
+Boolean('');           // false
+Boolean(0);            // false
+Boolean('texto');      // true
+Boolean([]);           // true (array vazio é truthy!)</code></pre>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Prefira <code>const</code> por padrão
+          e só use <code>let</code> quando precisar reatribuir. Nunca use
+          <code>var</code> em código novo.
+        </div>
+      </section>
+
+      <!-- ═══════ S3 — STRINGS ═══════ -->
+      <section class="topic" id="s3">
+        <h2>03. Strings</h2>
+        <p class="subtitle">Trabalhando com texto de forma eficiente</p>
+
+        <h3>Criação e concatenação</h3>
+        <pre><code>const s1 = 'Aspas simples';
+const s2 = "Aspas duplas";
+const s3 = `Template literal (crase)`;
+
+// Concatenação clássica
+const msg = 'Olá, ' + nome + '!';
+
+// Template literal (moderno)
+const msg2 = `Olá, ${nome}!`;
+const msg3 = `Linha 1
+Linha 2`;                       // multi-linha natural</code></pre>
+
+        <h3>Principais métodos</h3>
+        <pre><code>'JavaScript'.length;                // 10
+'Olá'.toUpperCase();                // "OLÁ"
+'OLÁ'.toLowerCase();                // "olá"
+'bola'.includes('ol');              // true
+'JavaScript'.indexOf('Script');     // 4
+'JavaScript'.slice(0, 4);           // "Java"
+'um,dois,três'.split(',');         // ["um", "dois", "três"]
+'  texto  '.trim();                 // "texto"
+'Olá'.repeat(3);                    // "OláOláOlá"
+'casa'.replace('a', 'o');           // "coso" (só primeiro)
+'casa'.replaceAll('a', 'o');        // "coso"
+'123-456'.replace('-', '');         // "123456"</code></pre>
+
+        <h3>Imutabilidade</h3>
+        <pre><code>let str = 'Hello';
+str.toUpperCase();      // Retorna "HELLO", mas str continua "Hello"
+str = str.toUpperCase();// Agora str é "HELLO"</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Strings são imutáveis em JavaScript. Métodos
+          como <code>.toUpperCase()</code> retornam uma nova string — a original
+          não muda.
+        </div>
+      </section>
+
+      <!-- ═══════ S4 — NÚMEROS ═══════ -->
+      <section class="topic" id="s4">
+        <h2>04. Números &amp; Operadores Aritméticos</h2>
+        <p class="subtitle">Cálculos, Math e formatação numérica</p>
+
+        <h3>Operadores aritméticos</h3>
+        <pre><code>let a = 10, b = 3;
+a + b;   // 13  (soma)
+a - b;   // 7   (subtração)
+a * b;   // 30  (multiplicação)
+a / b;   // 3.333 (divisão)
+a % b;   // 1   (resto da divisão)
+a ** b;  // 1000 (exponenciação: 10³)
+
+// Incremento / Decremento
+let n = 5;
+n++;     // 5 (pós-incremento, retorna 5, depois vira 6)
+++n;     // 7 (pré-incremento, vira 7, retorna 7)
+n--;     // 7
+--n;     // 5</code></pre>
+
+        <h3>Number e conversão</h3>
+        <pre><code>Number('123');          // 123
+Number('12.5');         // 12.5
+Number('abc');          // NaN (Not a Number)
+
+parseInt('100px');      // 100 (ignora o "px")
+parseFloat('3.14cm');   // 3.14
+
+isNaN(NaN);             // true
+isNaN('abc');           // true
+isNaN(123);             // false
+
+// Verificar se é número finito
+isFinite(10 / 0);       // false (Infinity)</code></pre>
+
+        <h3>Math — biblioteca matemática</h3>
+        <pre><code>Math.PI;              // 3.141592...
+Math.round(3.6);      // 4  (arredonda)
+Math.floor(3.9);      // 3  (para baixo)
+Math.ceil(3.1);       // 4  (para cima)
+Math.trunc(3.9);      // 3  (remove decimais)
+Math.random();        // 0.0 a 0.999 (aleatório)
+Math.max(1, 5, 3);    // 5
+Math.min(1, 5, 3);    // 1
+Math.abs(-10);        // 10 (valor absoluto)
+Math.pow(2, 3);       // 8  (2³) — prefira **</code></pre>
+
+        <h3>Formatação de números</h3>
+        <pre><code>(1234.5).toFixed(2);          // "1234.50"
+(0.1 + 0.2).toFixed(1);       // "0.3" (resolve imprecisão)
+(1234567.89).toLocaleString('pt-BR');  // "1.234.567,89"</code></pre>
+
+        <div class="note">
+          <strong>⚠️ Atenção:</strong> <code>0.1 + 0.2</code> não é exatamente
+          <code>0.3</code> em JS (imprecisão de ponto flutuante). Use
+          <code>toFixed()</code> ou multiplique por 100 para trabalhar com
+          centavos.
+        </div>
+      </section>
+
+      <!-- ═══════ S5 — OPERADORES ═══════ -->
+      <section class="topic" id="s5">
+        <h2>05. Comparação &amp; Operadores Lógicos</h2>
+        <p class="subtitle">Tomando decisões com expressões booleanas</p>
+
+        <h3>Comparação</h3>
+        <pre><code>5 == '5';    // true  (igual — compara valor, ignora tipo)
+5 === '5';   // false (estritamente igual — valor E tipo)
+5 != '5';    // false
+5 !== '5';   // true
+
+10 &gt; 5;      // true
+10 &lt; 5;      // false
+10 &gt;= 10;    // true
+10 &lt;= 5;    // false
+
+// Comparação de objetos (por referência)
+[] === [];   // false (são objetos diferentes)
+const a = {}; const b = a;
+a === b;     // true (mesma referência)</code></pre>
+
+        <h3>Operadores lógicos</h3>
+        <pre><code>// AND (&&) — todas as condições precisam ser true
+true && true;      // true
+true && false;     // false
+
+// OR (||) — pelo menos uma condição true
+true || false;     // true
+false || false;    // false
+
+// NOT (!) — inverte o valor
+!true;             // false
+!false;            // true
+!'texto';          // false (truthy invertido)
+
+// Short-circuit (curto-circuito)
+const nome = usuario.nome || 'Anônimo';  // se null/undefined, usa fallback
+const idade = usuario.idade && usuario.idade.toFixed(0);  // executa se existir</code></pre>
+
+        <h3>Operador ternário</h3>
+        <pre><code>const idade = 18;
+const status = idade >= 18 ? 'Maior' : 'Menor';
+//                     ↑ condição  ↑ se true   ↑ se false
+
+// Encadeado (use com moderação)
+const cor = tipo === 'erro' ? 'red' : tipo === 'aviso' ? 'yellow' : 'blue';</code></pre>
+
+        <h3>Nullish Coalescing (??) — ES2020</h3>
+        <pre><code>const valor = 0;
+valor || 'fallback';      // "fallback" (0 é falsy!)
+valor ?? 'fallback';      // 0 (?? só ignora null/undefined)
+
+// Optional Chaining (?.) — ES2020
+const cidade = usuario?.endereco?.cidade;  // se algo for null/undefined, retorna undefined</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre prefira <code>===</code> e
+          <code>!==</code> em vez de <code>==</code> e <code>!=</code>. A
+          comparação estrita evita bugs sutis de coerção automática de tipo.
+        </div>
+      </section>
+
+      <!-- ═══════ S6 — ARRAYS ═══════ -->
+      <section class="topic" id="s6">
+        <h2>06. Arrays</h2>
+        <p class="subtitle">Listas ordenadas de dados</p>
+
+        <h3>Criação e acesso</h3>
+        <pre><code>const frutas = ['Maçã', 'Banana', 'Laranja'];
+frutas[0];            // "Maçã"
+frutas[frutas.length - 1];  // "Laranja" (último)
+frutas.length;        // 3</code></pre>
+
+        <h3>Adicionar e remover</h3>
+        <pre><code>frutas.push('Uva');     // adiciona no final
+frutas.pop();           // remove do final
+frutas.unshift('Morango');  // adiciona no início
+frutas.shift();         // remove do início
+frutas.splice(1, 1);    // remove 1 elemento no índice 1
+frutas.splice(1, 0, 'Manga');  // insere "Manga" no índice 1</code></pre>
+
+        <h3>Iteração (percorrer)</h3>
+        <pre><code>// for clássico
+for (let i = 0; i &lt; frutas.length; i++) {
+  console.log(frutas[i]);
+}
+
+// for...of (moderno, recomendado)
+for (const fruta of frutas) {
+  console.log(fruta);
+}
+
+// forEach
+frutas.forEach((fruta, index) => {
+  console.log(`${index}: ${fruta}`);
+});</code></pre>
+
+        <h3>Métodos funcionais (map, filter, reduce)</h3>
+        <pre><code>const nums = [1, 2, 3, 4, 5];
+
+// map — transforma cada elemento
+const dobrados = nums.map(n => n * 2);     // [2, 4, 6, 8, 10]
+
+// filter — filtra elementos
+const pares = nums.filter(n => n % 2 === 0); // [2, 4]
+
+// reduce — reduz a um valor
+const soma = nums.reduce((acc, n) => acc + n, 0); // 15
+
+// find — encontra o primeiro
+const primeiroPar = nums.find(n => n % 2 === 0);  // 2
+
+// some / every
+nums.some(n => n > 4);   // true (pelo menos um é > 4)
+nums.every(n => n > 0);  // true (todos são > 0)
+
+// includes
+nums.includes(3);        // true</code></pre>
+
+        <h3>Spread e destructuring</h3>
+        <pre><code>// Spread — copiar / concatenar
+const a = [1, 2];
+const b = [...a, 3, 4];        // [1, 2, 3, 4]
+const copia = [...a];           // cópia rasa
+
+// Destructuring — extrair valores
+const [primeiro, segundo] = frutas;
+const [prim, , terc] = frutas;  // pula o segundo</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>map</code>, <code>filter</code> e
+          <code>reduce</code> são imutáveis — não modificam o array original,
+          retornam um novo. Prefira-os ao <code>for</code> clássico sempre que
+          possível.
+        </div>
+      </section>
+
+      <!-- ═══════ S7 — OBJETOS ═══════ -->
+      <section class="topic" id="s7">
+        <h2>07. Objetos</h2>
+        <p class="subtitle">Coleções de pares chave-valor</p>
+
+        <h3>Criação e acesso</h3>
+        <pre><code>const usuario = {
+  nome: 'João',
+  idade: 30,
+  email: 'joao@email.com',
+  'ultimo-acesso': '2024-01-15'   // chave com hífen precisa de aspas
+};
+
+usuario.nome;           // "João"       (notação de ponto)
+usuario['nome'];        // "João"       (notação de colchetes)
+usuario['ultimo-acesso'];  // necessário com hífen
+
+// Adicionar / modificar
+usuario.telefone = '11999999999';
+usuario.idade = 31;</code></pre>
+
+        <h3>Métodos e this</h3>
+        <pre><code>const pessoa = {
+  nome: 'Ana',
+  saudacao() {                      // método (shorthand)
+    return `Olá, sou ${this.nome}`; // this = o próprio objeto
+  }
+};
+
+pessoa.saudacao();  // "Olá, sou Ana"</code></pre>
+
+        <h3>Iteração em objetos</h3>
+        <pre><code>// Object.keys — array das chaves
+Object.keys(usuario);   // ["nome", "idade", "email"...]
+
+// Object.values — array dos valores
+Object.values(usuario);
+
+// Object.entries — array de [chave, valor]
+Object.entries(usuario).forEach(([chave, valor]) => {
+  console.log(`${chave}: ${valor}`);
+});</code></pre>
+
+        <h3>Spread e destructuring</h3>
+        <pre><code>// Spread — clonar / mesclar
+const copia = { ...usuario };
+const completo = { ...usuario, ativo: true };
+
+// Destructuring — extrair propriedades
+const { nome, idade, email } = usuario;
+const { nome: nomeUsuario } = usuario;  // renomeando
+
+// Destructuring com valor padrão
+const { cargo = 'Visitante' } = usuario;</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>Object.freeze(obj)</code> para
+          tornar um objeto imutável (read-only). Use
+          <code>Object.assign({}, obj)</code> ou <code>{ ...obj }</code> para
+          clonar.
+        </div>
+      </section>
+
+      <!-- ═══════ S8 — FUNÇÕES ═══════ -->
+      <section class="topic" id="s8">
+        <h2>08. Funções</h2>
+        <p class="subtitle">Blocos de código reutilizáveis</p>
+
+        <h3>Declaração vs Expressão</h3>
+        <pre><code>// Declaração (hoisted — pode chamar antes de declarar)
+function soma(a, b) {
+  return a + b;
+}
+
+// Expressão (não hoisted — precisa declarar antes)
+const mult = function(a, b) {
+  return a * b;
+};
+
+// Arrow function (moderno, recomendado)
+const div = (a, b) => a / b;
+const quadrado = x => x * x;       // um parâmetro: sem parênteses
+const vazia = () => 'sem params';</code></pre>
+
+        <h3>Parâmetros</h3>
+        <pre><code>// Valor padrão
+function cumprimentar(nome = 'Visitante') {
+  return `Olá, ${nome}`;
+}
+
+// Rest params (...)
+function somarTodos(...numeros) {
+  return numeros.reduce((acc, n) => acc + n, 0);
+}
+somarTodos(1, 2, 3, 4);  // 10</code></pre>
+
+        <h3>Escopo e Closure</h3>
+        <pre><code>// Escopo global
+const global = 'acessível em qualquer lugar';
+
+function teste() {
+  // Escopo de função
+  const local = 'só dentro da função';
+
+  if (true) {
+    // Escopo de bloco (let/const)
+    const bloco = 'só dentro do if';
+    var antigo = 'vaza do bloco!';  // var ignora escopo de bloco
+  }
+
+  console.log(antigo);  // funciona (var vazou)
+}
+
+// Closure — função "lembra" do escopo onde foi criada
+function contador() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+const c = contador();
+c();  // 1
+c();  // 2</code></pre>
+
+        <h3>Arrow functions e this</h3>
+        <pre><code>const pessoa = {
+  nome: 'João',
+  saudacaoTradicional: function() {
+    console.log(this.nome);  // this = pessoa
+  },
+  saudacaoArrow: () => {
+    console.log(this.nome);  // this = escopo externo (window/undefined!)
+  }
+};
+
+pessoa.saudacaoTradicional(); // "João"
+pessoa.saudacaoArrow();       // undefined (não use arrow como método!)</code></pre>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Arrow functions
+          <strong>não têm</strong> seu próprio <code>this</code> — elas herdam
+          do escopo pai. Por isso não funcionam como métodos de objeto.
+        </div>
+      </section>
+
+      <!-- ═══════ S9 — FLUXO ═══════ -->
+      <section class="topic" id="s9">
+        <h2>09. Controle de Fluxo</h2>
+        <p class="subtitle">Condicionais e loops</p>
+
+        <h3>if / else if / else</h3>
+        <pre><code>const idade = 20;
+
+if (idade &lt; 12) {
+  console.log('Criança');
+} else if (idade &lt; 18) {
+  console.log('Adolescente');
+} else if (idade &lt; 60) {
+  console.log('Adulto');
+} else {
+  console.log('Idoso');
+}</code></pre>
+
+        <h3>switch</h3>
+        <pre><code>const dia = 2;
+let nomeDia;
+
+switch (dia) {
+  case 1:
+    nomeDia = 'Domingo';
+    break;
+  case 2:
+    nomeDia = 'Segunda';
+    break;
+  default:
+    nomeDia = 'Inválido';
+}
+
+// switch com fallthrough (intencional)
+switch (nota) {
+  case 'A':
+  case 'B':
+    console.log('Aprovado');
+    break;
+  case 'C':
+    console.log('Recuperação');
+    break;
+  default:
+    console.log('Reprovado');
+}</code></pre>
+
+        <h3>Loops</h3>
+        <pre><code>// for clássico
+for (let i = 0; i &lt; 5; i++) {
+  console.log(i);  // 0, 1, 2, 3, 4
+}
+
+// while
+let i = 0;
+while (i &lt; 5) {
+  console.log(i);
+  i++;
+}
+
+// do...while (executa pelo menos uma vez)
+let j = 0;
+do {
+  console.log(j);
+  j++;
+} while (j &lt; 5);
+
+// for...of (arrays, strings, Map, Set)
+for (const letra of 'Olá') {
+  console.log(letra);
+}
+
+// for...in (objetos — cuidado!)
+for (const chave in usuario) {
+  console.log(chave, usuario[chave]);
+}
+
+// break / continue
+for (let i = 0; i &lt; 10; i++) {
+  if (i === 3) continue;  // pula o 3
+  if (i === 7) break;     // para no 7
+  console.log(i);         // 0, 1, 2, 4, 5, 6
+}</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Prefira <code>for...of</code> para arrays e
+          <code>for...in</code> apenas para objetos. Evite
+          <code>for...in</code> em arrays porque ele itera sobre o índice como
+          string e inclui propriedades herdadas.
+        </div>
+      </section>
+
+      <!-- ═══════ S10 — DOM ═══════ -->
+      <section class="topic" id="s10">
+        <h2>10. DOM — Document Object Model</h2>
+        <p class="subtitle">Manipulando elementos HTML com JavaScript</p>
+
+        <h3>Selecionar elementos</h3>
+        <pre><code>// Clássico (retorna UM elemento)
+document.getElementById('meu-id');
+document.getElementsByClassName('minha-classe');
+document.getElementsByTagName('div');
+
+// Moderno (recomendado)
+document.querySelector('.minha-classe');    // primeiro que encontrar
+document.querySelector('#meu-id');
+document.querySelectorAll('div &gt; p');       // todos (NodeList)</code></pre>
+
+        <h3>Manipular conteúdo</h3>
+        <pre><code>const el = document.querySelector('.titulo');
+
+el.textContent = 'Novo texto';         // só texto (seguro)
+el.innerHTML = '&lt;strong&gt;Texto&lt;/strong&gt;';  // HTML (risco XSS)
+el.innerText = 'Texto visível';        // respeita display:none
+
+// Atributos
+el.setAttribute('data-id', '123');
+el.getAttribute('data-id');     // "123"
+el.removeAttribute('disabled');
+el.id = 'novo-id';
+el.classList.add('ativo');
+el.classList.remove('inativo');
+el.classList.toggle('dark');
+el.classList.contains('ativo'); // true/false
+
+// Estilos inline
+el.style.color = 'red';
+el.style.backgroundColor = '#333';   // camelCase das props CSS
+el.style.cssText = 'color: red; background: blue;';</code></pre>
+
+        <h3>Criar e remover elementos</h3>
+        <pre><code>const div = document.createElement('div');
+div.textContent = 'Olá';
+div.className = 'card';
+
+// Adicionar
+document.body.appendChild(div);
+pai.prepend(div);          // insere no início
+pai.insertBefore(div, ref); // insere antes de ref
+pai.append(div, outro);     // insere múltiplos no final
+
+// Remover
+div.remove();              // moderno
+pai.removeChild(div);      // clássico</code></pre>
+
+        <h3>Eventos</h3>
+        <pre><code>const btn = document.querySelector('button');
+
+// addEventListener (recomendado)
+btn.addEventListener('click', function(event) {
+  console.log('Clicou!', event.target);
+});
+
+btn.addEventListener('mouseenter', () => {
+  console.log('Mouse entrou');
+});
+
+// Remover evento
+function handler() { console.log('ok'); }
+btn.addEventListener('click', handler);
+btn.removeEventListener('click', handler);
+
+// Event delegation (um listener para vários elementos)
+document.querySelector('.lista').addEventListener('click', (e) => {
+  if (e.target.tagName === 'LI') {
+    console.log('Clicou no item:', e.target.textContent);
+  }
+});</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>textContent</code> em vez de
+          <code>innerHTML</code> sempre que possível — é mais rápido e evita
+          riscos de XSS (injeção de código malicioso). Use
+          <code>innerHTML</code> apenas quando precisar renderizar HTML
+          confiável.
+        </div>
+      </section>
+
+      <!-- ═══════ S11 — POO ═══════ -->
+      <section class="topic" id="s11">
+        <h2>11. Programação Orientada a Objetos</h2>
+        <p class="subtitle">Classes, herança e encapsulamento</p>
+
+        <h3>Class e constructor</h3>
+        <pre><code>class Pessoa {
+  constructor(nome, idade) {
+    this.nome = nome;
+    this.idade = idade;
+  }
+
+  saudacao() {
+    return `Olá, sou ${this.nome}`;
+  }
+
+  get nascimento() {
+    const ano = new Date().getFullYear();
+    return ano - this.idade;
+  }
+
+  set nascimento(ano) {
+    this.idade = new Date().getFullYear() - ano;
+  }
+}
+
+const joao = new Pessoa('João', 30);
+joao.saudacao();           // "Olá, sou João"
+joao.nascimento;           // 1994 (get)
+joao.nascimento = 2000;    // set → idade vira 24</code></pre>
+
+        <h3>Herança (extends)</h3>
+        <pre><code>class Aluno extends Pessoa {
+  constructor(nome, idade, matricula) {
+    super(nome, idade);     // chama o constructor da classe pai
+    this.matricula = matricula;
+  }
+
+  saudacao() {
+    return `${super.saudacao()} — matrícula ${this.matricula}`;
+  }
+}
+
+const ana = new Aluno('Ana', 22, '2024001');
+ana.saudacao();   // "Olá, sou Ana — matrícula 2024001"</code></pre>
+
+        <h3>Métodos estáticos</h3>
+        <pre><code>class MathUtil {
+  static somar(a, b) {
+    return a + b;
+  }
+}
+
+MathUtil.somar(2, 3);  // 5 (não precisa instanciar)</code></pre>
+
+        <h3>Campos privados (#)</h3>
+        <pre><code>class ContaBancaria {
+  #saldo = 0;          // privado (só acessível dentro da classe)
+
+  depositar(valor) {
+    this.#saldo += valor;
+  }
+
+  get saldo() {
+    return this.#saldo;
+  }
+}
+
+const conta = new ContaBancaria();
+conta.#saldo;          // SyntaxError!
+conta.saldo;           // 0 (via getter)</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Use <code>#</code> para propriedades
+          realmente privadas. Por convenção, <code>_propriedade</code> indica
+          "privada" mas ainda é acessível externamente.
+        </div>
+      </section>
+
+      <!-- ═══════ S12 — ASSÍNCRONO ═══════ -->
+      <section class="topic" id="s12">
+        <h2>12. Programação Assíncrona</h2>
+        <p class="subtitle">
+          Operações que levam tempo (API, arquivos, timers)
+        </p>
+
+        <h3>setTimeout e setInterval</h3>
+        <pre><code>// Executa uma vez após X ms
+const timeout = setTimeout(() => {
+  console.log('Passou 2 segundos');
+}, 2000);
+clearTimeout(timeout);  // cancela
+
+// Executa a cada X ms
+const intervalo = setInterval(() => {
+  console.log('A cada 1s');
+}, 1000);
+clearInterval(intervalo);  // para</code></pre>
+
+        <h3>Promises</h3>
+        <pre><code>// Criar uma Promise
+const promessa = new Promise((resolve, reject) => {
+  const sucesso = true;
+
+  setTimeout(() => {
+    if (sucesso) {
+      resolve('Dados carregados!');
+    } else {
+      reject('Erro ao carregar');
+    }
+  }, 2000);
+});
+
+// Consumir
+promessa
+  .then(dados => console.log(dados))        // sucesso
+  .catch(erro => console.error(erro))       // erro
+  .finally(() => console.log('Sempre roda')); // always</code></pre>
+
+        <h3>async / await (moderno)</h3>
+        <pre><code>async function carregarDados() {
+  try {
+    const resposta = await fetch('https://api.exemplo.com/dados');
+    const dados = await resposta.json();
+    console.log(dados);
+  } catch (erro) {
+    console.error('Falha na requisição:', erro);
+  }
+}
+
+carregarDados();</code></pre>
+
+        <h3>Fetch API</h3>
+        <pre><code>// GET
+fetch('https://api.exemplo.com/usuarios')
+  .then(res => res.json())           // parse do JSON
+  .then(dados => console.log(dados))
+  .catch(err => console.error(err));
+
+// POST
+fetch('https://api.exemplo.com/usuarios', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ nome: 'João', idade: 30 })
+})
+  .then(res => res.json())
+  .then(dados => console.log(dados));</code></pre>
+
+        <h3>Promise combinadas</h3>
+        <pre><code>// Promise.all — espera TODAS resolverem (se uma falha, tudo falha)
+const [users, posts] = await Promise.all([
+  fetch('/users').then(r => r.json()),
+  fetch('/posts').then(r => r.json())
+]);
+
+// Promise.allSettled — espera todas, mesmo com falhas
+const resultados = await Promise.allSettled([
+  fetch('/users'),
+  fetch('/posts-invalidas')
+]);
+
+// Promise.race — retorna a primeira que resolver
+const timeoutPromise = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error('Timeout')), 5000)
+);
+const dados = await Promise.race([fetch('/dados'), timeoutPromise]);</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>async/await</code> é açúcar sintático
+          sobre Promises. Use <code>try/catch</code> para tratar erros.
+          Lembre-se: uma função <code>async</code> sempre retorna uma Promise.
+        </div>
+      </section>
+
+      <!-- ═══════ S13 — ERROS ═══════ -->
+      <section class="topic" id="s13">
+        <h2>13. Tratamento de Erros</h2>
+        <p class="subtitle">Código que não quebra — lida com falhas</p>
+
+        <h3>try / catch / finally</h3>
+        <pre><code>try {
+  const resultado = operacaoRiscada();
+  console.log(resultado);
+} catch (erro) {
+  console.error('Algo deu errado:', erro.message);
+} finally {
+  console.log('Sempre executa (com erro ou não)');
+}</code></pre>
+
+        <h3>throw — lançar erros</h3>
+        <pre><code>function dividir(a, b) {
+  if (b === 0) {
+    throw new Error('Divisão por zero não permitida');
+  }
+  return a / b;
+}
+
+try {
+  dividir(10, 0);
+} catch (erro) {
+  console.error(erro.message);
+}</code></pre>
+
+        <h3>Tipos de erro no JS</h3>
+        <pre><code>new Error('Erro genérico');
+new TypeError('Tipo inválido');
+new ReferenceError('Variável não existe');
+new SyntaxError('Erro de sintaxe');
+new RangeError('Valor fora do intervalo');
+
+// instanceof para identificar o tipo
+try {
+  // ...
+} catch (erro) {
+  if (erro instanceof TypeError) {
+    console.log('Erro de tipo');
+  } else if (erro instanceof ReferenceError) {
+    console.log('Referência inválida');
+  } else {
+    console.log('Outro erro');
+  }
+}</code></pre>
+
+        <h3>Erros personalizados</h3>
+        <pre><code>class ValidacaoError extends Error {
+  constructor(campo, mensagem) {
+    super(mensagem);
+    this.name = 'ValidacaoError';
+    this.campo = campo;
+  }
+}
+
+try {
+  throw new ValidacaoError('email', 'Email inválido');
+} catch (erro) {
+  console.log(`${erro.name}: ${erro.campo} — ${erro.message}`);
+}</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre trate erros em código assíncrono com
+          <code>try/catch</code> (async/await) ou
+          <code>.catch()</code> (Promises). Erros não tratados em Promises viram
+          <code>unhandledrejection</code> no ambiente.
+        </div>
+      </section>
+
+      <!-- ═══════ S14 — ES6+ ═══════ -->
+      <section class="topic" id="s14">
+        <h2>14. JavaScript Moderno (ES6+)</h2>
+        <p class="subtitle">Recursos que transformaram a linguagem</p>
+
+        <h3>Modules (import / export)</h3>
+        <pre><code>// 📁 utils.js
+export const soma = (a, b) => a + b;
+export const PI = 3.14;
+export default function saudacao(nome) {
+  return `Olá, ${nome}`;
+}
+
+// 📁 app.js
+import saudacao, { soma, PI } from './utils.js';
+//        ↑ default          ↑ nomeados
+
+// Re-export
+export { soma as somar } from './utils.js';</code></pre>
+
+        <h3>Map e Set</h3>
+        <pre><code>// Map — chave de qualquer tipo
+const mapa = new Map();
+mapa.set('nome', 'João');
+mapa.set(42, 'número');
+mapa.get('nome');        // "João"
+mapa.has(42);            // true
+mapa.size;               // 2
+
+// Set — valores únicos
+const set = new Set([1, 2, 3, 2, 1]);
+set.size;                // 3 ({1, 2, 3})
+set.add(4);
+set.has(2);              // true</code></pre>
+
+        <h3>Spread e Rest — recap</h3>
+        <pre><code>// Spread (expandir)
+const nums1 = [1, 2];
+const nums2 = [3, ...nums1];        // [3, 1, 2]
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 };     // { a:1, b:2, c:3 }
+
+// Rest (agrupar)
+function logPrimeiroEGuardar(...resto) {
+  console.log(resto);   // array com o resto
+}
+
+// Destructuring com rest
+const [head, ...tail] = [1, 2, 3, 4];
+// head = 1, tail = [2, 3, 4]
+
+const { nome, ...resto } = { nome: 'João', idade: 30, cidade: 'SP' };
+// nome = "João", resto = { idade: 30, cidade: "SP" }</code></pre>
+
+        <h3>ES6+ features rápidas</h3>
+        <pre><code>// Optional Chaining (?.)
+const cidade = usuario?.endereco?.cidade;
+
+// Nullish Coalescing (??)
+const nome = usuario.nome ?? 'Anônimo';
+
+// Promise.allSettled
+const results = await Promise.allSettled([...]);
+
+// at() — acesso a índices negativos
+[1, 2, 3].at(-1);       // 3
+
+// Array.groupBy (ES2024)
+// Object.groupBy(items, callback)
+
+// Records e Tuples (proposta)
+// #record = { x: 1, y: 2 }  // imutável por padrão</code></pre>
+
+        <div class="note">
+          <strong>📌 Evolução:</strong> ES6 (2015) foi a maior atualização do
+          JS. Depois vieram ES7 (2016), ES8 (2017) com async/await, ES9, ES10,
+          ES11 com optional chaining/??, ES12, ES13, ES14... A linguagem
+          continua evoluindo anualmente.
+        </div>
+      </section>
+
+      <!-- ═══════ S15 — BOAS PRÁTICAS ═══════ -->
+      <section class="topic" id="s15">
+        <h2>15. Boas Práticas &amp; Debugging</h2>
+        <p class="subtitle">Código limpo, eficiente e sem bugs</p>
+
+        <h3>Clean Code</h3>
+        <pre><code>// ❌ Ruim
+const x = function(s) { return s * 2; };
+
+// ✅ Bom
+function dobrar(valor) {
+  return valor * 2;
+}
+
+// ❌ Ruim (uma função fazendo tudo)
+function processarUsuario(usuario) {
+  if (!usuario) return;
+  validar(usuario);
+  salvar(usuario);
+  enviarEmail(usuario);
+  return usuario;
+}
+
+// ✅ Bom (funções pequenas com uma responsabilidade cada)
+function processarUsuario(usuario) {
+  if (!usuario) throw new Error('Usuário inválido');
+  return usuario;
+}
+
+// ❌ Mágica
+const total = valor * 1.2;
+
+// ✅ Nomeada
+const TAXA_IMPOSTO = 0.2;
+const total = valor * (1 + TAXA_IMPOSTO);</code></pre>
+
+        <h3>Debugging</h3>
+        <pre><code>// console (básico)
+console.log({ valor, tipo });            // objeto formatado
+console.table([usuario1, usuario2]);     // tabela
+console.time('loop');                    // benchmark
+for (...) { /* ... */ }
+console.timeEnd('loop');
+
+// debugger (pausa a execução)
+function calcular() {
+  debugger;  // DevTools pausa aqui
+  return /* ... */;
+}
+
+// breakpoints no navegador
+// Abra Sources > clique no número da linha > recarregue</code></pre>
+
+        <h3>Strict mode</h3>
+        <pre><code>// Ativa no arquivo inteiro
+'use strict';
+
+// Ou em funções específicas
+function segura() {
+  'use strict';
+  x = 3;  // Erro! (sem strict, criaria global)
+}
+
+// Módulos ES6 são strict mode por padrão</code></pre>
+
+        <h3>Performance</h3>
+        <pre><code>// Debounce — executa após um intervalo sem novas chamadas
+function debounce(fn, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// Throttle — executa no máximo uma vez a cada intervalo
+function throttle(fn, limit) {
+  let inThrottle;
+  return (...args) => {
+    if (!inThrottle) {
+      fn(...args);
+      inThrottle = setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Evite manipular o DOM dentro de loops
+// ❌
+for (let i = 0; i &lt; 100; i++) {
+  document.body.innerHTML += '&lt;div&gt;' + i + '&lt;/div&gt;';
+}
+
+// ✅ (DocumentFragment ou uma string)
+const fragment = document.createDocumentFragment();
+for (let i = 0; i &lt; 100; i++) {
+  const div = document.createElement('div');
+  div.textContent = i;
+  fragment.appendChild(div);
+}
+document.body.appendChild(fragment);</code></pre>
+
+        <h3>Checklist de qualidade</h3>
+        <pre><code>☐ Use const por padrão, let quando precisar reatribuir
+☐ Nomes descritivos (camelCase)
+☐ Funções pequenas (máx 20-30 linhas)
+☐ Evite any/var
+☐ Trate erros com try/catch
+☐ Prefira async/await a .then()
+☐ Remova console.log antes de produção (ou use logger)
+☐ Teste em múltiplos navegadores
+☐ Use === em vez de ==
+☐ Evite manipular DOM em loops
+☐ Prefira métodos imutáveis (map, filter, reduce)
+☐ Comente o "porquê", não o "o quê"</code></pre>
+
+        <div class="demo-box">
+          <span class="label">📊 Resumo visual — Hierarquia do JS Moderno</span>
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 6px;
+            "
+          >
+            <div
+              style="
+                background: var(--accent);
+                padding: 14px 18px;
+                border-radius: 6px;
+                text-align: center;
+                color: #0b0d14;
+              "
+            >
+              <strong style="font-size: 1.1rem">Dados</strong><br />
+              <span style="font-size: 0.7rem"
+                >const / let<br />tipos, objetos</span
+              >
+            </div>
+            <div
+              style="
+                background: var(--accent2);
+                padding: 14px 18px;
+                border-radius: 6px;
+                text-align: center;
+                color: #0b0d14;
+              "
+            >
+              <strong style="font-size: 1.1rem">Lógica</strong><br />
+              <span style="font-size: 0.7rem"
+                >funções, fluxo<br />arrays, classes</span
+              >
+            </div>
+            <div
+              style="
+                background: var(--accent3);
+                padding: 14px 18px;
+                border-radius: 6px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.1rem">Eventos</strong><br />
+              <span style="font-size: 0.7rem"
+                >DOM, listeners<br />interação</span
+              >
+            </div>
+            <div
+              style="
+                background: var(--accent4);
+                padding: 14px 18px;
+                border-radius: 6px;
+                text-align: center;
+                color: #fff;
+              "
+            >
+              <strong style="font-size: 1.1rem">Async</strong><br />
+              <span style="font-size: 0.7rem"
+                >async, fetch<br />API, promises</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>⚡ JavaScript Completo — Guia prático de estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

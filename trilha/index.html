@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trilha de Aprendizado — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      .roadmap {
+        position: relative;
+        padding: 20px 0;
+      }
+      .roadmap::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 28px;
+        width: 2px;
+        background: var(--border);
+      }
+      .step {
+        position: relative;
+        padding: 0 0 40px 68px;
+      }
+      .step:last-child {
+        padding-bottom: 0;
+      }
+      .step-marker {
+        position: absolute;
+        left: 12px;
+        top: 4px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        z-index: 1;
+      }
+      .step-content {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 24px 28px;
+      }
+      .step-content h3 {
+        font-family: var(--font-display);
+        font-size: var(--text-xl);
+        margin: 0 0 8px;
+      }
+      .step-content p {
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        margin: 0 0 12px;
+      }
+      .step-content .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .step-content .tags span {
+        font-size: var(--text-xs);
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-weight: 500;
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+      .resource-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .resource-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .resource-card h4 {
+        font-family: var(--font-display);
+        font-size: var(--text-base);
+        margin: 0 0 6px;
+      }
+      .resource-card p {
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        margin: 0 0 12px;
+      }
+      .resource-card .tag {
+        display: inline-block;
+        font-size: var(--text-xs);
+        padding: 2px 10px;
+        border-radius: 100px;
+        background: var(--bg-elevated);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn current" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>🗺️ <span class="hl">Trilha</span> de Aprendizado</h1>
+        <p>
+          Um roadmap completo do iniciante ao profissional — e os melhores
+          recursos gratuitos
+        </p>
+      </div>
+
+      <section class="topic">
+        <h2>Sua Jornada em 5 Níveis</h2>
+        <p class="subtitle">Siga esta ordem e evite se sentir perdido</p>
+
+        <div class="roadmap">
+          <div class="step">
+            <div
+              class="step-marker"
+              style="background: var(--accent2); color: #0b0d14"
+            >
+              1
+            </div>
+            <div class="step-content">
+              <h3>🏗️ Fundamentos</h3>
+              <p>
+                O alicerce de tudo. Sem pressa — domine o básico antes de
+                avançar.
+              </p>
+              <div class="tags">
+                <span style="background: var(--accent2); color: #0b0d14"
+                  >HTML</span
+                >
+                <span style="background: var(--accent); color: #0b0d14"
+                  >CSS</span
+                >
+                <span style="background: var(--accent3); color: #fff"
+                  >JavaScript básico</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div
+              class="step-marker"
+              style="background: var(--accent); color: #0b0d14"
+            >
+              2
+            </div>
+            <div class="step-content">
+              <h3>🛠️ Ferramentas</h3>
+              <p>
+                O que todo dev usa no dia a dia. Comece cedo para criar o
+                hábito.
+              </p>
+              <div class="tags">
+                <span style="background: var(--accent); color: #0b0d14"
+                  >Git / GitHub</span
+                >
+                <span style="background: var(--accent); color: #0b0d14"
+                  >Terminal</span
+                >
+                <span style="background: var(--accent); color: #0b0d14"
+                  >DevTools</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div
+              class="step-marker"
+              style="background: var(--accent3); color: #fff"
+            >
+              3
+            </div>
+            <div class="step-content">
+              <h3>📦 Projetos</h3>
+              <p>
+                Aplique tudo que aprendeu. Comece com projetos simples e aumente
+                a complexidade.
+              </p>
+              <div class="tags">
+                <span style="background: var(--accent3); color: #fff"
+                  >Portfólio</span
+                >
+                <span style="background: var(--accent3); color: #fff"
+                  >Calculadora</span
+                >
+                <span style="background: var(--accent3); color: #fff"
+                  >Todo List</span
+                >
+                <span style="background: var(--accent3); color: #fff"
+                  >API Fetch</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div
+              class="step-marker"
+              style="background: var(--accent4); color: #fff"
+            >
+              4
+            </div>
+            <div class="step-content">
+              <h3>⚡ Avançado</h3>
+              <p>Conceitos mais profundos e ferramentas modernas.</p>
+              <div class="tags">
+                <span style="background: var(--accent4); color: #fff"
+                  >React / Vue</span
+                >
+                <span style="background: var(--accent4); color: #fff"
+                  >TypeScript</span
+                >
+                <span style="background: var(--accent4); color: #fff"
+                  >Node.js</span
+                >
+                <span style="background: var(--accent4); color: #fff"
+                  >APIs REST</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div
+              class="step-marker"
+              style="background: var(--accent2); color: #0b0d14"
+            >
+              5
+            </div>
+            <div class="step-content">
+              <h3>🚀 Carreira</h3>
+              <p>
+                Além do código: soft skills, networking, mercado de trabalho.
+              </p>
+              <div class="tags">
+                <span style="background: var(--accent2); color: #0b0d14"
+                  >Portfólio</span
+                >
+                <span style="background: var(--accent2); color: #0b0d14"
+                  >LinkedIn</span
+                >
+                <span style="background: var(--accent2); color: #0b0d14"
+                  >Entrevistas</span
+                >
+                <span style="background: var(--accent2); color: #0b0d14"
+                  >Freelance</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recursos -->
+      <section class="topic" id="recursos">
+        <h2>Recursos Recomendados</h2>
+        <p class="subtitle">
+          Os melhores lugares para aprender — todos gratuitos
+        </p>
+
+        <div class="resources-grid">
+          <div class="resource-card">
+            <h4>MDN Web Docs</h4>
+            <p>
+              A documentação oficial da web. A referência mais completa e
+              confiável para HTML, CSS e JavaScript.
+            </p>
+            <span class="tag">Documentação</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>freeCodeCamp</h4>
+            <p>
+              Curso interativo completo com certificados gratuitos. Milhares de
+              horas de conteúdo em português.
+            </p>
+            <span class="tag">Curso</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>Curso em Vídeo (Guanabara)</h4>
+            <p>
+              Cursos em português do professor Gustavo Guanabara — didática
+              incrível para iniciantes.
+            </p>
+            <span class="tag">YouTube</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>CS50 de Harvard</h4>
+            <p>
+              O curso de ciência da computação mais famoso do mundo. Grátis e
+              legendado. Muda sua forma de pensar.
+            </p>
+            <span class="tag">Curso</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>Codewars</h4>
+            <p>
+              Pratique lógica de programação com desafios (kata). Do nível
+              iniciante ao especialista.
+            </p>
+            <span class="tag">Prática</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>Frontend Mentor</h4>
+            <p>
+              Desafios de HTML/CSS/JS com designs reais. Baixe o layout e
+              construa do zero.
+            </p>
+            <span class="tag">Prática</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>Rocketseat</h4>
+            <p>
+              Conteúdo gratuito de alta qualidade em português. Comunidade forte
+              e eventos ao vivo.
+            </p>
+            <span class="tag">Curso</span>
+          </div>
+
+          <div class="resource-card">
+            <h4>Google</h4>
+            <p>
+              Sim, saber pesquisar no Google é uma habilidade. Aprenda a buscar
+              erros, soluções e documentação.
+            </p>
+            <span class="tag">Habilidade</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dicas finais -->
+      <section class="topic" id="dicas">
+        <h2>Conselhos para a Jornada</h2>
+        <p class="subtitle">O que ninguém te conta no primeiro dia</p>
+
+        <div class="demo-box">
+          <div
+            style="
+              display: grid;
+              gap: 12px;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            "
+          >
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🎯</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Foco</strong><br />Escolha um caminho (frontend,
+                backend) e foque. Não tente aprender tudo ao mesmo tempo.
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🐢</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Ritmo</strong><br />30 minutos por dia > 6 horas no
+                sábado. Consistência vence intensidade.
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">💬</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Comunidade</strong><br />Participe de grupos (Discord,
+                Reddit, LinkedIn). Programar sozinho é mais difícil.
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🔁</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Repetição</strong><br />Você não vai aprender tudo de
+                primeira. Revise, refaça projetos, pratique de novo.
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">❌</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Errar é aprender</strong><br />Seu código vai quebrar. O
+                erro não é um obstáculo — é a aula. Leia a mensagem de erro.
+              </p>
+            </div>
+            <div
+              style="
+                background: var(--bg-elevated);
+                padding: 20px;
+                border-radius: 8px;
+              "
+            >
+              <span style="font-size: 1.5rem">🌱</span>
+              <p style="font-size: 0.85rem; margin: 8px 0 0">
+                <strong>Comparação</strong><br />Você está no seu tempo. Não se
+                compare com quem já programa há anos. Compare você de ontem com
+                você de hoje.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>🗺️ Trilha de Aprendizado — Guia de Estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>
