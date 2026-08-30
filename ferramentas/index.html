@@ -50,6 +50,10 @@
           <a href="#s1"><span class="num">01</span> Terminal</a>
           <a href="#s2"><span class="num">02</span> Git &amp; GitHub</a>
           <a href="#s3"><span class="num">03</span> DevTools</a>
+          <a href="#s4"><span class="num">04</span> Node.js &amp; npm/npx</a>
+          <a href="#s5"
+            ><span class="num">05</span> Variáveis de Ambiente &amp; Deploy</a
+          >
         </div>
       </nav>
 
@@ -161,6 +165,58 @@ git clone URL           # Baixa um repositório inteiro</code></pre>
 .DS_Store
 dist/</code></pre>
 
+        <h3>Branches — "galhos" para trabalhar sem medo</h3>
+        <pre><code># Ver a branch atual
+git branch
+
+# Criar e entrar numa branch nova
+git checkout -b nova-funcionalidade
+# (equivalente a: git branch nova-funcionalidade && git checkout nova-funcionalidade)
+
+# Trocar de branch
+git checkout main
+git switch main          # comando moderno
+
+# Ver diferenças entre branches
+git diff main nova-funcionalidade</code></pre>
+
+        <h3>Merge e conflitos</h3>
+        <pre><code># Juntar uma branch na branch atual
+git checkout main
+git merge nova-funcionalidade
+
+# ⚠️ Conflito: quando duas branches mudaram a MESMA linha
+# O Git marca o arquivo assim:
+# &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#   minha versão
+# =======
+#   versão da outra branch
+# &gt;&gt;&gt;&gt;&gt;&gt;&gt; nova-funcionalidade
+
+# Você resolve manualmente (deixa o que faz sentido),
+# depois marca como resolvido:
+git add arquivo-resolvido.js
+git commit
+
+# Desfazer um merge
+git merge --abort</code></pre>
+
+        <h3>Workflow típico de equipe (GitHub Flow)</h3>
+        <pre><code># 1. Crie uma branch a partir da main
+git checkout -b minha-tarefa
+
+# 2. Faça commits pequenos e claros
+git add .
+git commit -m "feat: adiciona busca de usuários"
+
+# 3. Envie para o GitHub e abra um Pull Request
+git push -u origin minha-tarefa
+# → no GitHub: botão "Compare & pull request"
+
+# 4. Depois do review e merge, atualize sua main
+git checkout main
+git pull</code></pre>
+
         <div class="note">
           <strong>🧠 Dica:</strong> <code>git status</code> é seu melhor amigo.
           Use ele antes de qualquer comando para saber exatamente o que está
@@ -239,6 +295,189 @@ document.querySelector('h1').textContent = 'Novo título';
           <strong>a ferramenta mais importante</strong> para um desenvolvedor
           web. Aprender a usá-lo bem vai economizar horas de debugging. Passe um
           tempo explorando cada aba.
+        </div>
+      </section>
+
+      <!-- ═══════ S4 — NODE & NPM ═══════ -->
+      <section class="topic" id="s4">
+        <h2>04. Node.js, npm &amp; npx</h2>
+        <p class="subtitle">
+          O JavaScript fora do navegador — e o gerenciador de pacotes
+        </p>
+
+        <h3>O que é Node.js?</h3>
+        <p>
+          Node.js é um <strong>runtime</strong>: ele roda JavaScript fora do
+          navegador (no servidor, em ferramentas de linha de comando, etc.).
+          Todo projeto web moderno usa Node — inclusive este guia usa
+          ferramentas Node para formatação e git hooks!
+        </p>
+
+        <h3>Instalação e verificação</h3>
+        <pre><code># Baixe em nodejs.org (versão LTS recomendada)
+
+# Verificar se instalou
+node -v        # v20.x.x (versão do Node)
+npm -v         # 10.x.x  (versão do npm)
+
+# O npm vem junto com o Node</code></pre>
+
+        <h3>package.json — o "coração" do projeto</h3>
+        <pre><code>// Criado automaticamente por:
+npm init -y
+
+{
+  "name": "meu-projeto",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",              // npm run dev
+    "build": "vite build",      // npm run build
+    "test": "vitest"            // npm test
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"         // dependências de produção
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"            // só para desenvolvimento
+  }
+}</code></pre>
+
+        <h3>npm — instalar e gerenciar pacotes</h3>
+        <pre><code># Instalar
+npm install pacote          # dependência de produção
+npm install -D pacote       # devDependency (ferramentas)
+npm install                 # instala TUDO do package.json
+npm install --save-exact pkg # trava versão exata
+
+# O que acontece:
+#   1. Baixa o pacote para node_modules/
+#   2. Registra no package.json
+#   3. Gera/atualiza o package-lock.json (versões exatas)
+
+# Desinstalar / atualizar
+npm uninstall pacote
+npm update
+npm outdated                # ver o que está desatualizado
+
+# npm audit — checa vulnerabilidades
+npm audit
+npm audit fix               # corrige automaticamente</code></pre>
+
+        <h3>npx — rodar sem instalar</h3>
+        <pre><code># npx executa um pacote SEM precisar instalá-lo globalmente
+
+npx create-vite@latest meu-app   # cria projeto Vite
+npx serve .                      # sobe um servidor estático
+npx prettier --write arquivo.js  # formata um arquivo
+
+# Diferença:
+#   npm install -g pacote  → instala global (fica para sempre)
+#   npx pacote             → baixa, roda e descarta</code></pre>
+
+        <h3>Scripts — atalhos do package.json</h3>
+        <pre><code># Todos os comandos frequentes viram scripts
+"scripts": {
+  "dev": "vite",
+  "build": "vite build && vite preview",
+  "lint": "eslint . --fix",
+  "format": "prettier --write ."
+}
+
+# Rodar:
+npm run dev
+npm run build
+npm run lint
+npm run format
+
+# Atalhos especiais (não precisam de "run"):
+npm start     # roda o script "start"
+npm test      # roda o script "test"</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>node_modules/</code> é enorme e
+          regenerável — <strong>nunca</strong> commite essa pasta (por isso
+          existe o <code>.gitignore</code>). Sempre commite o
+          <code>package.json</code> e o <code>package-lock.json</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ S5 — AMBIENTE & DEPLOY ═══════ -->
+      <section class="topic" id="s5">
+        <h2>05. Variáveis de Ambiente &amp; Deploy</h2>
+        <p class="subtitle">
+          Segredos fora do código + como colocar seu site no ar
+        </p>
+
+        <h3>Variáveis de ambiente (.env)</h3>
+        <pre><code># Guardam configurações e segredos FORA do código.
+# Ex.: URL da API, chaves, tokens — nunca versionados!
+
+# Arquivo .env (na raiz do projeto, ignorado pelo Git)
+API_URL=https://api.exemplo.com
+API_KEY=abc123-segredo
+
+# No Node.js (após instalar dotenv)
+import 'dotenv/config';
+console.log(process.env.API_URL);   // "https://api.exemplo.com"
+
+# No front-end com Vite — use o prefixo VITE_
+VITE_PUBLIC_KEY=chave-publica
+// acessível como import.meta.env.VITE_PUBLIC_KEY
+
+# Arquivos típicos:
+#   .env          → ambiente local
+#   .env.example  → modelo committado (sem segredos!)
+#   .env.production → produção</code></pre>
+
+        <h3>Por que não commitar o .env?</h3>
+        <pre><code># Se um token vazar para o GitHub, qualquer pessoa pode usá-lo!
+# Por isso o .gitignore sempre inclui:
+.env
+.env.*
+
+# ✅ Commite apenas:
+.env.example   # com valores fictícios como documentação</code></pre>
+
+        <h3>O que é deploy?</h3>
+        <pre><code># Deploy = publicar seu site para o mundo acessar.
+# Seu código (local) → servidor (internet)
+
+# Tipos:
+#   1. Estático (HTML/CSS/JS puro) → só subir arquivos
+#   2. Front-end com build → npm run build gera pasta dist/
+#   3. Full-stack (Node) → servidor roda o app (Vercel, Render, Railway)
+
+# Fluxo típico de deploy:
+#   git push → plataforma detecta → roda build → publica
+#   (ou: upload manual via FTP / painel do provedor)</code></pre>
+
+        <h3>Onde hospedar (gratuitos)</h3>
+        <pre><code># GitHub Pages        → grátis, para sites estáticos
+#   Settings > Pages > branch main > Salvar
+
+# Vercel / Netlify    → grátis, deploy automático pelo Git
+#   conecta o repositório e faz build sozinho
+
+# Render / Railway    → para apps Node com backend
+
+# Para GitHub Pages (site estático):
+#   1. Push do código para o GitHub
+#   2. Repo > Settings > Pages > Source: main
+#   3. Seu site fica em: usuario.github.io/nome-do-repo</code></pre>
+
+        <h3>Checklist antes de publicar</h3>
+        <pre><code>☐ Rodou npm run build sem erros?
+☐ Testou em celular (responsividade)?
+☐ Verificou o Lighthouse (performance + acessibilidade)?
+☐ Sem console.log / debugger esquecidos?
+☐ .env fora do Git?
+☐ Título e meta description do site?
+☐ Links funcionando (nenhum 404)?</code></pre>
+
+        <div class="note">
+          <strong>🚀 Dica:</strong> Para aprender, publique tudo! Um site no ar
+          (mesmo simples) vale mais no portfólio do que 10 projetos só no seu
+          computador.
         </div>
       </section>
 

@@ -64,6 +64,11 @@
           >
           <a href="#h11"><span class="num">11</span> SEO &amp; Meta Tags</a>
           <a href="#h12"><span class="num">12</span> Boas Práticas</a>
+          <a href="#h13"><span class="num">13</span> Elementos Interativos</a>
+          <a href="#h14"><span class="num">14</span> Formulários Avançados</a>
+          <a href="#h15"
+            ><span class="num">15</span> Acessibilidade &amp; ARIA</a
+          >
         </div>
       </nav>
 
@@ -942,6 +947,346 @@ JS    → Comportamento e interação (o que faz)
           cada tag tem um propósito. Se nenhuma tag semântica servir, use uma
           <code>&lt;div&gt;</code> ou <code>&lt;span&gt;</code>. Mas primeiro
           pergunte: "existe uma tag HTML para isso?"
+        </div>
+      </section>
+
+      <!-- ═══════ H13 ── ELEMENTOS INTERATIVOS ═══════ -->
+      <section class="topic" id="h13">
+        <h2>13. Elementos Interativos</h2>
+        <p class="subtitle">
+          Widgets nativos do HTML — sem precisar de JavaScript
+        </p>
+
+        <p>
+          O HTML5 trouxe uma série de elementos que criam interação sem
+          JavaScript. Eles são <strong>acessíveis por padrão</strong> e
+          respeitam o teclado. Use-os antes de reinventar a roda.
+        </p>
+
+        <h3>details e summary — acordeão nativo</h3>
+        <p>
+          O par <span class="html-tag">&lt;details&gt;</span> +
+          <span class="html-tag">&lt;summary&gt;</span> cria um bloco
+          recolhível. O atributo <span class="html-attr">open</span> o deixa
+          expandido por padrão.
+        </p>
+        <pre><code>&lt;details&gt;
+  &lt;summary&gt;O que é o Box Model?&lt;/summary&gt;
+  &lt;p&gt;É o modelo que define como margin, border,
+  padding e conteúdo ocupam espaço no layout.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- Aberto por padrão + personalização de cor do marcador -->
+&lt;details open&gt;
+  &lt;summary&gt;Pergunta frequente&lt;/summary&gt;
+  &lt;p&gt;Resposta sempre visível.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">▶ Resultado interativo</span>
+          <details>
+            <summary style="cursor: pointer; font-weight: 600">
+              O que é semântica HTML?
+            </summary>
+            <p style="margin: 8px 0 0; font-size: 0.85rem">
+              É o uso de tags com significado (<code>&lt;header&gt;</code>,
+              <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>…) em vez de
+              apenas <code>&lt;div&gt;</code>, melhorando acessibilidade e SEO.
+            </p>
+          </details>
+        </div>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> você pode estilizar o marcador
+          (<code>▸</code>) com <code>summary::marker</code> no CSS e até trocar
+          o texto quando estiver aberto com
+          <code>details[open] summary::marker</code>.
+        </div>
+
+        <h3>dialog — janela/modal nativo</h3>
+        <p>
+          O <span class="html-tag">&lt;dialog&gt;</span> cria modais e diálogos
+          sem bibliotecas. Método
+          <span class="html-attr">showModal()</span> abre com bloqueio de foco
+          automático; <code>close()</code> fecha. O evento
+          <code>cancel</code> captura o ESC.
+        </p>
+        <pre><code>&lt;dialog id="meuModal"&gt;
+  &lt;h3&gt;Confirmação&lt;/h3&gt;
+  &lt;p&gt;Deseja salvar as alterações?&lt;/p&gt;
+  &lt;button id="fechar"&gt;Fechar&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;script&gt;
+  const modal = document.getElementById("meuModal");
+  modal.showModal();              // abre (bloqueia o fundo)
+  modal.close();                  // fecha
+&lt;/script&gt;</code></pre>
+
+        <h3>progress e meter — barras de status</h3>
+        <ul>
+          <li>
+            <span class="html-tag">&lt;progress&gt;</span> — barra de progresso
+            indeterminada ou com <span class="html-attr">max</span> e
+            <span class="html-attr">value</span>.
+          </li>
+          <li>
+            <span class="html-tag">&lt;meter&gt;</span> — medição em uma faixa
+            (ex.: bateria, nota), com <span class="html-attr">min</span>,
+            <span class="html-attr">max</span>,
+            <span class="html-attr">low</span>,
+            <span class="html-attr">high</span>,
+            <span class="html-attr">optimum</span>.
+          </li>
+        </ul>
+        <pre><code>&lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;
+&lt;progress&gt;Carregando...&lt;/progress&gt;   &lt;!-- indeterminada --&gt;
+
+&lt;meter value="0.8" min="0" max="1" low="0.3" high="0.7"&gt;80%&lt;/meter&gt;</code></pre>
+
+        <div class="demo-box">
+          <span class="label">▶ Visual</span>
+          <progress value="70" max="100" style="width: 100%; height: 10px">
+            70%
+          </progress>
+          <br /><br />
+          <meter
+            value="0.8"
+            min="0"
+            max="1"
+            low="0.3"
+            high="0.7"
+            style="width: 100%"
+          >
+            80%
+          </meter>
+        </div>
+
+        <div class="note warning">
+          <strong>⚠️ Atenção:</strong> o atributo <code>popover</code> (popover
+          API) permite criar tooltips e menus popover com
+          <code>popovertarget</code>. É moderno e bem suportado nos navegadores
+          atuais — excelente substituto de muitos modais simples.
+        </div>
+      </section>
+
+      <!-- ═══════ H14 ── FORMULÁRIOS AVANÇADOS ═══════ -->
+      <section class="topic" id="h14">
+        <h2>14. Formulários Avançados &amp; Validação</h2>
+        <p class="subtitle">
+          Validação nativa, datalist, output e boas práticas
+        </p>
+
+        <p>
+          O HTML5 embute validação <strong>sem JavaScript</strong>: o navegador
+          bloqueia o envio e exibe mensagens. Você só precisa declarar as regras
+          com atributos.
+        </p>
+
+        <h3>Atributos de validação nativa</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Atributo</th>
+                <th>O que faz</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>required</code></td>
+                <td>Campo obrigatório</td>
+              </tr>
+              <tr>
+                <td><code>minlength</code> / <code>maxlength</code></td>
+                <td>Limites de caracteres (texto)</td>
+              </tr>
+              <tr>
+                <td><code>min</code> / <code>max</code> / <code>step</code></td>
+                <td>Faixa e incremento (números, datas)</td>
+              </tr>
+              <tr>
+                <td><code>pattern</code></td>
+                <td>Valida por expressão regular (regex)</td>
+              </tr>
+              <tr>
+                <td><code>type</code></td>
+                <td>
+                  <code>email</code>, <code>url</code>, <code>number</code>,
+                  <code>tel</code>… já validam o formato
+                </td>
+              </tr>
+              <tr>
+                <td><code>novalidate</code></td>
+                <td>Desativa a validação do formulário (para testes)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Exemplo completo com pattern</h3>
+        <pre><code>&lt;form&gt;
+  &lt;label for="nome"&gt;Nome completo&lt;/label&gt;
+  &lt;input id="nome" name="nome" required minlength="3"&gt;
+
+  &lt;label for="email"&gt;E-mail&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+
+  &lt;label for="senha"&gt;Senha (mín. 8, com letra e número)&lt;/label&gt;
+  &lt;input id="senha" name="senha" type="password"
+         pattern="(?=.*[A-Za-z])(?=.*\d).{8,}"
+         title="Mínimo 8 caracteres, ao menos 1 letra e 1 número" required&gt;
+
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> o atributo <code>title</code> no input
+          aparece como mensagem de erro personalizada quando o
+          <code>pattern</code> falha. Use-o para dar instruções claras.
+        </div>
+
+        <h3>datalist — sugestões de preenchimento</h3>
+        <p>
+          Oferece opções sugeridas enquanto o usuário digita, mas permite
+          qualquer valor (diferente de <code>&lt;select&gt;</code>).
+        </p>
+        <pre><code>&lt;label for="cidade"&gt;Cidade&lt;/label&gt;
+&lt;input id="cidade" list="cidades"&gt;
+&lt;datalist id="cidades"&gt;
+  &lt;option value="São Paulo"&gt;&lt;/option&gt;
+  &lt;option value="Rio de Janeiro"&gt;&lt;/option&gt;
+  &lt;option value="Belo Horizonte"&gt;&lt;/option&gt;
+&lt;/datalist&gt;</code></pre>
+
+        <h3>output — resultado calculado</h3>
+        <p>
+          O <span class="html-tag">&lt;output&gt;</span> exibe o resultado de um
+          cálculo/operação, geralmente alimentado por JavaScript.
+        </p>
+        <pre><code>&lt;form oninput="resultado.value = a.valueAsNumber + b.valueAsNumber"&gt;
+  &lt;input type="range" id="a" value="50"&gt; +
+  &lt;input type="range" id="b" value="30"&gt; =
+  &lt;output name="resultado"&gt;80&lt;/output&gt;
+&lt;/form&gt;</code></pre>
+
+        <h3>Estilizando estados com CSS</h3>
+        <p>
+          Pseudo-classes como <code>:valid</code>, <code>:invalid</code>,
+          <code>:required</code> e <code>:user-invalid</code> permitem feedback
+          visual sem JS:
+        </p>
+        <pre><code>input:invalid { border-color: #d64545; }
+input:valid   { border-color: #2f7d7d; }
+input:user-invalid { background: #fff0f0; } /* só após interação */</code></pre>
+
+        <div class="note warning">
+          <strong>⚠️ Importante:</strong> a validação do navegador é só a
+          primeira camada. <strong>Sempre</strong> valide novamente no servidor
+          — dados vindos do cliente nunca devem ser confiados.
+        </div>
+      </section>
+
+      <!-- ═══════ H15 ── ACESSIBILIDADE & ARIA ═══════ -->
+      <section class="topic" id="h15">
+        <h2>15. Acessibilidade &amp; ARIA</h2>
+        <p class="subtitle">Web para todos: leitores de tela, teclado e WCAG</p>
+
+        <p>
+          Acessibilidade (a11y) é garantir que qualquer pessoa — incluindo
+          usuários de leitores de tela, navegação por teclado ou com baixa visão
+          — consiga usar seu site.
+          <strong>Semântica correta resolve 90% do problema</strong>; ARIA
+          preenche as lacunas.
+        </p>
+
+        <h3>Landmarks — regiões navegáveis</h3>
+        <p>
+          Elementos semânticos criam <em>landmarks</em> que leitores de tela
+          usam para pular entre regiões:
+        </p>
+        <div class="chip-list">
+          <span class="badge accent">&lt;header&gt;</span>
+          <span class="badge accent2">&lt;nav&gt;</span>
+          <span class="badge accent3">&lt;main&gt;</span>
+          <span class="badge accent4">&lt;aside&gt;</span>
+          <span class="badge accent">&lt;footer&gt;</span>
+          <span class="badge accent2">role="search"</span>
+        </div>
+
+        <h3>ARIA em resumo</h3>
+        <ul>
+          <li>
+            <strong>Roles</strong> — informam o papel de um elemento:
+            <code>role="button"</code>, <code>role="tab"</code>,
+            <code>role="alert"</code>.
+          </li>
+          <li>
+            <strong>Properties (estado)</strong> — descrevem características:
+            <code>aria-label</code>, <code>aria-describedby</code>,
+            <code>aria-expanded</code>.
+          </li>
+          <li>
+            <strong>Live regions</strong> — anunciam mudanças dinâmicas:
+            <code>aria-live="polite"</code> e <code>role="status"</code>.
+          </li>
+        </ul>
+        <pre><code>&lt;!-- Botão que informa seu estado ao leitor de tela -->
+&lt;button aria-expanded="false" aria-controls="menu"&gt;
+  Abrir menu
+&lt;/button&gt;
+
+&lt;!-- Anúncio de erro após envio -->
+&lt;p role="alert"&gt;Preencha o campo e-mail.&lt;/p&gt;
+
+&lt;!-- Região que anuncia contagem em tempo real -->
+&lt;div role="status" aria-live="polite"&gt;
+  3 itens no carrinho
+&lt;/div&gt;</code></pre>
+
+        <h3>Regras de ouro práticas</h3>
+        <ul>
+          <li>
+            Todo <code>&lt;img&gt;</code> precisa de
+            <code>alt</code> significativo (vazio <code>alt=""</code> se for
+            decorativa).
+          </li>
+          <li>
+            Botões e links precisam de texto visível (ou
+            <code>aria-label</code>).
+          </li>
+          <li>
+            Tudo deve ser operável por <strong>teclado</strong> (Tab, Enter,
+            Esc).
+          </li>
+          <li>Contraste mínimo WCAG AA: 4.5:1 para texto normal.</li>
+          <li>
+            Use apenas um <code>&lt;h1&gt;</code> por página e hierarquia
+            lógica.
+          </li>
+          <li>
+            Adicione um <strong>link de pulo</strong> (<em>skip link</em>) para
+            o conteúdo principal.
+          </li>
+        </ul>
+        <pre><code>&lt;body&gt;
+  &lt;a class="skip-link" href="#conteudo"&gt;Pular para o conteúdo&lt;/a&gt;
+  &lt;header&gt;…&lt;/header&gt;
+  &lt;main id="conteudo"&gt;…&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+
+        <div class="note info">
+          <strong>🧠 Saiba mais:</strong> as diretrizes completas estão no
+          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank"
+            >WCAG 2.1</a
+          >. Ferramentas como o Lighthouse (F12 → Lighthouse) geram relatórios
+          automáticos de acessibilidade.
+        </div>
+
+        <div class="note danger">
+          <strong>🚫 Regra de ouro do ARIA:</strong> "Não use ARIA quando uma
+          tag HTML nativa já resolver." Um <code>&lt;button&gt;</code> real é
+          sempre melhor que uma <code>&lt;div role="button"&gt;</code>.
         </div>
       </section>
 

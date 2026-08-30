@@ -73,6 +73,15 @@
           <a href="#s13"><span class="num">13</span> Erros</a>
           <a href="#s14"><span class="num">14</span> ES6+ Moderno</a>
           <a href="#s15"><span class="num">15</span> Boas Práticas</a>
+          <a href="#s16"><span class="num">16</span> JSON &amp; Web Storage</a>
+          <a href="#s17"><span class="num">17</span> Eventos Avançados</a>
+          <a href="#s18"><span class="num">18</span> Browser APIs (Web APIs)</a>
+          <a href="#s19"
+            ><span class="num">19</span> Fetch Avançado &amp; HTTP</a
+          >
+          <a href="#s20"
+            ><span class="num">20</span> Padrões &amp; Ecossistema</a
+          >
         </div>
       </nav>
 
@@ -1255,6 +1264,517 @@ document.body.appendChild(fragment);</code></pre>
                 >async, fetch<br />API, promises</span
               >
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ S16 — JSON & WEB STORAGE ═══════ -->
+      <section class="topic" id="s16">
+        <h2>16. JSON &amp; Web Storage</h2>
+        <p class="subtitle">
+          Formato de dados da web + como salvar coisas no navegador
+        </p>
+
+        <h3>JSON — JavaScript Object Notation</h3>
+        <pre><code>// JSON é o formato de troca de dados da web.
+// Parece um objeto JS, mas: chaves SEMPRE com aspas duplas,
+// e não aceita funções, undefined, NaN, Infinity.
+
+// Objeto JS → JSON (string)
+const usuario = { nome: 'João', idade: 30, ativo: true };
+const json = JSON.stringify(usuario);
+// '{"nome":"João","idade":30,"ativo":true}'
+
+// JSON → Objeto JS
+const deVolta = JSON.parse(json);
+deVolta.nome;   // "João"
+
+// Em APIs — quase sempre você faz isso:
+const dados = await fetch('/api').then(r => r.json());</code></pre>
+
+        <h3>JSON.stringify — opções úteis</h3>
+        <pre><code>const dados = { nome: 'Ana', senha: '123', admin: true };
+
+// Remover campos sensíveis (senha!) antes de enviar
+const { senha, ...seguro } = dados;
+JSON.stringify(seguro);
+
+// Replacer — filtra o que vai ser serializado
+JSON.stringify(dados, (chave, valor) =>
+  chave === 'senha' ? undefined : valor
+);
+
+// Space — identação para ler (debug)
+JSON.stringify(dados, null, 2);</code></pre>
+
+        <h3>localStorage — salvar no navegador (persistente)</h3>
+        <pre><code>// Salva (só aceita STRINGS — use JSON.stringify)
+localStorage.setItem('tema', 'dark');
+localStorage.setItem('usuario', JSON.stringify({ nome: 'João' }));
+
+// Lê
+const tema = localStorage.getItem('tema');      // "dark" ou null
+const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+// Remove
+localStorage.removeItem('tema');
+localStorage.clear();                            // limpa tudo
+
+// Sempre envolva em try/catch (modo anônimo pode bloquear)
+try {
+  localStorage.setItem('x', '1');
+} catch {
+  console.warn('Armazenamento indisponível');
+}</code></pre>
+
+        <h3>sessionStorage vs localStorage vs cookies</h3>
+        <pre><code>// localStorage  → persiste até ser removido (por aba/site)
+// sessionStorage→ some quando a aba fecha
+// cookies      → enviados ao servidor a cada requisição
+
+localStorage.setItem('k', 'v');     // persiste
+sessionStorage.setItem('k', 'v');   // some ao fechar aba
+
+// Cookie (document.cookie)
+document.cookie = 'tema=dark; max-age=3600';  // expira em 1h</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 Teste agora — contador persistente</span>
+          <p style="font-size: 0.85rem; color: var(--text-secondary)">
+            Abra o console e rode:
+          </p>
+          <pre
+            style="text-align: left; max-width: 420px; margin: 8px auto 0"
+          ><code>// Clique e recarregue — o valor continua!
+const c = +localStorage.getItem('cliques') || 0;
+localStorage.setItem('cliques', c + 1);
+console.log('Visitas nesta página:', c + 1);</code></pre>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Este próprio site usa
+          <code>localStorage</code> para salvar seu progresso de estudo! Abra o
+          DevTools &gt; Application &gt; Local Storage para ver.
+        </div>
+      </section>
+
+      <!-- ═══════ S17 — EVENTOS AVANÇADOS ═══════ -->
+      <section class="topic" id="s17">
+        <h2>17. Eventos Avançados</h2>
+        <p class="subtitle">
+          Propagação, delegação e como controlar o fluxo dos eventos
+        </p>
+
+        <h3>Propagação: bubbling e capture</h3>
+        <pre><code>/* Quando você clica num elemento, o evento "viaja":
+
+   CAPTURE (descendo)  window → document → ... → alvo
+   TARGET              no elemento clicado
+   BUBBLE (subindo)    alvo → ... → document → window
+
+   Por padrão, addEventListener escuta na FASE DE BUBBLE. */
+
+// Fase de bubble (padrão — dispara de dentro pra fora)
+pai.addEventListener('click', () => console.log('pai (bubble)'));
+
+// Fase de capture (true — dispara de fora pra dentro)
+pai.addEventListener('click', () => console.log('pai (capture)'), true);</code></pre>
+
+        <h3>Parar a propagação</h3>
+        <pre><code>btn.addEventListener('click', (e) => {
+  e.stopPropagation();        // não deixa subir pro pai
+});
+
+// Para propagação E outros listeners do mesmo elemento
+btn.addEventListener('click', (e) => {
+  e.stopImmediatePropagation();
+});</code></pre>
+
+        <h3>preventDefault</h3>
+        <pre><code>// Impede o comportamento padrão do navegador
+link.addEventListener('click', (e) => {
+  e.preventDefault();         // não navega para o href
+});
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();         // não recarrega a página
+  // ...validar e enviar via fetch
+});</code></pre>
+
+        <h3>Event delegation — um listener para muitos</h3>
+        <pre><code>// Em vez de um listener por item (lento e frágil):
+// ❌ itens.forEach(item => item.addEventListener('click', fn))
+
+// ✅ Um único listener no pai (funciona até para itens novos)
+document.querySelector('#lista').addEventListener('click', (e) => {
+  const item = e.target.closest('li');   // sobe até achar o li
+  if (!item) return;
+  console.log('Clicou no item:', item.textContent);
+});
+
+// closest() — sobe no DOM até achar um seletor
+// e.target — o elemento exato clicado
+// currentTarget — o elemento onde o listener está</code></pre>
+
+        <h3>Eventos customizados</h3>
+        <pre><code>// Criar e disparar seu próprio evento
+const evento = new CustomEvent('notificacao', {
+  detail: { mensagem: 'Olá!' }
+});
+
+document.dispatchEvent(evento);
+
+// Escutar
+document.addEventListener('notificacao', (e) => {
+  console.log(e.detail.mensagem);   // "Olá!"
+});</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 Event delegation na prática</span>
+          <pre
+            style="text-align: left"
+          ><code>document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.topic-done')) {
+    console.log('Você marcou um tópico!');
+  }
+});</code></pre>
+          <p style="font-size: 0.8rem; color: var(--text-secondary)">
+            Este site usa delegação em vários lugares — um único listener cuida
+            de todos os botões de concluir tópico.
+          </p>
+        </div>
+      </section>
+
+      <!-- ═══════ S18 — BROWSER APIS ═══════ -->
+      <section class="topic" id="s18">
+        <h2>18. Browser APIs (Web APIs)</h2>
+        <p class="subtitle">
+          O navegador é cheio de superpoderes prontos para usar
+        </p>
+
+        <h3>IntersectionObserver — detectar quando algo aparece na tela</h3>
+        <pre><code>// Base de: lazy loading, animações ao rolar, infinito scroll
+
+const observador = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visivel');
+      observador.unobserve(entry.target);   // para de observar
+    }
+  });
+}, { threshold: 0.3 });   // 30% visível
+
+document.querySelectorAll('.card').forEach((card) => {
+  observador.observe(card);
+});</code></pre>
+
+        <h3>ResizeObserver e MutationObserver</h3>
+        <pre><code>// ResizeObserver — reage quando um elemento muda de tamanho
+const ro = new ResizeObserver((entries) => {
+  const { width } = entries[0].contentRect;
+  console.log('Largura:', width);
+});
+ro.observe(document.querySelector('.painel'));
+
+// MutationObserver — reage a mudanças no DOM
+const mo = new MutationObserver((mudancas) => {
+  mudancas.forEach((m) => console.log('DOM mudou:', m.type));
+});
+mo.observe(document.body, { childList: true, subtree: true });</code></pre>
+
+        <h3>Geolocation</h3>
+        <pre><code>if ('geolocation' in navigator) {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const { latitude, longitude } = pos.coords;
+      console.log(`Lat: ${latitude}, Lon: ${longitude}`);
+    },
+    (erro) => console.error('Permissão negada ou erro:', erro)
+  );
+}</code></pre>
+
+        <h3>Clipboard API</h3>
+        <pre><code>// Copiar texto (este site usa para o botão "Copiar")
+await navigator.clipboard.writeText('texto para copiar');
+
+// Colar
+const texto = await navigator.clipboard.readText();
+
+// Sempre em try/catch (exige permissão / HTTPS)
+try { await navigator.clipboard.writeText('ok'); }
+catch { console.warn('Clipboard bloqueado'); }</code></pre>
+
+        <h3>Outras APIs úteis</h3>
+        <pre><code>// Notificações
+if (Notification.permission === 'granted') {
+  new Notification('Título', { body: 'Mensagem' });
+}
+
+// Fullscreen
+document.documentElement.requestFullscreen();
+
+// Vibrar (mobile)
+navigator.vibrate(200);
+
+// Canvas — desenhar
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+ctx.fillStyle = 'tomato';
+ctx.fillRect(10, 10, 100, 100);
+
+// Web Workers — rodar código pesado em outra thread
+const worker = new Worker('worker.js');
+worker.postMessage({ tarefa: 'processar' });
+worker.onmessage = (e) => console.log(e.data);</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Quase todas as APIs do navegador seguem o
+          padrão "feature detection": <code>if ('apiX' in objeto)</code> antes
+          de usar. Isso evita erros em navegadores antigos.
+        </div>
+      </section>
+
+      <!-- ═══════ S19 — FETCH AVANÇADO ═══════ -->
+      <section class="topic" id="s19">
+        <h2>19. Fetch Avançado &amp; HTTP</h2>
+        <p class="subtitle">
+          Consumindo APIs de verdade — erros, status, cancelamento
+        </p>
+
+        <h3>Entendendo o HTTP</h3>
+        <pre><code>// Toda requisição retorna um status code:
+// 2xx → sucesso    (200 OK, 201 Criado, 204 Sem conteúdo)
+// 3xx → redirecionamento (301, 304)
+// 4xx → erro do cliente (400, 401 Não autorizado, 404)
+// 5xx → erro do servidor (500, 503)
+
+// ⚠️ IMPORTANTE: fetch NÃO lança erro em 404/500!
+// Ele só rejeita em falha de rede. Você deve checar manualmente.</code></pre>
+
+        <h3>Padrão correto de tratamento</h3>
+        <pre><code>async function buscarUsuarios() {
+  const resposta = await fetch('/api/usuarios');
+
+  // ❌ Isso NÃO funciona como esperado:
+  // const dados = await resposta.json();  // se 404, dá erro estranho
+
+  // ✅ Cheque o status primeiro:
+  if (!resposta.ok) {
+    throw new Error(`HTTP ${resposta.status}: ${resposta.statusText}`);
+  }
+
+  const dados = await resposta.json();
+  return dados;
+}
+
+// Uso
+try {
+  const usuarios = await buscarUsuarios();
+  console.log(usuarios);
+} catch (erro) {
+  console.error('Falha:', erro.message);
+}</code></pre>
+
+        <h3>AbortController — cancelar requisição (timeout)</h3>
+        <pre><code>// Útil para evitar "req presa" e corridas de estado
+const controlador = new AbortController();
+const timeout = setTimeout(() => controlador.abort(), 5000);
+
+try {
+  const res = await fetch('/api/dados', {
+    signal: controlador.signal
+  });
+  console.log(await res.json());
+} catch (erro) {
+  if (erro.name === 'AbortError') {
+    console.error('Requisição cancelada (timeout de 5s)');
+  } else {
+    console.error(erro);
+  }
+} finally {
+  clearTimeout(timeout);
+}</code></pre>
+
+        <h3>Headers e FormData</h3>
+        <pre><code>// Enviar headers customizados
+fetch('/api', {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer token123'
+  }
+});
+
+// Enviar formulário (multipart — arquivos)
+const form = new FormData();
+form.append('nome', 'João');
+form.append('foto', arquivoInput.files[0]);
+
+await fetch('/api/upload', { method: 'POST', body: form });
+// NÃO defina Content-Type manualmente no FormData!</code></pre>
+
+        <h3>Debounce + fetch (busca com atraso)</h3>
+        <pre><code>// Não dispare uma requisição a cada tecla — espere o usuário parar
+let timer;
+input.addEventListener('input', () => {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    buscarResultados(input.value);
+  }, 300);   // 300ms após parar de digitar
+});</code></pre>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Sempre valide <code>resposta.ok</code> e use
+          <code>try/catch</code> + <code>AbortController</code> para timeouts. É
+          o padrão que você verá em produção.
+        </div>
+      </section>
+
+      <!-- ═══════ S20 — PADRÕES & ECOSSISTEMA ═══════ -->
+      <section class="topic" id="s20">
+        <h2>20. Padrões &amp; Ecossistema Moderno</h2>
+        <p class="subtitle">
+          Do JS puro ao mundo real: ferramentas, padrões e mentalidade
+        </p>
+
+        <h3>Padrões de código que você vai usar todo dia</h3>
+        <pre><code>// 1. Guard clause (defesa no início)
+function processar(usuario) {
+  if (!usuario) return;            // sai cedo
+  if (!usuario.ativo) return;      // sai cedo
+  // ...código principal
+}
+
+// 2. Early return em vez de else
+// ❌ if (ok) { ... } else { ... }
+// ✅ if (!ok) return; ...código...
+
+// 3. Factory simples (função que cria objetos)
+const criarUsuario = (nome) => ({ nome, criadoEm: new Date() });
+
+// 4. Módulos — separar responsabilidades (já vimos em ES6+)
+// utils.js → export; app.js → import</code></pre>
+
+        <h3>npm &amp; Node.js (o ecossistema)</h3>
+        <pre><code>// Node.js = JavaScript fora do navegador (no servidor)
+// npm = gerenciador de pacotes
+
+# Instalar um pacote (ex: biblioteca de datas)
+npm install dayjs
+
+# O código fica em node_modules/ e o registro em package.json
+
+// Usar no projeto
+import dayjs from 'dayjs';
+dayjs().format('DD/MM/YYYY');</code></pre>
+
+        <h3>Bundlers e frameworks</h3>
+        <pre><code>// Bundlers: empacotam seus módulos em arquivos otimizados
+//   Vite (recomendado, rápido) | Webpack | Parcel | Rollup
+
+// Frameworks populares (baseados em JS):
+//   React (Meta)  → interfaces com componentes
+//   Vue           → progressivo e acessível
+//   Svelte        → compila para JS puro e leve
+//   Next.js / Nuxt→ frameworks "full-stack" (SSR)
+
+// TypeScript — JS com tipos
+const nome: string = 'João';      // erro se for number</code></pre>
+
+        <h3>Testes — proteja seu código</h3>
+        <pre><code>// Testes unitários: testam funções isoladas
+// Testes de integração: testam partes juntas
+// Testes E2E: simulam o usuário (Playwright, Cypress)
+
+// Exemplo (Jest/Vitest)
+import { somar } from './utils.js';
+
+test('soma dois números', () => {
+  expect(somar(2, 3)).toBe(5);
+});</code></pre>
+
+        <h3>Mentalidade de dev profissional</h3>
+        <pre><code>☐ Leia a documentação oficial (MDN)
+☐ Leia mensagens de erro ATÉ O FIM
+☐ Google com palavras-chave em inglês
+☐ Separe responsabilidades (funções/módulos pequenos)
+☐ Escreva testes para a lógica importante
+☐ Use versionamento (Git) desde o início
+☐ Aprenda a debugar (breakpoints &gt; console.log)
+☐ Refaça o mesmo projeto com mais qualidade
+☐ Ensine o que aprendeu (fixa o conhecimento)</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🚀 A jornada do JS</span>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 10px;
+              font-size: 0.75rem;
+            "
+          >
+            <span
+              style="
+                background: var(--accent2);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Sintaxe</span
+            >
+            <span
+              style="
+                background: var(--accent);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >DOM</span
+            >
+            <span
+              style="
+                background: var(--accent3);
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Async</span
+            >
+            <span
+              style="
+                background: var(--accent4);
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >APIs</span
+            >
+            <span
+              style="
+                background: var(--accent2);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Ferramentas</span
+            >
+            <span
+              style="
+                background: var(--accent);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Framework</span
+            >
           </div>
         </div>
       </section>

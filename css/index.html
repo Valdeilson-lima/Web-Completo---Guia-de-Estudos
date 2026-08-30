@@ -128,6 +128,18 @@
           <a href="#s15"
             ><span class="num">15</span> Especificidade &amp; Cascade</a
           >
+          <a href="#s16"
+            ><span class="num">16</span> Funções Modernas (clamp, min, max)</a
+          >
+          <a href="#s17"
+            ><span class="num">17</span> z-index &amp; Stacking Context</a
+          >
+          <a href="#s18"><span class="num">18</span> Container Queries</a>
+          <a href="#s19"
+            ><span class="num">19</span> Seletores Modernos (:is, :has,
+            :where)</a
+          >
+          <a href="#s20"><span class="num">20</span> Propriedades Lógicas</a>
         </div>
       </nav>
 
@@ -1339,6 +1351,422 @@ div           → (0, 0, 1)
         <div class="note">
           <strong>⚠️ Regra de ouro:</strong> Evite <code>!important</code> e IDs
           em seletores. Use <strong>classes</strong> para tudo.
+        </div>
+      </section>
+
+      <!-- ═══════ S16 ── FUNÇÕES MODERNAS ═══════ -->
+      <section class="topic" id="s16">
+        <h2>16. Funções Modernas: clamp, min, max, calc</h2>
+        <p class="subtitle">
+          Tipografia fluida, larguras inteligentes e cálculos sem JavaScript
+        </p>
+
+        <h3>calc() — faça matemática no CSS</h3>
+        <pre><code>/* Misture unidades livremente */
+width: calc(100% - 40px);
+height: calc(100vh - var(--header-h));
+padding: calc(1rem + 2px);
+
+/* Importante: espaços ao redor de + e - são obrigatórios */
+width: calc(100% -40px);  /* ❌ quebrado */
+width: calc(100% - 40px); /* ✅ correto */</code></pre>
+
+        <h3>min() e max() — escolha o menor/maior valor</h3>
+        <pre><code>/* min: o MENOR valor vence (nunca passa do limite) */
+width: min(90%, 600px);      /* 90% ou 600px, o que for menor */
+
+/* max: o MAIOR valor vence (nunca fica menor que o mínimo) */
+font-size: max(1rem, 3vw);   /* pelo menos 1rem */
+
+/* Ambos aceitam quantos argumentos quiser */
+padding: min(2rem, 4vw);</code></pre>
+
+        <h3>clamp() — o "min/max em um só" (tipografia fluida)</h3>
+        <pre><code>/*
+  clamp(MÍNIMO, PREFERIDO, MÁXIMO)
+  A tipografia cresce com a tela, mas nunca sai dos limites
+*/
+
+font-size: clamp(1rem, 2.5vw, 2rem);
+/*   ↑ mín 1rem   ↑ prefere 2.5vw   ↑ máx 2rem */
+
+/* Uso clássico: título que escala com a viewport */
+h1 {
+  font-size: clamp(1.8rem, 4vw + 1rem, 3.5rem);
+}</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label"
+            >🧪 Tipografia fluida — redimensione a janela</span
+          >
+          <p
+            style="
+              font-size: clamp(1rem, 5vw, 2.5rem);
+              font-weight: 800;
+              color: var(--accent);
+              margin: 8px 0 0;
+            "
+          >
+            Este texto usa clamp()
+          </p>
+          <p style="font-size: 0.8rem; color: var(--text-secondary)">
+            Entre 1rem e 2.5rem, crescendo com a viewport.
+          </p>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>clamp()</code> elimina a necessidade
+          de vários <code>@media</code> só para ajustar fontes. É o padrão
+          moderno para <strong>tipografia fluida</strong>.
+        </div>
+      </section>
+
+      <!-- ═══════ S17 ── Z-INDEX ═══════ -->
+      <section class="topic" id="s17">
+        <h2>17. z-index &amp; Stacking Context</h2>
+        <p class="subtitle">
+          Quem fica por cima de quem — e por que às vezes o z-index "não
+          funciona"
+        </p>
+
+        <h3>Básico</h3>
+        <pre><code>/* z-index só funciona em elementos POSICIONADOS
+   (position: relative | absolute | fixed | sticky)
+   ou em flex/grid items */
+
+.caixa {
+  position: relative;
+  z-index: 10;   /* número maior = fica por cima */
+}
+
+.caixa2 {
+  position: relative;
+  z-index: 5;    /* fica atrás da .caixa */
+}</code></pre>
+
+        <h3>O problema clássico do "z-index não funciona"</h3>
+        <pre><code>/* ❌ SEM position — z-index é ignorado */
+.menu { z-index: 999; }        /* não faz nada! */
+
+/* ✅ Precisa de position (ou flex/grid) */
+.menu { position: relative; z-index: 999; }</code></pre>
+
+        <h3>Stacking Context (contexto de empilhamento)</h3>
+        <pre><code>/* Um stacking context "prende" os filhos dentro dele.
+   Eles NUNCA vão sobrepor elementos de fora, por mais
+   alto que seja o z-index. */
+
+/* Cria um stacking context (além de position + z-index): */
+opacity &lt; 1
+transform
+filter
+backdrop-filter
+animation / transition com transform
+will-change
+mix-blend-mode
+contain: paint | layout | strict</code></pre>
+
+        <div class="note">
+          <strong>⚠️ Importante:</strong> Se um elemento com
+          <code>z-index: 9999</code> continua atrás de outro, quase sempre é
+          porque ele está
+          <strong>preso dentro de um stacking context</strong> criado por um
+          ancestral (ex: um <code>transform</code> ou <code>opacity</code>).
+        </div>
+      </section>
+
+      <!-- ═══════ S18 ── CONTAINER QUERIES ═══════ -->
+      <section class="topic" id="s18">
+        <h2>18. Container Queries</h2>
+        <p class="subtitle">
+          Responsividade baseada no container — não na tela
+        </p>
+
+        <h3>O problema que resolvem</h3>
+        <pre><code>/* Media queries olham para a VIEWPORT inteira.
+   Container queries olham para o TAMANHO DO PAI.
+
+   → Um card dentro de uma sidebar estreita e dentro de
+     um grid largo deve se adaptar ao SEU container,
+     não à tela. */
+
+/* 1. Declare o container */
+.card-wrapper {
+  container-type: inline-size;   /* observa a largura */
+  /* container-name: cards;      (opcional, nomeado) */
+}
+
+/* 2. Consulte como uma media query */
+@container (min-width: 400px) {
+  .card { display: grid; grid-template-columns: 1fr 2fr; }
+}
+
+/* Container nomeado */
+@container cards (min-width: 600px) {
+  .card__title { font-size: 2rem; }
+}</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label"
+            >🧪 Redimensione a janela — o card se adapta ao próprio
+            container</span
+          >
+          <div
+            class="cq-container"
+            style="
+              container-type: inline-size;
+              border: 1px dashed var(--accent4);
+              border-radius: var(--radius-lg);
+              padding: 16px;
+            "
+          >
+            <div
+              class="cq-card"
+              style="
+                background: var(--bg-elevated);
+                border-radius: var(--radius);
+                padding: 16px;
+                text-align: left;
+              "
+            >
+              <p
+                style="
+                  margin: 0 0 6px;
+                  font-weight: 700;
+                  font-family: var(--font-display);
+                "
+              >
+                🗂️ Card responsivo
+              </p>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 0.85rem;
+                  color: var(--text-secondary);
+                "
+              >
+                Quando este container passa de 480px, este texto ganha um layout
+                em duas colunas.
+              </p>
+            </div>
+          </div>
+          <style>
+            @container (min-width: 480px) {
+              .cq-card {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 12px;
+                align-items: center;
+              }
+            }
+          </style>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Container queries são ideais para
+          <strong>componentes reutilizáveis</strong> (cards, widgets) que podem
+          aparecer em contextos diferentes. Suporte completo desde 2023.
+        </div>
+      </section>
+
+      <!-- ═══════ S19 ── SELEITORES MODERNOS ═══════ -->
+      <section class="topic" id="s19">
+        <h2>19. Seletores Modernos: :is, :where, :has, :nth-of</h2>
+        <p class="subtitle">Menos repetição, mais poder, CSS mais limpo</p>
+
+        <h3>:is() — agrupe seletores (com especificidade do mais forte)</h3>
+        <pre><code>/* Antes — repetição */
+header a:hover, main a:hover, footer a:hover { color: red; }
+
+/* Depois — agrupado */
+:is(header, main, footer) a:hover { color: red; }
+
+/* Também funciona com classes e pseudo-classes */
+:is(.card, .banner) .title { font-weight: 700; }</code></pre>
+
+        <h3>:where() — agrupe SEM adicionar especificidade</h3>
+        <pre><code>/* Diferença crucial:
+   :is()  → usa a especificidade do seletor mais forte dentro
+   :where()→ especificidade SEMPRE ZERO (fácil de sobrescrever) */
+
+/* Base com especificidade 0 */
+:where(.card, .banner) .title { color: #333; }
+
+/* Qualquer classe simples sobrescreve sem !important */
+.title { color: var(--accent); }  /* ✅ vence */</code></pre>
+
+        <h3>:has() — o "seletor pai" (parent selector)</h3>
+        <pre><code>/* Seleciona o elemento QUE CONTÉM algo */
+
+/* Card que contém uma imagem ganha padding extra */
+.card:has(img) { padding: 0; }
+
+/* Formulário com erro fica vermelho */
+.form:has(.input-error) { border-color: red; }
+
+/* Link que abre em nova aba ganha um ícone */
+a:has(> img) { text-decoration: none; }
+
+/* Barra de navegação "encolhida" quando o menu está aberto */
+header:has(.menu.open) { height: 64px; }</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🧪 :has() na prática — hover no pai</span>
+          <div style="display: flex; gap: 12px; justify-content: center">
+            <div
+              class="has-demo"
+              style="
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 20px;
+              "
+            >
+              <p style="margin: 0">💬 Comentário</p>
+            </div>
+            <div
+              class="has-demo"
+              style="
+                background: var(--bg-elevated);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 20px;
+              "
+            >
+              <p style="margin: 0">💬 Comentário</p>
+              <button
+                style="
+                  margin-top: 10px;
+                  background: var(--accent3);
+                  border: none;
+                  color: #fff;
+                  padding: 6px 14px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                "
+              >
+                Responder
+              </button>
+            </div>
+          </div>
+          <style>
+            .has-demo:has(button) {
+              border-color: var(--accent3);
+              box-shadow: 0 0 0 2px var(--accent-glow);
+            }
+          </style>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> <code>:has()</code> é suportado em todos os
+          navegadores modernos (desde 2023) e elimina a necessidade de classes
+          "modifier" em JavaScript para muitos casos.
+        </div>
+      </section>
+
+      <!-- ═══════ S20 ── PROPRIEDADES LÓGICAS ═══════ -->
+      <section class="topic" id="s20">
+        <h2>20. Propriedades Lógicas &amp; Recursos Modernos</h2>
+        <p class="subtitle">
+          CSS que respeita direção de texto, e outros recursos atuais
+        </p>
+
+        <h3>Propriedades lógicas (inline / block)</h3>
+        <pre><code>/* Em vez de pensar em "esquerda/direita", pense em
+   "início/fim" — funciona para RTL (árabe, hebraico) */
+
+/* Físicas (antigas) → Lógicas (novas) */
+margin-left   → margin-inline-start
+margin-right  → margin-inline-end
+padding-top   → padding-block-start
+padding-bottom→ padding-block-end
+width         → inline-size
+height        → block-size
+text-align: left → text-align: start
+
+/* Shorthands */
+margin-inline: auto;    /* esquerda E direita */
+padding-block: 1rem;    /* topo E base */
+border-inline-start: 2px solid var(--accent);</code></pre>
+
+        <h3>aspect-ratio — proporção sem hacks</h3>
+        <pre><code>/* Antes: o famoso "padding-top hack" */
+.thumb { position: relative; padding-top: 56.25%; }
+
+/* Agora: nativo */
+.thumb {
+  aspect-ratio: 16 / 9;   /* vídeo */
+  aspect-ratio: 1 / 1;    /* quadrado */
+  width: 100%;
+}</code></pre>
+
+        <h3>Outros recursos modernos que valem conhecer</h3>
+        <pre><code>/* scroll-behavior: suave */
+html { scroll-behavior: smooth; }
+
+/* scroll-margin-top: compensa header fixo em âncoras */
+section { scroll-margin-top: 80px; }
+
+/* color-mix: mistura cores (com suporte a variáveis) */
+.btn { background: color-mix(in srgb, var(--accent) 70%, white); }
+
+/* text-wrap: balance — quebra títulos com equilíbrio */
+h1, h2 { text-wrap: balance; }
+
+/* accent-color: estiliza checkbox/radio nativos */
+input[type="checkbox"] { accent-color: var(--accent); }
+
+/* overflow-clip-margin e scrollbar-gutter: polimento */
+</code></pre>
+
+        <div class="demo-box">
+          <span class="label">🧪 aspect-ratio na prática</span>
+          <div style="display: flex; gap: 12px; justify-content: center">
+            <div
+              style="
+                aspect-ratio: 16 / 9;
+                width: 180px;
+                background: linear-gradient(
+                  135deg,
+                  var(--accent2),
+                  var(--accent4)
+                );
+                border-radius: var(--radius);
+                display: grid;
+                place-items: center;
+                font-size: 0.7rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              16:9
+            </div>
+            <div
+              style="
+                aspect-ratio: 1 / 1;
+                width: 100px;
+                background: linear-gradient(
+                  135deg,
+                  var(--accent3),
+                  var(--accent)
+                );
+                border-radius: var(--radius);
+                display: grid;
+                place-items: center;
+                font-size: 0.7rem;
+                font-weight: 700;
+                color: #fff;
+              "
+            >
+              1:1
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <strong>🧠 Dica:</strong> Propriedades lógicas são o futuro — já são
+          suportadas por todos os navegadores e tornam seu CSS pronto para i18n
+          (idiomas da direita para a esquerda).
         </div>
       </section>
 

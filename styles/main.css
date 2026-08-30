@@ -362,24 +362,32 @@ a:hover {
 .landing-hero::before {
   content: "</>";
   position: absolute;
-  top: 30px;
-  right: 0;
+  top: 200px;
+  right: 8px;
   font-family: var(--font-mono);
-  font-size: 8rem;
+  font-size: 7rem;
   font-weight: 700;
   color: var(--border);
   line-height: 1;
   pointer-events: none;
   user-select: none;
+  z-index: 0;
+}
+
+.landing-hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .landing-hero h1 {
   font-size: clamp(2.2rem, 6vw, var(--text-5xl));
   font-weight: 800;
   letter-spacing: -0.04em;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
   position: relative;
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  text-align: center;
 }
 
 .landing-hero h1::after {
@@ -1391,8 +1399,9 @@ a:hover {
     padding: 60px 16px 30px;
   }
   .landing-hero::before {
-    font-size: 5rem;
-    top: 40px;
+    font-size: 4.5rem;
+    top: 160px;
+    right: 4px;
   }
   .landing-hero h1 {
     font-size: clamp(1.8rem, 7vw, 2.6rem);
@@ -1525,4 +1534,691 @@ a:hover {
 }
 .anim-stagger > *:nth-child(8) {
   animation-delay: 0.75s;
+}
+
+/* ═══════════════════════════════════════════════════════
+   20. TEMA CLARO (data-theme="light")
+   ═══════════════════════════════════════════════════════ */
+
+html[data-theme="light"] {
+  --bg-primary: #f6f4ef;
+  --bg-surface: #ffffff;
+  --bg-elevated: #eef0f4;
+  --bg-code: #151922;
+  --text-primary: #1c2434;
+  --text-secondary: #525b6d;
+  --text-dim: #8a93a6;
+  --accent: #b97a24;
+  --accent-hover: #9e6419;
+  --accent-glow: rgba(185, 122, 36, 0.12);
+  --accent2: #2f7d7d;
+  --accent2-hover: #276767;
+  --accent3: #b14a60;
+  --accent4: #6c5cae;
+  --border: #d9dde5;
+  --border-light: #c3cad6;
+}
+
+html[data-theme="light"] .site-header {
+  background: rgba(246, 244, 239, 0.88);
+}
+
+html[data-theme="light"] .tabs-scroll::after {
+  background: linear-gradient(
+    to left,
+    rgba(246, 244, 239, 0.92) 20%,
+    transparent
+  );
+}
+
+html[data-theme="light"] .landing-hero h1::after {
+  background: var(--accent);
+}
+
+/* Transição suave ao alternar tema */
+body,
+.site-header,
+.topic,
+.card-subject,
+.toc,
+.demo-box,
+.page-footer {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════
+   21. AÇÕES DO CABEÇALHO (tema + progresso)
+   ═══════════════════════════════════════════════════════ */
+
+.header-inner {
+  position: relative;
+}
+
+/* Botão de tema */
+.theme-toggle {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Indicador de progresso da página no cabeçalho */
+.header-progress {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  cursor: help;
+}
+
+.header-progress::before {
+  content: "";
+  width: 44px;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) var(--pct, 0%),
+    var(--bg-elevated) var(--pct, 0%)
+  );
+  transition: background 0.3s ease;
+}
+
+.header-progress__num {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   22. MARCAÇÃO DE TÓPICO CONCLUÍDO
+   ═══════════════════════════════════════════════════════ */
+
+.topic {
+  position: relative;
+}
+
+.topic-done {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.75;
+}
+
+.topic-done:hover {
+  opacity: 1;
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.topic-done__check {
+  display: inline-grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  font-size: 0.6rem;
+  line-height: 1;
+}
+
+.topic-done.is-done {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  color: #fff;
+  opacity: 1;
+}
+
+.topic-done.is-done .topic-done__check {
+  background: #fff;
+  color: var(--accent2);
+}
+
+.topic.is-done {
+  border-color: color-mix(in srgb, var(--accent2) 35%, var(--border));
+}
+
+.topic.is-done::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    transparent 60%,
+    rgba(47, 125, 125, 0.06)
+  );
+}
+
+.topic.is-done h2 {
+  color: var(--accent2);
+}
+
+/* Revelação ao rolar (aplicada via JS) */
+.topic[data-reveal]:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.topic[data-reveal] {
+  transition:
+    opacity 0.55s ease-out,
+    transform 0.55s ease-out;
+}
+
+.topic[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════
+   23. BOTÃO COPIAR CÓDIGO
+   ═══════════════════════════════════════════════════════ */
+
+.code-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.topic pre:hover .code-copy,
+.code-copy:focus-visible {
+  opacity: 1;
+}
+
+.code-copy:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.code-copy.is-copied {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   24. TEMPO DE LEITURA
+   ═══════════════════════════════════════════════════════ */
+
+.reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════
+   25. ESTADOS DO SUMÁRIO (ativo / concluído)
+   ═══════════════════════════════════════════════════════ */
+
+.toc a.is-active {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.toc a.is-done .num {
+  color: var(--accent2);
+}
+
+.toc a.is-done {
+  color: var(--text-secondary);
+}
+
+.toc a.is-done::after {
+  content: "✓";
+  margin-left: auto;
+  color: var(--accent2);
+  font-weight: 700;
+  font-size: var(--text-xs);
+}
+
+.toc a {
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════
+   26. CALLOUTS VARIADOS (notas)
+   ═══════════════════════════════════════════════════════ */
+
+.topic .note {
+  border-left-width: 3px;
+}
+
+.note.tip {
+  background: rgba(47, 125, 125, 0.08);
+  border-left-color: var(--accent2);
+}
+
+.note.tip strong {
+  color: var(--accent2);
+}
+
+.note.warning {
+  background: rgba(177, 74, 96, 0.08);
+  border-left-color: var(--accent3);
+}
+
+.note.warning strong {
+  color: var(--accent3);
+}
+
+.note.info {
+  background: rgba(108, 92, 174, 0.08);
+  border-left-color: var(--accent4);
+}
+
+.note.info strong {
+  color: var(--accent4);
+}
+
+.note.danger {
+  background: rgba(185, 122, 36, 0.1);
+  border-left-color: #d64545;
+}
+
+.note.danger strong {
+  color: #d64545;
+}
+
+/* ═══════════════════════════════════════════════════════
+   27. TABELAS DE CONCEITOS
+   ═══════════════════════════════════════════════════════ */
+
+.concept-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 20px;
+  font-size: var(--text-sm);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.concept-table-wrap {
+  overflow-x: auto;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+.concept-table th,
+.concept-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.concept-table th {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.concept-table tr:last-child td {
+  border-bottom: none;
+}
+
+.concept-table tbody tr:hover {
+  background: var(--bg-elevated);
+}
+
+.concept-table code {
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   28. BADGES, KBD E CHIPS
+   ═══════════════════════════════════════════════════════ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.badge.accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.badge.accent2 {
+  color: var(--accent2);
+  border-color: color-mix(in srgb, var(--accent2) 40%, var(--border));
+}
+
+.badge.accent3 {
+  color: var(--accent3);
+  border-color: color-mix(in srgb, var(--accent3) 40%, var(--border));
+}
+
+.badge.accent4 {
+  color: var(--accent4);
+  border-color: color-mix(in srgb, var(--accent4) 40%, var(--border));
+}
+
+.kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  background: var(--bg-elevated);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-primary);
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   29. GRADE DE CONCEITOS (cards dentro de tópicos)
+   ═══════════════════════════════════════════════════════ */
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 16px 0 20px;
+}
+
+.concept-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.concept-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.concept-card h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.concept-card p {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.concept-card .concept-icon {
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   30. LANDING — STATS E MELHORIAS
+   ═══════════════════════════════════════════════════════ */
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.hero-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  padding: 14px 22px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.hero-stats__item strong {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero-stats__item span {
+  margin-top: 6px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Barra de progresso dentro dos cards de assunto */
+.card-progress {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-progress__bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  overflow: hidden;
+  position: relative;
+}
+
+.card-progress__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: var(--pct, 0%);
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.5s ease;
+}
+
+.card-progress__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Barra global de progresso do estudo (landing) */
+.study-progress {
+  max-width: 620px;
+  margin: 28px auto 0;
+  padding: 18px 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: left;
+}
+
+.study-progress__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.study-progress__head .pct {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.study-progress__bar {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.study-progress__bar > span {
+  display: block;
+  height: 100%;
+  width: var(--pct, 0%);
+  border-radius: 8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.5s ease;
+}
+
+.study-progress__detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 12px;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.study-progress__detail b {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* Atalhos de teclado — hint */
+.kbd-hint {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+}
+
+/* ═══════════════════════════════════════════════════════
+   31. RESPONSIVO DOS NOVOS COMPONENTES
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 800px) {
+  .header-progress {
+    display: none;
+  }
+  .topic-done {
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
+  }
+  .topic h2 {
+    padding-right: 80px;
+  }
+  .concept-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .topic-done__label {
+    display: none;
+  }
+  .topic-done {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .hero-stats__item {
+    min-width: 100px;
+    padding: 12px 16px;
+  }
 }
