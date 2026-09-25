@@ -1,0 +1,2553 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHP Completo — Guia de Estudo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9pt..40pt,400;0,9pt..40pt,500;0,9pt..40pt,600;0,9pt..40pt,700;1,9pt..40pt,400&family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <style>
+      .code-output {
+        background: var(--bg-elevated);
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        color: var(--accent2);
+        margin: 8px 0 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo-wrapper">
+          <a href="../" class="site-logo"
+            >Web<span class="hl">Completo</span></a
+          >
+          <span class="logo-subtitle">Guia de Estudo</span>
+        </div>
+        <div class="tabs-scroll">
+          <div class="tabs-wrapper">
+            <a class="tab-btn" href="../">Início</a>
+            <a class="tab-btn" href="../comece-aqui/">Comece Aqui</a>
+            <a class="tab-btn" href="../html/">HTML</a>
+            <a class="tab-btn" href="../css/">CSS</a>
+            <a class="tab-btn" href="../js/">JavaScript</a>
+            <a class="tab-btn current" href="../php/">PHP</a>
+            <a class="tab-btn" href="../projeto/">Projeto</a>
+            <a class="tab-btn" href="../ferramentas/">Ferramentas</a>
+            <a class="tab-btn" href="../trilha/">Trilha</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main class="page-wrapper">
+      <div class="page-title anim-fade-in">
+        <h1>🐘 PHP <span class="hl">Completo</span></h1>
+        <p>
+          Do básico à Orientação a Objetos — a linguagem do lado do servidor
+        </p>
+      </div>
+
+      <nav class="toc">
+        <h2>📑 Sumário</h2>
+        <div class="toc-grid">
+          <a href="#p1"><span class="num">01</span> Introdução ao PHP</a>
+          <a href="#p2"><span class="num">02</span> Variáveis &amp; Tipos</a>
+          <a href="#p3"
+            ><span class="num">03</span> Operadores &amp; Constantes</a
+          >
+          <a href="#p4"
+            ><span class="num">04</span> Strings &amp; Concatenação</a
+          >
+          <a href="#p5"><span class="num">05</span> Funções de Strings</a>
+          <a href="#p6"><span class="num">06</span> Arrays</a>
+          <a href="#p7"><span class="num">07</span> Arrays Associativos</a>
+          <a href="#p8"><span class="num">08</span> Controle de Fluxo</a>
+          <a href="#p9"><span class="num">09</span> Funções</a>
+          <a href="#p10"
+            ><span class="num">10</span> Includes &amp; Namespaces</a
+          >
+          <a href="#p11"
+            ><span class="num">11</span> Formulários &amp; Superglobais</a
+          >
+          <a href="#p12"><span class="num">12</span> Classes e Objetos</a>
+          <a href="#p13"><span class="num">13</span> POO Avançada</a>
+          <a href="#p14"
+            ><span class="num">14</span> Comparação entre Linguagens</a
+          >
+          <a href="#p15"><span class="num">15</span> Erros &amp; Exceções</a>
+          <a href="#p16"
+            ><span class="num">16</span> Sessões, Cookies &amp; Uploads</a
+          >
+          <a href="#p17"><span class="num">17</span> Banco de Dados (PDO)</a>
+          <a href="#p18"><span class="num">18</span> PHP Moderno (8.x)</a>
+          <a href="#p19"
+            ><span class="num">19</span> Segurança &amp; Boas Práticas</a
+          >
+          <a href="#p20"><span class="num">20</span> Exemplos &amp; Resumo</a>
+        </div>
+      </nav>
+
+      <!-- ═══════ P1 — INTRODUÇÃO ═══════ -->
+      <section class="topic" id="p1">
+        <h2>01. Introdução ao PHP</h2>
+        <p class="subtitle">A linguagem que roda no servidor</p>
+
+        <h3>O que é PHP?</h3>
+        <p>
+          PHP (sigla de <em>PHP: Hypertext Preprocessor</em>) é uma linguagem de
+          script <strong>server-side</strong> (lado do servidor), usada
+          principalmente para desenvolvimento web. Ela é executada no servidor e
+          o resultado — geralmente HTML — é enviado ao navegador do usuário.
+        </p>
+
+        <h3>Cliente vs servidor</h3>
+        <pre><code>Navegador (cliente)          Servidor (PHP)
+      │                            │
+      │──── requisição ───────────▶│  executa o PHP
+      │     GET /index.php         │  consulta MySQL, arquivos...
+      │                            │
+      │◀──── resposta (HTML) ──────│  echo/print geram o HTML</code></pre>
+
+        <div class="note info">
+          <strong>ℹ️ Importante:</strong> o navegador <strong>nunca</strong> vê
+          o código PHP — apenas o HTML final. Por isso o PHP pode acessar banco
+          de dados e arquivos do servidor com segurança.
+        </div>
+
+        <h3>Características principais</h3>
+        <ul>
+          <li>Código aberto e gratuito;</li>
+          <li>Fácil integração com HTML;</li>
+          <li>Ampla utilização com bancos de dados (MySQL);</li>
+          <li>Suporta programação procedural e orientada a objetos;</li>
+          <li>Sintaxe flexível e tolerante.</li>
+        </ul>
+
+        <h3>Instalando o ambiente</h3>
+        <pre><code># Opção 1 — servidor embutido (a partir do PHP 7.4)
+php -S localhost:8000
+
+# Opção 2 — pacotes completos (Apache + MySQL + PHP)
+# XAMPP, WAMP, MAMP ou Laragon
+
+# Conferir a versão instalada
+php -v</code></pre>
+
+        <h3>Estrutura básica de um arquivo PHP</h3>
+        <pre><code>&lt;?php
+echo "Olá, mundo!";
+?&gt;
+
+&lt;!-- Também é válido omitir a tag de fechamento --&gt;
+&lt;?php
+echo "Sem a tag de fechamento";</code></pre>
+
+        <div class="code-output">Olá, mundo!</div>
+
+        <h3>echo, print e comentários</h3>
+        <pre><code>&lt;?php
+// Comentário de uma linha
+# Outro estilo de comentário de uma linha
+
+/* Comentário
+   de várias linhas */
+
+echo "Olá";        // Não retorna valor (mais rápido)
+print "Olá";       // Retorna 1 (usável em expressões)
+
+echo "PHP", " é ", "legal";   // echo aceita vários argumentos
+
+// Misturando com HTML
+?&gt; 
+&lt;h1&gt;&lt;?php echo "Título dinâmico"; ?&gt;&lt;/h1&gt;
+&lt;?php</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> misture PHP e HTML com moderação. O modo
+          <em>template</em> acima (<code>?&gt;</code> … <code>&lt;?php</code>) é
+          muito usado em arquivos de view, mas quebre o código em arquivos
+          separados quando a lógica crescer.
+        </div>
+      </section>
+
+      <!-- ═══════ P2 — VARIÁVEIS ═══════ -->
+      <section class="topic" id="p2">
+        <h2>02. Variáveis &amp; Tipos de Dados</h2>
+        <p class="subtitle">Onde os dados ficam guardados</p>
+
+        <h3>Declaração de variáveis</h3>
+        <pre><code>&lt;?php
+$nome = "João";        // toda variável começa com $
+$idade = 30;
+$altura = 1.75;
+$ativo = true;
+
+// Variáveis são case-sensitive
+$Nome = "Maria";       // é diferente de $nome
+
+// Interpolação simples
+echo "Olá, $nome";</code></pre>
+
+        <div class="note warning">
+          <strong>⚠️ Atenção:</strong> no PHP não é preciso declarar o tipo —
+          ele é inferido pelo valor. Mesmo assim, atribuir o tipo certo evita
+          bugs silenciosos. Use nomes descritivos e <em>camelCase</em> para
+          variáveis.
+        </div>
+
+        <h3>Tipos de dados</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>string</code></td>
+                <td>Texto</td>
+                <td><code>"Olá"</code></td>
+              </tr>
+              <tr>
+                <td><code>int</code></td>
+                <td>Número inteiro</td>
+                <td><code>42</code></td>
+              </tr>
+              <tr>
+                <td><code>float</code></td>
+                <td>Número decimal</td>
+                <td><code>1.75</code></td>
+              </tr>
+              <tr>
+                <td><code>bool</code></td>
+                <td>Verdadeiro ou falso</td>
+                <td><code>true</code></td>
+              </tr>
+              <tr>
+                <td><code>array</code></td>
+                <td>Lista de valores</td>
+                <td><code>[1, 2, 3]</code></td>
+              </tr>
+              <tr>
+                <td><code>object</code></td>
+                <td>Instância de classe</td>
+                <td><code>new Fruta()</code></td>
+              </tr>
+              <tr>
+                <td><code>null</code></td>
+                <td>Sem valor</td>
+                <td><code>null</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Inspecionando variáveis</h3>
+        <pre><code>&lt;?php
+$nome = "João";
+$idade = 30;
+
+echo gettype($nome);      // string
+var_dump($idade);         // int(30)
+print_r([1, 2, 3]);       // exibe arrays legíveis
+
+// Verificações de tipo
+is_string($nome);         // true
+is_int($idade);           // true
+isset($nome);             // true (existe e não é null)
+empty("");                // true  (vazio ou falso)
+empty(0);                 // true
+empty("0");               // true  (!)
+empty([]);                // true</code></pre>
+
+        <h3>Conversão de tipos (casting)</h3>
+        <pre><code>&lt;?php
+$texto = "123";
+
+(int) $texto;      // 123
+(float) $texto;    // 123.0
+(string) 123;      // "123"
+(bool) 0;          // false
+(array) "abc";     // ["abc"]
+
+// Funções equivalentes
+intval("42");      // 42
+floatval("3.14");  // 3.14
+strval(42);        // "42"
+
+// PHP 8+ — conversões mais seguras
+// intdiv(10, 3);  // 3</code></pre>
+
+        <h3>Variáveis variáveis (bônus)</h3>
+        <pre><code>&lt;?php
+$nome = "cidade";
+$$nome = "Recife";   // cria $cidade = "Recife"
+
+echo $cidade;        // Recife</code></pre>
+      </section>
+
+      <!-- ═══════ P3 — OPERADORES ═══════ -->
+      <section class="topic" id="p3">
+        <h2>03. Operadores &amp; Constantes</h2>
+        <p class="subtitle">Cálculos, comparações e valores imutáveis</p>
+
+        <h3>Operadores aritméticos</h3>
+        <pre><code>&lt;?php
+$a = 10;
+$b = 3;
+
+$a + $b;    // 13  (soma)
+$a - $b;    // 7   (subtração)
+$a * $b;    // 30  (multiplicação)
+$a / $b;    // 3.333... (divisão — sempre float)
+$a % $b;    // 1   (resto / módulo)
+$a ** $b;   // 1000 (exponenciação)
+
+intdiv($a, $b);   // 3 (divisão inteira)
+
+// Incremento / decremento
+$n = 5;
+$n++;       // 6
+$n--;       // 5
+++$n;       // 6 (pré-incremento)
+$n--;       // 5</code></pre>
+
+        <h3>Atribuição</h3>
+        <pre><code>&lt;?php
+$x = 10;
+
+$x += 5;    // $x = 15
+$x -= 3;    // $x = 12
+$x *= 2;    // $x = 24
+$x /= 4;    // $x = 6
+$x %= 4;    // $x = 2
+$x **= 3;   // $x = 8
+$x ??= 99;  // atribui se for null
+
+$texto  = "Olá";
+$texto .= ", João";   // concatena → "Olá, João"</code></pre>
+
+        <h3>Comparação</h3>
+        <pre><code>&lt;?php
+5 ==  "5";   // true  (igual — compara só o valor)
+5 === "5";   // false (idêntico — valor E tipo)
+5 !=  "5";   // false
+5 !== "5";   // true
+
+10 &gt; 5;      // true
+10 &lt; 5;      // false
+10 &gt;= 10;    // true
+10 &lt;= 5;     // false
+
+// Operador "spaceship" (PHP 7+) — retorna -1, 0 ou 1
+1 &lt;=&gt; 2;     // -1
+2 &lt;=&gt; 2;     //  0
+3 &lt;=&gt; 2;     //  1</code></pre>
+
+        <div class="note danger">
+          <strong>🚨 Cuidado:</strong> sempre prefira <code>===</code> e
+          <code>!==</code>. Com <code>==</code> o PHP converte tipos, e casos
+          como <code>0 == "abc"</code> mudaram de comportamento entre versões —
+          uma fonte clássica de bugs.
+        </div>
+
+        <h3>Operadores lógicos</h3>
+        <pre><code>&lt;?php
+// AND — todas precisam ser true
+true &amp;&amp; true;    // true
+true and false;  // false (and tem precedência menor que &amp;&amp;)
+
+// OR — pelo menos uma true
+true || false;   // true
+false or false;  // false
+
+// NOT
+!true;           // false
+
+// XOR — exatamente uma verdadeira
+true xor false;  // true</code></pre>
+
+        <h3>Coalescência e ternário</h3>
+        <pre><code>&lt;?php
+$nome = $_GET["nome"] ?? "Visitante";   // null coalescing (PHP 7+)
+
+// Ternário
+$status = $idade &gt;= 18 ? "Maior" : "Menor";
+
+// Ternário curto (Elvis) — usa o próprio valor se verdadeiro
+$login = $usuario ?: "anônimo";</code></pre>
+
+        <h3>Constantes</h3>
+        <pre><code>&lt;?php
+// Forma antiga (global)
+define("PI", 3.14159);
+define("APP_NOME", "Meu App");
+
+// Forma moderna (recomendada) — escopo de namespace
+const TAXA = 0.15;
+
+echo PI;               // 3.14159
+echo TAXA;             // 0.15
+
+// Constantes mágicas
+echo __FILE__;         // caminho do arquivo
+echo __DIR__;          // diretório do arquivo
+echo __LINE__;         // linha atual</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> use <code>const</code> por padrão e
+          <code>define()</code> só quando precisar definir dentro de uma
+          condição ou com valor calculado em tempo de execução.
+        </div>
+      </section>
+
+      <!-- ═══════ P4 — STRINGS ═══════ -->
+      <section class="topic" id="p4">
+        <h2>04. Strings &amp; Concatenação</h2>
+        <p class="subtitle">Aspas simples, duplas e interpolação</p>
+
+        <h3>Aspas simples vs aspas duplas</h3>
+        <pre><code>&lt;?php
+$nome = "João";
+
+// Aspas simples — texto literal, NÃO interpola
+echo 'Olá, $nome';   // Olá, $nome
+
+// Aspas duplas — interpola variáveis
+echo "Olá, $nome";   // Olá, João</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> sem variáveis, prefira aspas simples — são
+          ligeiramente mais rápidas, pois o PHP não precisa analisar a string.
+        </div>
+
+        <h3>Interpolação complexa com chaves</h3>
+        <pre><code>&lt;?php
+$usuario = ["nome" =&gt; "João"];
+
+// ERRADO — gera erro de parse
+echo "Nome: $usuario['nome']";
+
+// CORRETO — use chaves { }
+echo "Nome: {$usuario['nome']}";
+
+// Também funciona com objetos e métodos
+echo "Total: R$ {$carrinho-&gt;getTotal()}";</code></pre>
+
+        <h3>Heredoc e Nowdoc</h3>
+        <pre><code>&lt;?php
+$nome = "João";
+
+// Heredoc — interpola (como aspas duplas)
+$texto = &lt;&lt;&lt;EOT
+Olá, $nome!
+Bem-vindo ao sistema.
+EOT;
+
+// Nowdoc — não interpola (como aspas simples)
+$literal = &lt;&lt;&lt;'EOT'
+Olá, $nome! (não interpola)
+EOT;</code></pre>
+
+        <h3>Concatenação</h3>
+        <pre><code>&lt;?php
+$nome = "João";
+$sobrenome = "Silva";
+
+// Operador: ponto (.)
+$nomeCompleto = $nome . " " . $sobrenome;
+echo $nomeCompleto;            // João Silva
+
+// Atribuição com concatenação (.=)
+$mensagem  = "Olá";
+$mensagem .= ", João";
+$mensagem .= "! Bem-vindo.";
+echo $mensagem;                // Olá, João! Bem-vindo.</code></pre>
+
+        <h3>Interpolação ou concatenação?</h3>
+        <pre><code>&lt;?php
+// Concatenação
+echo "Olá, " . $nome . "! Você tem " . $idade . " anos.";
+
+// Interpolação (mais legível)
+echo "Olá, $nome! Você tem $idade anos.";</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Recomendação:</strong> use <strong>interpolação</strong> em
+          strings simples e <strong>concatenação</strong> quando precisar
+          combinar funções, arrays ou objetos complexos.
+        </div>
+      </section>
+
+      <!-- ═══════ P5 — FUNÇÕES DE STRINGS ═══════ -->
+      <section class="topic" id="p5">
+        <h2>05. Funções Essenciais de Strings</h2>
+        <p class="subtitle">O kit de ferramentas para manipular texto</p>
+
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Função</th>
+                <th>Descrição</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>strlen()</code></td>
+                <td>Tamanho em bytes</td>
+                <td><code>strlen("João")</code></td>
+              </tr>
+              <tr>
+                <td><code>mb_strlen()</code></td>
+                <td>Tamanho em UTF-8</td>
+                <td><code>mb_strlen("João")</code></td>
+              </tr>
+              <tr>
+                <td><code>strtoupper()</code></td>
+                <td>Maiúsculas</td>
+                <td><code>"abc" → ABC</code></td>
+              </tr>
+              <tr>
+                <td><code>strtolower()</code></td>
+                <td>Minúsculas</td>
+                <td><code>"ABC" → abc</code></td>
+              </tr>
+              <tr>
+                <td><code>ucfirst()</code></td>
+                <td>1ª letra maiúscula</td>
+                <td><code>"joão" → João</code></td>
+              </tr>
+              <tr>
+                <td><code>ucwords()</code></td>
+                <td>Cada palavra maiúscula</td>
+                <td><code>"joão silva"</code></td>
+              </tr>
+              <tr>
+                <td><code>trim()</code></td>
+                <td>Remove espaços nas pontas</td>
+                <td><code>trim(" olá ")</code></td>
+              </tr>
+              <tr>
+                <td><code>ltrim()</code> / <code>rtrim()</code></td>
+                <td>Remove à esquerda / à direita</td>
+                <td><code>rtrim("olá ")</code></td>
+              </tr>
+              <tr>
+                <td><code>str_replace()</code></td>
+                <td>Substitui texto</td>
+                <td><code>str_replace("a","b",$s)</code></td>
+              </tr>
+              <tr>
+                <td><code>strpos()</code></td>
+                <td>Posição de um texto</td>
+                <td><code>strpos($s, "x")</code></td>
+              </tr>
+              <tr>
+                <td><code>substr()</code></td>
+                <td>Extrai parte da string</td>
+                <td><code>substr($s, 0, 3)</code></td>
+              </tr>
+              <tr>
+                <td><code>explode()</code></td>
+                <td>String → Array</td>
+                <td><code>explode(",", $s)</code></td>
+              </tr>
+              <tr>
+                <td><code>implode()</code></td>
+                <td>Array → String</td>
+                <td><code>implode("-", $arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>sprintf()</code></td>
+                <td>Formata string</td>
+                <td><code>sprintf("%.2f", 12.5)</code></td>
+              </tr>
+              <tr>
+                <td><code>number_format()</code></td>
+                <td>Formata número (padrão BR)</td>
+                <td><code>number_format(1234.5, 2, ",", ".")</code></td>
+              </tr>
+              <tr>
+                <td><code>str_pad()</code></td>
+                <td>Preenche com caracteres</td>
+                <td><code>str_pad("1", 3, "0")</code></td>
+              </tr>
+              <tr>
+                <td><code>str_repeat()</code></td>
+                <td>Repete a string</td>
+                <td><code>str_repeat("=", 10)</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Na prática</h3>
+        <pre><code>&lt;?php
+$s = "  Programar em PHP é divertido  ";
+
+trim($s);                      // "Programar em PHP é divertido"
+strtoupper($s);                // "  PROGRAMAR EM PHP..."
+ucwords("joão silva");         // "João Silva"
+str_replace("PHP", "JS", $s);  // troca PHP por JS
+
+strpos($s, "PHP");             // posição de "PHP"
+substr($s, 0, 9);              // "  Program"
+
+// String ↔ Array
+$tags = explode(",", "html,css,php");   // ["html","css","php"]
+$linha = implode(" | ", $tags);         // "html | css | php"
+
+// Formatação
+sprintf("Olá, %s! Você tem %d anos.", "Ana", 30);
+number_format(1234.5, 2, ",", ".");     // "1.234,50"
+str_pad("7", 3, "0", STR_PAD_LEFT);     // "007"
+str_repeat("=", 10);                    // "=========="</code></pre>
+
+        <h3>Funções modernas de busca (PHP 8+)</h3>
+        <pre><code>&lt;?php
+$frase = "Aprendendo PHP moderno";
+
+str_contains($frase, "PHP");        // true
+str_starts_with($frase, "Aprend");  // true
+str_ends_with($frase, "moderno");   // true</code></pre>
+
+        <h3>Códigos de formatação (sprintf / printf)</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>%s</code></td>
+                <td>String</td>
+              </tr>
+              <tr>
+                <td><code>%d</code></td>
+                <td>Inteiro</td>
+              </tr>
+              <tr>
+                <td><code>%f</code></td>
+                <td>Float</td>
+              </tr>
+              <tr>
+                <td><code>%.2f</code></td>
+                <td>Float com 2 casas</td>
+              </tr>
+              <tr>
+                <td><code>%x</code></td>
+                <td>Hexadecimal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note warning">
+          <strong>⚠️ Atenção com acentos:</strong> <code>strlen()</code> conta
+          <em>bytes</em>, não caracteres. <code>strlen("João")</code> retorna 5,
+          pois "ã" ocupa 2 bytes em UTF-8. Use as funções
+          <code>mb_*</code> (<code>mb_strlen</code>, <code>mb_substr</code>,
+          <code>mb_strtoupper</code>) para trabalhar com textos em português.
+        </div>
+      </section>
+
+      <!-- ═══════ P6 — ARRAYS ═══════ -->
+      <section class="topic" id="p6">
+        <h2>06. Arrays</h2>
+        <p class="subtitle">Uma variável que guarda vários valores</p>
+
+        <h3>O que é um array?</h3>
+        <p>
+          Um array armazena múltiplos valores. No PHP existem dois tipos
+          principais: <strong>indexados</strong> (chaves numéricas 0, 1, 2…) e
+          <strong>associativos</strong> (chaves em texto), vistos no próximo
+          tópico.
+        </p>
+
+        <h3>Arrays indexados</h3>
+        <pre><code>&lt;?php
+// Sintaxe antiga
+$frutas = array("Maçã", "Banana", "Laranja");
+
+// Sintaxe moderna (recomendada, PHP 5.4+)
+$frutas = ["Maçã", "Banana", "Laranja"];
+
+// Acessando
+echo $frutas[0];    // Maçã
+echo $frutas[1];    // Banana
+
+// Adicionando
+$frutas[] = "Uva";              // adiciona no final
+array_push($frutas, "Pera");    // também no final
+
+// Contando
+echo count($frutas);            // 5
+
+// Último elemento
+echo $frutas[count($frutas) - 1];</code></pre>
+
+        <h3>Arrays multidimensionais</h3>
+        <pre><code>&lt;?php
+$alunos = [
+    ["nome" =&gt; "Ana",     "nota" =&gt; 9.5],
+    ["nome" =&gt; "Carlos",  "nota" =&gt; 7.0],
+    ["nome" =&gt; "Mariana", "nota" =&gt; 8.5],
+];
+
+echo $alunos[0]["nome"];   // Ana
+echo $alunos[2]["nota"];   // 8.5</code></pre>
+
+        <h3>Funções essenciais de arrays</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Função</th>
+                <th>Descrição</th>
+                <th>Exemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>count()</code></td>
+                <td>Conta itens</td>
+                <td><code>count($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>print_r()</code></td>
+                <td>Exibe array legível</td>
+                <td><code>print_r($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>var_dump()</code></td>
+                <td>Exibe com tipos</td>
+                <td><code>var_dump($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>array_push()</code></td>
+                <td>Adiciona no final</td>
+                <td><code>array_push($arr, "x")</code></td>
+              </tr>
+              <tr>
+                <td><code>array_pop()</code></td>
+                <td>Remove do final</td>
+                <td><code>array_pop($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>array_shift()</code></td>
+                <td>Remove do início</td>
+                <td><code>array_shift($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>array_unshift()</code></td>
+                <td>Adiciona no início</td>
+                <td><code>array_unshift($arr, "x")</code></td>
+              </tr>
+              <tr>
+                <td><code>sort()</code> / <code>rsort()</code></td>
+                <td>Ordena crescente / decrescente</td>
+                <td><code>sort($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>in_array()</code></td>
+                <td>Verifica se valor existe</td>
+                <td><code>in_array("x", $arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>array_keys()</code></td>
+                <td>Retorna só as chaves</td>
+                <td><code>array_keys($arr)</code></td>
+              </tr>
+              <tr>
+                <td><code>array_values()</code></td>
+                <td>Retorna só os valores</td>
+                <td><code>array_values($arr)</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Percorrendo com foreach</h3>
+        <pre><code>&lt;?php
+$frutas = ["Maçã", "Banana", "Laranja"];
+
+// Indexado
+foreach ($frutas as $fruta) {
+    echo $fruta . "&lt;br&gt;";
+}
+
+// Com a chave
+foreach ($frutas as $indice =&gt; $fruta) {
+    echo "$indice: $fruta &lt;br&gt;";
+}
+
+// foreach por referência (permite modificar)
+foreach ($frutas as &amp;$fruta) {
+    $fruta = strtoupper($fruta);
+}
+unset($fruta);   // sempre "quebre" a referência ao final</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> <code>print_r()</code> é ótimo para depurar
+          durante o desenvolvimento. Em produção, nunca deixe saídas de
+          depuração no código.
+        </div>
+      </section>
+
+      <!-- ═══════ P7 — ARRAYS ASSOCIATIVOS ═══════ -->
+      <section class="topic" id="p7">
+        <h2>07. Arrays Associativos</h2>
+        <p class="subtitle">
+          Chaves em texto — como um objeto em outras linguagens
+        </p>
+
+        <h3>Sintaxe</h3>
+        <pre><code>&lt;?php
+$usuario = [
+    "nome"  =&gt; "João",
+    "idade" =&gt; 30,
+    "email" =&gt; "joao@email.com",
+];
+
+echo $usuario["nome"];    // João</code></pre>
+
+        <h3>Destrinchando</h3>
+        <ul>
+          <li>
+            <code>$usuario</code> → variável (toda variável PHP começa com
+            <code>$</code>);
+          </li>
+          <li><code>[ ... ]</code> → define o array (sintaxe moderna 5.4+);</li>
+          <li><code>"nome"</code> → chave (<em>key</em>);</li>
+          <li><code>=&gt;</code> → operador de associação;</li>
+          <li><code>"João"</code> → valor (<em>value</em>).</li>
+        </ul>
+
+        <h3>Lendo, escrevendo e verificando</h3>
+        <pre><code>&lt;?php
+$usuario["idade"] = 31;              // altera
+$usuario["telefone"] = "1199999";    // adiciona
+unset($usuario["email"]);            // remove
+
+// Verificações
+isset($usuario["nome"]);             // true (existe e não é null)
+array_key_exists("nome", $usuario); // true
+in_array(31, $usuario);              // true (procura valor)
+
+// Percorrendo
+foreach ($usuario as $chave =&gt; $valor) {
+    echo "$chave: $valor &lt;br&gt;";
+}</code></pre>
+
+        <h3>Comparação com outras linguagens</h3>
+        <p>
+          O array associativo do PHP equivale a estruturas diferentes em cada
+          linguagem:
+        </p>
+        <pre><code>// JavaScript — Objeto
+let usuario = { nome: "João", idade: 30 };
+console.log(usuario.nome);
+
+// Python — Dicionário
+usuario = { "nome": "João", "idade": 30 }
+print(usuario["nome"])
+
+// Java — HashMap
+HashMap&lt;String, String&gt; usuario = new HashMap&lt;&gt;();
+usuario.put("nome", "João");
+System.out.println(usuario.get("nome"));
+
+// C# — Dictionary
+var usuario = new Dictionary&lt;string, string&gt; {
+    { "nome", "João" }
+};
+Console.WriteLine(usuario["nome"]);
+
+// Ruby — Hash
+usuario = { "nome" =&gt; "João" }
+puts usuario["nome"]</code></pre>
+
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Linguagem</th>
+                <th>Nome</th>
+                <th>Símbolo</th>
+                <th>Acesso</th>
+                <th>Tipo obrigatório?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PHP</td>
+                <td>Array Associativo</td>
+                <td><code>=&gt;</code></td>
+                <td><code>$arr["chave"]</code></td>
+                <td>Não</td>
+              </tr>
+              <tr>
+                <td>JavaScript</td>
+                <td>Objeto</td>
+                <td><code>:</code></td>
+                <td><code>obj.chave</code></td>
+                <td>Não</td>
+              </tr>
+              <tr>
+                <td>Python</td>
+                <td>Dicionário</td>
+                <td><code>:</code></td>
+                <td><code>dict["chave"]</code></td>
+                <td>Não</td>
+              </tr>
+              <tr>
+                <td>Java</td>
+                <td>HashMap</td>
+                <td><code>.put()</code></td>
+                <td><code>map.get("chave")</code></td>
+                <td>Sim</td>
+              </tr>
+              <tr>
+                <td>C#</td>
+                <td>Dictionary</td>
+                <td><code>{ }</code></td>
+                <td><code>dict["chave"]</code></td>
+                <td>Sim</td>
+              </tr>
+              <tr>
+                <td>Ruby</td>
+                <td>Hash</td>
+                <td><code>=&gt;</code></td>
+                <td><code>hash["chave"]</code></td>
+                <td>Não</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note info">
+          <strong>⚠️ Curiosidade:</strong> o PHP permite misturar índices
+          numéricos e strings no mesmo array — algo incomum em outras
+          linguagens.
+        </div>
+
+        <pre><code>&lt;?php
+$dados = [
+    0       =&gt; "Primeiro",
+    "nome"  =&gt; "João",
+    1       =&gt; 30,
+    "ativo" =&gt; true,
+];</code></pre>
+
+        <h3>Ordenação e transformação (avançado)</h3>
+        <pre><code>&lt;?php
+$notas = ["Ana" =&gt; 9.5, "Carlos" =&gt; 7.0, "Mariana" =&gt; 8.5];
+
+sort($notas);    // ordena pelos VALORES (perde as chaves)
+asort($notas);   // ordena pelos valores mantendo as chaves
+ksort($notas);   // ordena pelas chaves
+arsort($notas);  // valores, decrescente, mantendo chaves
+
+// Transformações funcionais
+$dobrados = array_map(fn ($n) =&gt; $n * 2, [1, 2, 3]);   // [2,4,6]
+$pares    = array_filter([1, 2, 3, 4], fn ($n) =&gt; $n % 2 === 0);
+$soma     = array_reduce([1, 2, 3], fn ($acc, $n) =&gt; $acc + $n, 0);
+
+// Ordenação customizada
+usort($alunos, fn ($a, $b) =&gt; $b["nota"] &lt;=&gt; $a["nota"]);</code></pre>
+      </section>
+
+      <!-- ═══════ P8 — CONTROLE DE FLUXO ═══════ -->
+      <section class="topic" id="p8">
+        <h2>08. Controle de Fluxo</h2>
+        <p class="subtitle">Condicionais e laços</p>
+
+        <h3>if / elseif / else</h3>
+        <pre><code>&lt;?php
+$idade = 20;
+
+if ($idade &lt; 12) {
+    echo "Criança";
+} elseif ($idade &lt; 18) {
+    echo "Adolescente";
+} elseif ($idade &lt; 60) {
+    echo "Adulto";
+} else {
+    echo "Idoso";
+}</code></pre>
+
+        <h3>Sintaxe alternativa (útil em templates)</h3>
+        <pre><code>&lt;?php if ($logado): ?&gt;
+    &lt;p&gt;Bem-vindo!&lt;/p&gt;
+&lt;?php else: ?&gt;
+    &lt;p&gt;Faça login.&lt;/p&gt;
+&lt;?php endif; ?&gt;</code></pre>
+
+        <h3>switch</h3>
+        <pre><code>&lt;?php
+$dia = "seg";
+
+switch ($dia) {
+    case "sab":
+    case "dom":
+        echo "Fim de semana";
+        break;
+    case "seg":
+        echo "Começo da semana";
+        break;
+    default:
+        echo "Dia comum";
+}</code></pre>
+
+        <h3>while / do-while</h3>
+        <pre><code>&lt;?php
+// while — testa antes
+$i = 0;
+while ($i &lt; 5) {
+    echo $i;
+    $i++;
+}
+
+// do-while — executa pelo menos uma vez
+$j = 0;
+do {
+    echo $j;
+    $j++;
+} while ($j &lt; 5);</code></pre>
+
+        <h3>for / foreach</h3>
+        <pre><code>&lt;?php
+// for clássico
+for ($i = 0; $i &lt; 10; $i++) {
+    echo $i;
+}
+
+// foreach com arrays (preferido)
+foreach ([1, 2, 3] as $numero) {
+    echo $numero;
+}</code></pre>
+
+        <h3>break e continue</h3>
+        <pre><code>&lt;?php
+foreach (range(1, 10) as $n) {
+    if ($n === 3) {
+        continue;   // pula o 3
+    }
+    if ($n === 6) {
+        break;      // para no 6
+    }
+    echo $n;
+}</code></pre>
+
+        <h3>match (PHP 8+) — o irmão moderno do switch</h3>
+        <pre><code>&lt;?php
+$status = match ($codigo) {
+    200, 201 =&gt; "Sucesso",
+    404      =&gt; "Não encontrado",
+    500      =&gt; "Erro no servidor",
+    default  =&gt; "Desconhecido",
+};
+
+// match compara com === e retorna um valor</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> prefira <code>match</code> a
+          <code>switch</code> quando só precisar mapear valor → resultado. É
+          mais seguro pois usa comparação estrita e não exige
+          <code>break</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ P9 — FUNÇÕES ═══════ -->
+      <section class="topic" id="p9">
+        <h2>09. Funções</h2>
+        <p class="subtitle">Blocos de código reutilizáveis</p>
+
+        <h3>Declaração básica</h3>
+        <pre><code>&lt;?php
+function saudacao($nome) {
+    return "Olá, $nome!";
+}
+
+echo saudacao("João");   // Olá, João!</code></pre>
+
+        <h3>Parâmetros com valor padrão</h3>
+        <pre><code>&lt;?php
+function somar($a, $b = 10) {
+    return $a + $b;
+}
+
+somar(5);        // 15
+somar(5, 2);     // 7</code></pre>
+
+        <h3>Declarações de tipo (PHP 7+)</h3>
+        <pre><code>&lt;?php
+// Tipos nos parâmetros e no retorno
+function calcularTotal(float $preco, int $qtd): float {
+    return $preco * $qtd;
+}
+
+// Nullable (? antes do tipo)
+function buscar(int $id): ?array {
+    return $id &gt; 0 ? ["id" =&gt; $id] : null;
+}
+
+// Tipos união (PHP 8+)
+function formatar(int|float $valor): string {
+    return number_format($valor, 2, ",", ".");
+}</code></pre>
+
+        <h3>Argumentos variádicos</h3>
+        <pre><code>&lt;?php
+function somarTodos(int ...$numeros): int {
+    return array_sum($numeros);
+}
+
+somarTodos(1, 2, 3, 4);   // 10
+
+// Desempacotando um array com ...
+$valores = [1, 2, 3];
+somarTodos(...$valores);  // 6</code></pre>
+
+        <h3>Passagem por referência</h3>
+        <pre><code>&lt;?php
+function dobrar(&amp;$numero) {
+    $numero *= 2;
+}
+
+$x = 5;
+dobrar($x);
+echo $x;   // 10 (o valor original mudou)</code></pre>
+
+        <h3>Escopo</h3>
+        <pre><code>&lt;?php
+$global = "acessível fora";
+
+function teste() {
+    // Variáveis de fora NÃO entram automaticamente
+    global $global;            // forma explícita
+    echo $global;
+
+    $local = "só aqui dentro";
+
+    // static mantém o valor entre chamadas
+    static $contador = 0;
+    $contador++;
+    return $contador;
+}
+
+echo teste();   // 1
+echo teste();   // 2</code></pre>
+
+        <h3>Arrow functions e closures (PHP 7.4+)</h3>
+        <pre><code>&lt;?php
+$multiplicador = 3;
+
+// Closure — precisa de use para capturar variáveis
+$fn1 = function ($n) use ($multiplicador) {
+    return $n * $multiplicador;
+};
+
+// Arrow function — captura automaticamente
+$fn2 = fn ($n) =&gt; $n * $multiplicador;
+
+echo $fn2(5);   // 15
+
+// Muito usadas com array_map / array_filter
+$nomes = array_map(fn ($n) =&gt; strtoupper($n), ["ana", "joão"]);</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> funções devem fazer <strong>uma</strong>
+          coisa e ter um nome que diga o que fazem. Se o nome precisa de "e",
+          provavelmente são duas funções.
+        </div>
+      </section>
+
+      <!-- ═══════ P10 — INCLUDES ═══════ -->
+      <section class="topic" id="p10">
+        <h2>10. Includes &amp; Namespaces</h2>
+        <p class="subtitle">Organizando o projeto em vários arquivos</p>
+
+        <h3>include vs require</h3>
+        <pre><code>&lt;?php
+// include — gera AVISO se o arquivo não existir; o script continua
+include "header.php";
+include_once "header.php";   // só inclui uma vez
+
+// require — gera ERRO FATAL se não existir; o script para
+require "config.php";
+require_once "config.php";   // recomendado para classes/funções
+
+// Caminho absoluto com __DIR__ (evita problemas de diretório atual)
+require __DIR__ . "/config/config.php";</code></pre>
+
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Comando</th>
+                <th>Se o arquivo não existir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>include</code></td>
+                <td>Warning — o script continua</td>
+              </tr>
+              <tr>
+                <td><code>require</code></td>
+                <td>Fatal error — o script para</td>
+              </tr>
+              <tr>
+                <td><code>include_once</code></td>
+                <td>Warning + impede inclusão duplicada</td>
+              </tr>
+              <tr>
+                <td><code>require_once</code></td>
+                <td>Fatal error + impede inclusão duplicada</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Estrutura típica de projeto</h3>
+        <pre><code>meu-projeto/
+├── index.php
+├── config/
+│   └── database.php
+├── src/
+│   ├── Models/
+│   │   └── Usuario.php
+│   └── Repositories/
+│       └── UsuarioRepository.php
+├── views/
+│   ├── header.php
+│   └── footer.php
+└── public/
+    └── assets/</code></pre>
+
+        <h3>Namespaces</h3>
+        <pre><code>&lt;?php
+// src/Models/Usuario.php
+namespace App\Models;
+
+class Usuario
+{
+    public function nome(): string
+    {
+        return "João";
+    }
+}</code></pre>
+
+        <pre><code>&lt;?php
+// index.php
+require __DIR__ . "/src/Models/Usuario.php";
+
+use App\Models\Usuario;
+
+$u = new Usuario();
+echo $u-&gt;nome();
+
+// Ou com o caminho completo
+$u2 = new \App\Models\Usuario();</code></pre>
+
+        <div class="note info">
+          <strong>ℹ️ Autoload:</strong> em projetos maiores você não inclui cada
+          arquivo à mão — o <code>composer</code> gera um autoloader e basta
+          <code>require "vendor/autoload.php";</code> para carregar tudo.
+        </div>
+      </section>
+
+      <!-- ═══════ P11 — FORMULÁRIOS ═══════ -->
+      <section class="topic" id="p11">
+        <h2>11. Formulários &amp; Superglobais</h2>
+        <p class="subtitle">Recebendo dados do usuário</p>
+
+        <h3>Superglobais</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Variável</th>
+                <th>O que contém</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>$_GET</code></td>
+                <td>Dados enviados na URL (<code>?nome=João</code>)</td>
+              </tr>
+              <tr>
+                <td><code>$_POST</code></td>
+                <td>Dados enviados pelo corpo do formulário</td>
+              </tr>
+              <tr>
+                <td><code>$_REQUEST</code></td>
+                <td>Junção de GET, POST e cookies (evite — é ambíguo)</td>
+              </tr>
+              <tr>
+                <td><code>$_SERVER</code></td>
+                <td>Informações do servidor e da requisição</td>
+              </tr>
+              <tr>
+                <td><code>$_FILES</code></td>
+                <td>Arquivos enviados por upload</td>
+              </tr>
+              <tr>
+                <td><code>$_SESSION</code></td>
+                <td>Dados persistidos na sessão</td>
+              </tr>
+              <tr>
+                <td><code>$_COOKIE</code></td>
+                <td>Cookies enviados pelo navegador</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Formulário + processamento</h3>
+        <pre><code>&lt;!-- form.php --&gt;
+&lt;form action="processa.php" method="post"&gt;
+    &lt;input type="text" name="nome" placeholder="Seu nome" /&gt;
+    &lt;input type="email" name="email" placeholder="E-mail" /&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+        <pre><code>&lt;?php
+// processa.php
+
+// 1. Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // 2. Nunca confie no input! Limpe e valide
+    $nome  = trim($_POST["nome"] ?? "");
+    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+
+    if ($nome === "" || !$email) {
+        echo "Preencha os dados corretamente.";
+        exit;
+    }
+
+    // 3. Escape antes de exibir em HTML (evita XSS)
+    echo "Olá, " . htmlspecialchars($nome) . "!";
+}</code></pre>
+
+        <h3>$_SERVER — informações úteis</h3>
+        <pre><code>&lt;?php
+$_SERVER["REQUEST_METHOD"];   // GET, POST...
+$_SERVER["REQUEST_URI"];      // /produtos?pagina=2
+$_SERVER["REMOTE_ADDR"];      // IP do visitante
+$_SERVER["HTTP_USER_AGENT"];  // navegador</code></pre>
+
+        <h3>GET vs POST</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>GET</th>
+                <th>POST</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dados</td>
+                <td>Visíveis na URL</td>
+                <td>No corpo da requisição</td>
+              </tr>
+              <tr>
+                <td>Limite</td>
+                <td>~2000 caracteres</td>
+                <td>Muito maior</td>
+              </tr>
+              <tr>
+                <td>Uso ideal</td>
+                <td>Busca, filtros, paginação</td>
+                <td>Login, cadastro, envio de dados</td>
+              </tr>
+              <tr>
+                <td>Segurança</td>
+                <td>Nunca envie senhas</td>
+                <td>Mais adequado para dados sensíveis</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note danger">
+          <strong>🚨 Regra de ouro:</strong> trate <strong>todo</strong> dado
+          vindo do usuário como suspeito. Valide o formato, limpe os valores e
+          escape na saída com <code>htmlspecialchars()</code>.
+        </div>
+      </section>
+
+      <!-- ═══════ P12 — CLASSES E OBJETOS ═══════ -->
+      <section class="topic" id="p12">
+        <h2>12. Classes e Objetos</h2>
+        <p class="subtitle">O molde e as instâncias — o coração da POO</p>
+
+        <h3>Conceitos</h3>
+        <ul>
+          <li>
+            <strong>Classe:</strong> o "molde" ou "planta" que define
+            características (<em>propriedades</em>) e comportamentos
+            (<em>métodos</em>).
+          </li>
+          <li>
+            <strong>Objeto:</strong> uma instância concreta criada a partir da
+            classe.
+          </li>
+        </ul>
+
+        <h3>Exemplo de classe</h3>
+        <pre><code>&lt;?php
+class Fruta
+{
+    // Propriedades
+    public $nome;
+    public $cor;
+
+    // Métodos
+    public function setNome($nome)
+    {
+        $this-&gt;nome = $nome;
+    }
+
+    public function getNome()
+    {
+        return $this-&gt;nome;
+    }
+}</code></pre>
+
+        <h3>Criando e usando um objeto</h3>
+        <pre><code>&lt;?php
+$melancia = new Fruta();
+$melancia-&gt;setNome("Melancia");
+$melancia-&gt;cor = "Verde";
+
+echo $melancia-&gt;getNome();   // Melancia</code></pre>
+
+        <h3>Entendendo a seta ( -&gt; )</h3>
+        <p>
+          A seta <code>-&gt;</code> é o <strong>operador de acesso</strong> do
+          PHP. Ela serve para acessar propriedades e métodos de um objeto:
+        </p>
+        <ul>
+          <li>
+            <code>$this</code> → refere-se ao próprio objeto dentro da classe;
+          </li>
+          <li>
+            <code>$objeto-&gt;metodo()</code> → chama um método do objeto;
+          </li>
+          <li>
+            <code>$objeto-&gt;propriedade</code> → acessa uma propriedade do
+            objeto.
+          </li>
+        </ul>
+
+        <div class="note info">
+          <strong>💡 Fluxo lógico:</strong> (1) a classe
+          <code>Fruta</code> define que frutas têm nome e sabem configurar/pegar
+          o nome; (2) o objeto <code>$melancia</code> é criado a partir da
+          classe; (3) a ação <code>$melancia-&gt;setNome(...)</code> altera os
+          dados <em>daquele</em> objeto específico.
+        </div>
+
+        <h3>Construtor e visibilidade</h3>
+        <pre><code>&lt;?php
+class Produto
+{
+    private float $preco;         // só a própria classe acessa
+    protected string $nome;       // classe + classes filhas
+    public int $estoque = 0;      // acessível por qualquer um
+
+    public function __construct(string $nome, float $preco)
+    {
+        $this-&gt;nome  = $nome;
+        $this-&gt;preco = $preco;
+    }
+
+    public function getPreco(): float
+    {
+        return $this-&gt;preco;
+    }
+
+    public function setPreco(float $preco): void
+    {
+        if ($preco &lt; 0) {
+            throw new InvalidArgumentException("Preço inválido");
+        }
+        $this-&gt;preco = $preco;
+    }
+}
+
+$p = new Produto("Teclado", 150.0);
+echo $p-&gt;getPreco();</code></pre>
+
+        <h3>Propriedades e métodos estáticos</h3>
+        <pre><code>&lt;?php
+class Conversor
+{
+    public const TAXA = 5.5;
+
+    public static function dolarParaReal(float $valor): float
+    {
+        return $valor * self::TAXA;
+    }
+}
+
+// Não precisa instanciar
+echo Conversor::dolarParaReal(10);   // 55</code></pre>
+
+        <div class="note warning">
+          <strong>⚠️ Encapsulamento:</strong> deixe propriedades
+          <code>private</code> e exponha apenas o necessário por métodos. Isso
+          impede que o estado do objeto seja corrompido de fora.
+        </div>
+      </section>
+
+      <!-- ═══════ P13 — POO AVANÇADA ═══════ -->
+      <section class="topic" id="p13">
+        <h2>13. POO Avançada</h2>
+        <p class="subtitle">
+          Herança, abstração, interfaces, traits e polimorfismo
+        </p>
+
+        <h3>Herança (extends)</h3>
+        <pre><code>&lt;?php
+class Animal
+{
+    public function __construct(protected string $nome) {}
+
+    public function falar(): string
+    {
+        return "$this-&gt;nome faz um som";
+    }
+}
+
+class Cachorro extends Animal
+{
+    public function falar(): string
+    {
+        return "$this-&gt;nome late";     // sobrescreve o método
+    }
+
+    public function buscar(): string
+    {
+        return "$this-&gt;nome buscou a bolinha";
+    }
+}
+
+$rex = new Cachorro("Rex");
+echo $rex-&gt;falar();    // Rex late
+echo $rex-&gt;buscar();   // Rex buscou a bolinha</code></pre>
+
+        <h3>parent:: e chamada do construtor</h3>
+        <pre><code>&lt;?php
+class Gato extends Animal
+{
+    public function __construct(string $nome, private string $cor)
+    {
+        parent::__construct($nome);   // reaproveita o construtor pai
+    }
+
+    public function falar(): string
+    {
+        return parent::falar() . " (mia)";
+    }
+}</code></pre>
+
+        <h3>Classes abstratas</h3>
+        <pre><code>&lt;?php
+abstract class Forma
+{
+    // Método abstrato: obriga as filhas a implementar
+    abstract public function area(): float;
+
+    // Método concreto: já pronto para reuso
+    public function descricao(): string
+    {
+        return "Área: " . number_format($this-&gt;area(), 2, ",", ".");
+    }
+}
+
+class Circulo extends Forma
+{
+    public function __construct(private float $raio) {}
+
+    public function area(): float
+    {
+        return 3.14159 * $this-&gt;raio ** 2;
+    }
+}
+
+// new Forma();     // ❌ erro: classe abstrata não instancia
+echo (new Circulo(2))-&gt;descricao();</code></pre>
+
+        <h3>Interfaces</h3>
+        <pre><code>&lt;?php
+interface Pagavel
+{
+    public function pagar(float $valor): bool;
+}
+
+class CartaoCredito implements Pagavel
+{
+    public function pagar(float $valor): bool
+    {
+        return true;   // lógica real aqui
+    }
+}
+
+class Pix implements Pagavel
+{
+    public function pagar(float $valor): bool
+    {
+        return true;
+    }
+}</code></pre>
+
+        <h3>Traits — reuso de código</h3>
+        <pre><code>&lt;?php
+trait Loggable
+{
+    public function log(string $msg): void
+    {
+        echo "[" . date("H:i:s") . "] $msg";
+    }
+}
+
+class Usuario
+{
+    use Loggable;    // "cola" os métodos do trait na classe
+}
+
+(new Usuario())-&gt;log("Login efetuado");</code></pre>
+
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Recurso</th>
+                <th>Serve para</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Herança (<code>extends</code>)</td>
+                <td>Especializar uma classe ("é um tipo de")</td>
+              </tr>
+              <tr>
+                <td>Classe abstrata</td>
+                <td>Base parcial que não pode ser instanciada</td>
+              </tr>
+              <tr>
+                <td>Interface</td>
+                <td>Contrato de métodos ("sabe fazer")</td>
+              </tr>
+              <tr>
+                <td>Trait</td>
+                <td>Reuso de métodos sem herança múltipla</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Polimorfismo</h3>
+        <pre><code>&lt;?php
+function cobrar(Pagavel $metodo, float $valor): void
+{
+    $metodo-&gt;pagar($valor);   // funciona com QUALQUER implementação
+}
+
+cobrar(new Pix(), 100);
+cobrar(new CartaoCredito(), 100);</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> programe para <strong>interfaces</strong>,
+          não para implementações. Assim você troca a forma de pagamento sem
+          mudar quem cobra.
+        </div>
+      </section>
+
+      <!-- ═══════ P14 — COMPARAÇÃO ═══════ -->
+      <section class="topic" id="p14">
+        <h2>14. Comparação entre Linguagens (POO)</h2>
+        <p class="subtitle">
+          A mesma classe Fruta em PHP, Java, Python, JS e C#
+        </p>
+
+        <h3>PHP</h3>
+        <pre><code>&lt;?php
+class Fruta
+{
+    public $nome;
+    public $cor;
+
+    public function setNome($nome)
+    {
+        $this-&gt;nome = $nome;
+    }
+
+    public function getNome()
+    {
+        return $this-&gt;nome;
+    }
+}
+
+$melancia = new Fruta();
+$melancia-&gt;setNome("Melancia");</code></pre>
+
+        <h3>Java</h3>
+        <pre><code>public class Fruta {
+    public String nome;
+    public String cor;
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public static void main(String[] args) {
+        Fruta melancia = new Fruta();
+        melancia.setNome("Melancia");
+    }
+}</code></pre>
+
+        <h3>Python</h3>
+        <pre><code>class Fruta:
+    def __init__(self):
+        self.nome = ""
+        self.cor = ""
+
+    def set_nome(self, nome):
+        self.nome = nome
+
+    def get_nome(self):
+        return self.nome
+
+melancia = Fruta()
+melancia.set_nome("Melancia")</code></pre>
+
+        <h3>JavaScript</h3>
+        <pre><code>class Fruta {
+  constructor() {
+    this.nome = "";
+    this.cor = "";
+  }
+
+  setNome(nome) {
+    this.nome = nome;
+  }
+
+  getNome() {
+    return this.nome;
+  }
+}
+
+let melancia = new Fruta();
+melancia.setNome("Melancia");</code></pre>
+
+        <h3>C#</h3>
+        <pre><code>public class Fruta {
+    public string Nome { get; set; }
+    public string Cor { get; set; }
+
+    public void SetNome(string nome) {
+        this.Nome = nome;
+    }
+
+    public string GetNome() {
+        return this.Nome;
+    }
+}</code></pre>
+
+        <h3>Tabela comparativa</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Recurso</th>
+                <th>PHP</th>
+                <th>Java / C# / JS</th>
+                <th>Python</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Criar objeto</td>
+                <td><code>$obj = new Classe();</code></td>
+                <td><code>Classe obj = new Classe();</code></td>
+                <td><code>obj = Classe()</code></td>
+              </tr>
+              <tr>
+                <td>Acessar método</td>
+                <td><code>$obj-&gt;metodo();</code></td>
+                <td><code>obj.metodo();</code></td>
+                <td><code>obj.metodo()</code></td>
+              </tr>
+              <tr>
+                <td>Referência interna</td>
+                <td><code>$this</code></td>
+                <td><code>this</code></td>
+                <td><code>self</code></td>
+              </tr>
+              <tr>
+                <td>Fim de linha</td>
+                <td><code>;</code></td>
+                <td><code>;</code></td>
+                <td>Nada</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note info">
+          <strong>ℹ️ Observação:</strong> a seta <code>-&gt;</code> do PHP tem o
+          mesmo papel do ponto <code>.</code> em Java, JS, Python e C# — acessar
+          membros de um objeto. Já o <code>$this</code> equivale ao
+          <code>this</code> (Java/JS/C#) e ao <code>self</code> (Python).
+        </div>
+      </section>
+
+      <!-- ═══════ P15 — ERROS E EXCEÇÕES ═══════ -->
+      <section class="topic" id="p15">
+        <h2>15. Erros &amp; Exceções</h2>
+        <p class="subtitle">Tratando o que dá errado com elegância</p>
+
+        <h3>Níveis de erro</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Nível</th>
+                <th>Significado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>E_WARNING</code></td>
+                <td>Aviso — o script continua</td>
+              </tr>
+              <tr>
+                <td><code>E_NOTICE</code></td>
+                <td>Observação (ex.: variável não definida)</td>
+              </tr>
+              <tr>
+                <td><code>E_ERROR</code></td>
+                <td>Erro fatal — o script para</td>
+              </tr>
+              <tr>
+                <td><code>E_ALL</code></td>
+                <td>Todos os erros e avisos</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre><code>&lt;?php
+// Durante o desenvolvimento, mostre tudo
+error_reporting(E_ALL);
+ini_set("display_errors", "1");
+
+// Em produção, esconda e registre em log
+ini_set("display_errors", "0");
+ini_set("log_errors", "1");
+ini_set("error_log", __DIR__ . "/logs/erro.log");</code></pre>
+
+        <h3>try / catch / finally</h3>
+        <pre><code>&lt;?php
+function dividir(float $a, float $b): float
+{
+    if ($b === 0.0) {
+        throw new InvalidArgumentException("Divisão por zero");
+    }
+    return $a / $b;
+}
+
+try {
+    echo dividir(10, 0);
+} catch (InvalidArgumentException $e) {
+    echo "Erro: " . $e-&gt;getMessage();
+} catch (Throwable $e) {
+    echo "Erro inesperado";
+} finally {
+    echo "Sempre executa";   // aconteça o que acontecer
+}</code></pre>
+
+        <h3>Exceções personalizadas</h3>
+        <pre><code>&lt;?php
+class EstoqueInsuficienteException extends Exception {}
+
+class Produto
+{
+    public function __construct(private int $estoque) {}
+
+    public function vender(int $qtd): void
+    {
+        if ($qtd &gt; $this-&gt;estoque) {
+            throw new EstoqueInsuficienteException(
+                "Só há {$this-&gt;estoque} unidades"
+            );
+        }
+        $this-&gt;estoque -= $qtd;
+    }
+}
+
+try {
+    (new Produto(3))-&gt;vender(5);
+} catch (EstoqueInsuficienteException $e) {
+    echo $e-&gt;getMessage();   // Só há 3 unidades
+}</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> exceções são para situações
+          <em>excepcionais</em>. Para validação previsível de formulário,
+          prefira retornar valores/erros. Nunca use <code>catch</code> vazio —
+          engolir erros esconde bugs.
+        </div>
+      </section>
+
+      <!-- ═══════ P16 — SESSÕES ═══════ -->
+      <section class="topic" id="p16">
+        <h2>16. Sessões, Cookies &amp; Uploads</h2>
+        <p class="subtitle">Mantendo estado entre requisições</p>
+
+        <h3>Sessões</h3>
+        <pre><code>&lt;?php
+// SEMPRE antes de qualquer saída HTML
+session_start();
+
+// Guardando dados
+$_SESSION["usuario_id"] = 42;
+$_SESSION["nome"] = "João";
+
+// Lendo
+if (isset($_SESSION["usuario_id"])) {
+    echo "Logado como " . $_SESSION["nome"];
+}
+
+// Encerrando
+unset($_SESSION["nome"]);     // remove uma chave
+session_unset();              // limpa tudo
+session_destroy();            // destrói a sessão</code></pre>
+
+        <h3>Cookies</h3>
+        <pre><code>&lt;?php
+// setcookie(nome, valor, expira, caminho, domínio, seguro, httpOnly)
+setcookie("tema", "escuro", time() + 60 * 60 * 24 * 30, "/");
+
+// Lendo
+echo $_COOKIE["tema"] ?? "claro";
+
+// Removendo (expira no passado)
+setcookie("tema", "", time() - 3600, "/");</code></pre>
+
+        <div class="note warning">
+          <strong>⚠️ Sessão vs Cookie:</strong> a sessão guarda os dados
+          <strong>no servidor</strong> (o navegador só recebe um ID); o cookie
+          guarda os dados <strong>no navegador</strong>. Por isso nunca coloque
+          senhas ou dados sensíveis em cookies.
+        </div>
+
+        <h3>Upload de arquivos</h3>
+        <pre><code>&lt;!-- form precisa de enctype --&gt;
+&lt;form action="upload.php" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="arquivo" /&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+        <pre><code>&lt;?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $arquivo = $_FILES["arquivo"];
+
+    if ($arquivo["error"] !== UPLOAD_ERR_OK) {
+        exit("Falha no upload");
+    }
+
+    // 1. Valide o tipo pelo conteúdo, não pela extensão
+    $permitidos = ["image/jpeg", "image/png", "image/webp"];
+    $tipo = mime_content_type($arquivo["tmp_name"]);
+
+    if (!in_array($tipo, $permitidos, true)) {
+        exit("Tipo não permitido");
+    }
+
+    // 2. Limite de tamanho
+    if ($arquivo["size"] &gt; 2 * 1024 * 1024) {   // 2 MB
+        exit("Arquivo muito grande");
+    }
+
+    // 3. Gere um nome seguro (nunca confie no nome original)
+    $extensao = pathinfo($arquivo["name"], PATHINFO_EXTENSION);
+    $novoNome = bin2hex(random_bytes(16)) . "." . $extensao;
+
+    // 4. Mova para fora da raiz pública, se possível
+    move_uploaded_file($arquivo["tmp_name"], __DIR__ . "/uploads/" . $novoNome);
+}</code></pre>
+
+        <div class="note danger">
+          <strong>🚨 Segurança:</strong> aceitar upload sem validar é uma das
+          falhas mais exploradas. Nunca execute o arquivo enviado, valide o MIME
+          real e guarde fora do diretório público.
+        </div>
+      </section>
+
+      <!-- ═══════ P17 — PDO ═══════ -->
+      <section class="topic" id="p17">
+        <h2>17. Banco de Dados com PDO</h2>
+        <p class="subtitle">Falando com o MySQL com segurança</p>
+
+        <h3>Conectando</h3>
+        <pre><code>&lt;?php
+$dsn = "mysql:host=localhost;dbname=loja;charset=utf8mb4";
+
+$opcoes = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,
+];
+
+try {
+    $pdo = new PDO($dsn, "root", "senha", $opcoes);
+} catch (PDOException $e) {
+    exit("Erro de conexão: " . $e-&gt;getMessage());
+}</code></pre>
+
+        <h3>Prepared statements (evita SQL Injection)</h3>
+        <pre><code>&lt;?php
+// ❌ NUNCA faça isso — abre porta para SQL Injection
+// $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+
+// ✅ Use placeholders nomeados
+$sql = "SELECT * FROM usuarios WHERE email = :email";
+
+$stmt = $pdo-&gt;prepare($sql);
+$stmt-&gt;execute(["email" =&gt; $email]);
+$usuario = $stmt-&gt;fetch();
+
+// Ou com placeholders posicionais (?)
+$stmt = $pdo-&gt;prepare("SELECT * FROM produtos WHERE preco &lt; ?");
+$stmt-&gt;execute([100]);
+$produtos = $stmt-&gt;fetchAll();</code></pre>
+
+        <h3>INSERT, UPDATE e DELETE</h3>
+        <pre><code>&lt;?php
+// INSERT
+$stmt = $pdo-&gt;prepare(
+    "INSERT INTO usuarios (nome, email) VALUES (:nome, :email)"
+);
+$stmt-&gt;execute(["nome" =&gt; "Ana", "email" =&gt; "ana@email.com"]);
+
+$novoId = $pdo-&gt;lastInsertId();
+
+// UPDATE
+$stmt = $pdo-&gt;prepare("UPDATE usuarios SET nome = ? WHERE id = ?");
+$stmt-&gt;execute(["Ana Silva", $novoId]);
+
+// DELETE
+$stmt = $pdo-&gt;prepare("DELETE FROM usuarios WHERE id = ?");
+$stmt-&gt;execute([$novoId]);
+
+// Quantas linhas mudaram
+echo $stmt-&gt;rowCount();</code></pre>
+
+        <h3>Modos de busca (fetch)</h3>
+        <pre><code>&lt;?php
+$stmt = $pdo-&gt;query("SELECT * FROM produtos");
+
+$stmt-&gt;fetch();              // uma linha
+$stmt-&gt;fetchAll();           // todas as linhas (array)
+
+// Uma coluna só
+$total = $pdo-&gt;query("SELECT COUNT(*) FROM produtos")-&gt;fetchColumn();</code></pre>
+
+        <h3>Transações</h3>
+        <pre><code>&lt;?php
+try {
+    $pdo-&gt;beginTransaction();
+
+    $pdo-&gt;exec("UPDATE contas SET saldo = saldo - 100 WHERE id = 1");
+    $pdo-&gt;exec("UPDATE contas SET saldo = saldo + 100 WHERE id = 2");
+
+    $pdo-&gt;commit();          // confirma tudo
+} catch (Throwable $e) {
+    $pdo-&gt;rollBack();        // desfaz tudo em caso de erro
+    echo "Transação cancelada";
+}</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> PDO funciona com MySQL, PostgreSQL, SQLite e
+          outros — troque só a <em>DSN</em>. Sempre use prepared statements:
+          eles separam o SQL dos dados, o que neutraliza a injeção.
+        </div>
+      </section>
+
+      <!-- ═══════ P18 — PHP MODERNO ═══════ -->
+      <section class="topic" id="p18">
+        <h2>18. PHP Moderno (8.x)</h2>
+        <p class="subtitle">
+          Recursos que deixaram o PHP mais expressivo e seguro
+        </p>
+
+        <h3>Tipagem estrita</h3>
+        <pre><code>&lt;?php
+declare(strict_types=1);   // primeira linha do arquivo
+
+function somar(int $a, int $b): int
+{
+    return $a + $b;
+}
+
+// somar("1", "2");   // ❌ TypeError com strict_types</code></pre>
+
+        <h3>Constructor property promotion (PHP 8+)</h3>
+        <pre><code>&lt;?php
+// Antes: declarar + atribuir manualmente
+class Antigo
+{
+    private string $nome;
+
+    public function __construct(string $nome)
+    {
+        $this-&gt;nome = $nome;
+    }
+}
+
+// Agora: propriedade e atribuição em uma linha
+class Moderno
+{
+    public function __construct(
+        private string $nome,
+        private float $preco,
+    ) {}
+}</code></pre>
+
+        <h3>Named arguments e nullsafe</h3>
+        <pre><code>&lt;?php
+// Argumentos nomeados — não dependem da ordem
+htmlspecialchars(string: $texto, flags: ENT_QUOTES);
+
+// Nullsafe operator (?-&gt;) — encadeia sem quebrar em null
+$cidade = $usuario?-&gt;endereco?-&gt;cidade;
+
+// if tradicional equivalente
+$cidade = null;
+if ($usuario !== null) {
+    $cidade = $usuario-&gt;endereco?-&gt;cidade;
+}</code></pre>
+
+        <h3>Enums (PHP 8.1+)</h3>
+        <pre><code>&lt;?php
+enum Status: string
+{
+    case Ativo   = "ativo";
+    case Inativo = "inativo";
+    case Pendente = "pendente";
+}
+
+function badge(Status $status): string
+{
+    return match ($status) {
+        Status::Ativo    =&gt; "✅",
+        Status::Inativo  =&gt; "⛔",
+        Status::Pendente =&gt; "⏳",
+    };
+}
+
+echo badge(Status::Ativo);   // ✅</code></pre>
+
+        <h3>Propriedades readonly (PHP 8.1+)</h3>
+        <pre><code>&lt;?php
+class Ponto
+{
+    public function __construct(
+        public readonly float $x,
+        public readonly float $y,
+    ) {}
+}
+
+$p = new Ponto(1.0, 2.0);
+// $p-&gt;x = 5;   // ❌ erro: readonly só pode ser escrito no construtor</code></pre>
+
+        <div class="note tip">
+          <strong>💡 Dica:</strong> ative
+          <code>declare(strict_types=1)</code> em todo arquivo novo. Você ganha
+          erros mais cedo (em vez de conversões silenciosas) e código mais
+          previsível.
+        </div>
+      </section>
+
+      <!-- ═══════ P19 — SEGURANÇA ═══════ -->
+      <section class="topic" id="p19">
+        <h2>19. Segurança &amp; Boas Práticas</h2>
+        <p class="subtitle">As falhas mais comuns e como evitá-las</p>
+
+        <h3>As 4 ameaças clássicas</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Ameaça</th>
+                <th>O que é</th>
+                <th>Solução</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>XSS</td>
+                <td>Injetar script via dado do usuário</td>
+                <td><code>htmlspecialchars()</code> na saída</td>
+              </tr>
+              <tr>
+                <td>SQL Injection</td>
+                <td>Injetar SQL via input</td>
+                <td>Prepared statements (PDO)</td>
+              </tr>
+              <tr>
+                <td>CSRF</td>
+                <td>Forçar ação em nome do usuário</td>
+                <td>Token por formulário</td>
+              </tr>
+              <tr>
+                <td>Senhas fracas</td>
+                <td>Guardar senha em texto puro</td>
+                <td><code>password_hash()</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>XSS — escapando a saída</h3>
+        <pre><code>&lt;?php
+// ❌ perigoso: se $nome contiver &lt;script&gt;, ele executa
+echo "Olá, $nome";
+
+// ✅ escape sempre na SAÍDA
+echo "Olá, " . htmlspecialchars($nome, ENT_QUOTES, "UTF-8");</code></pre>
+
+        <h3>Senhas com hash</h3>
+        <pre><code>&lt;?php
+// Ao cadastrar
+$hash = password_hash($senha, PASSWORD_DEFAULT);
+// grava $hash no banco (nunca a senha!)
+
+// Ao fazer login
+if (password_verify($senhaDigitada, $hashDoBanco)) {
+    echo "Login OK";
+}
+
+// Rehash quando o algoritmo padrão evoluir
+if (password_needs_rehash($hashDoBanco, PASSWORD_DEFAULT)) {
+    // gere e salve um novo hash
+}</code></pre>
+
+        <h3>Token CSRF</h3>
+        <pre><code>&lt;?php
+session_start();
+
+// Gera uma vez por sessão
+if (empty($_SESSION["csrf"])) {
+    $_SESSION["csrf"] = bin2hex(random_bytes(32));
+}
+
+// No formulário
+?&gt;
+&lt;input type="hidden" name="csrf" value="&lt;?= $_SESSION['csrf'] ?&gt;" /&gt;
+&lt;?php
+
+// Na validação (POST)
+if (!hash_equals($_SESSION["csrf"], $_POST["csrf"] ?? "")) {
+    exit("Token inválido");
+}</code></pre>
+
+        <h3>Checklist de boas práticas</h3>
+        <ul>
+          <li>Valide e limpe <strong>todo</strong> input;</li>
+          <li>Escape <strong>toda</strong> saída;</li>
+          <li>Use prepared statements para o banco;</li>
+          <li>Hash de senha com <code>password_hash()</code>;</li>
+          <li>Nunca exponha <code>display_errors</code> em produção;</li>
+          <li>
+            Configure <code>session.cookie_httponly</code> e
+            <code>session.cookie_secure</code>;
+          </li>
+          <li>Mantenha o PHP atualizado;</li>
+          <li>Use HTTPS sempre.</li>
+        </ul>
+
+        <div class="note danger">
+          <strong>🚨 Nunca confie no cliente:</strong> validação no JavaScript é
+          conveniência para o usuário — a validação que conta acontece no
+          servidor, em PHP.
+        </div>
+      </section>
+
+      <!-- ═══════ P20 — EXEMPLOS E RESUMO ═══════ -->
+      <section class="topic" id="p20">
+        <h2>20. Exemplos Práticos &amp; Resumo</h2>
+        <p class="subtitle">Juntando tudo em código de verdade</p>
+
+        <h3>Carrinho de compras (arrays)</h3>
+        <pre><code>&lt;?php
+$carrinho = [
+    ["produto" =&gt; "Teclado", "preco" =&gt; 150.00, "qtd" =&gt; 1],
+    ["produto" =&gt; "Mouse",   "preco" =&gt; 80.00,  "qtd" =&gt; 2],
+    ["produto" =&gt; "Monitor", "preco" =&gt; 900.00, "qtd" =&gt; 1],
+];
+
+$total = 0;
+
+foreach ($carrinho as $item) {
+    $subtotal = $item["preco"] * $item["qtd"];
+    $total += $subtotal;
+
+    echo "Produto: " . $item["produto"] . " | ";
+    echo "Subtotal: R$ " . number_format($subtotal, 2, ",", ".") . "&lt;br&gt;";
+}
+
+echo "&lt;hr&gt;";
+echo "&lt;strong&gt;Total: R$ ";
+echo number_format($total, 2, ",", ".");
+echo "&lt;/strong&gt;";</code></pre>
+
+        <div class="code-output">Total: R$ 1.210,00</div>
+
+        <h3>Formatando dados de usuário (strings)</h3>
+        <pre><code>&lt;?php
+$nome     = "joão silva";
+$email    = "JOAO@EMAIL.COM";
+$salario  = 3500.5;
+$telefone = "11987654321";
+
+// Deixa cada nome com inicial maiúscula
+$nome = ucwords(mb_strtolower($nome));
+
+// E-mail sempre em minúsculas
+$email = strtolower($email);
+
+// Salário no padrão brasileiro
+$salarioFmt = "R$ " . number_format($salario, 2, ",", ".");
+
+// Telefone: (11) 98765-4321
+$tel = sprintf(
+    "(%s) %s-%s",
+    substr($telefone, 0, 2),
+    substr($telefone, 2, 5),
+    substr($telefone, 7)
+);
+
+echo "$nome&lt;br&gt;";
+echo "$email&lt;br&gt;";
+echo "$salarioFmt&lt;br&gt;";
+echo "$tel";</code></pre>
+
+        <div class="code-output">
+          João Silva<br />
+          joao@email.com<br />
+          R$ 3.500,50<br />
+          (11) 98765-4321
+        </div>
+
+        <h3>Uma classe com tudo: Produto + PDO</h3>
+        <pre><code>&lt;?php
+declare(strict_types=1);
+
+class ProdutoRepository
+{
+    public function __construct(private PDO $pdo) {}
+
+    public function buscar(int $id): ?array
+    {
+        $stmt = $this-&gt;pdo-&gt;prepare(
+            "SELECT * FROM produtos WHERE id = ?"
+        );
+        $stmt-&gt;execute([$id]);
+        return $stmt-&gt;fetch() ?: null;
+    }
+
+    public function criar(string $nome, float $preco): int
+    {
+        $stmt = $this-&gt;pdo-&gt;prepare(
+            "INSERT INTO produtos (nome, preco) VALUES (?, ?)"
+        );
+        $stmt-&gt;execute([$nome, $preco]);
+        return (int) $this-&gt;pdo-&gt;lastInsertId();
+    }
+
+    public function listar(): array
+    {
+        return $this-&gt;pdo
+            -&gt;query("SELECT * FROM produtos ORDER BY nome")
+            -&gt;fetchAll();
+    }
+}</code></pre>
+
+        <h3>Resumo geral</h3>
+        <div class="concept-table-wrap">
+          <table class="concept-table">
+            <thead>
+              <tr>
+                <th>Fundamento</th>
+                <th>Chave</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Variáveis</td>
+                <td>Começam com <code>$</code>, tipagem dinâmica</td>
+              </tr>
+              <tr>
+                <td>Strings</td>
+                <td>
+                  Concatena com <code>.</code>, interpola com <code>" "</code>
+                </td>
+              </tr>
+              <tr>
+                <td>Arrays</td>
+                <td>
+                  Indexados e associativos; percorra com <code>foreach</code>
+                </td>
+              </tr>
+              <tr>
+                <td>Objetos</td>
+                <td>Instância de classe; acesso com <code>-&gt;</code></td>
+              </tr>
+              <tr>
+                <td>Referência interna</td>
+                <td><code>$this</code> dentro da classe</td>
+              </tr>
+              <tr>
+                <td>Banco de dados</td>
+                <td>PDO + prepared statements</td>
+              </tr>
+              <tr>
+                <td>Segurança</td>
+                <td>Validar entrada, escapar saída, hash de senha</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Checklist de estudo</h3>
+        <pre><code>☐ Rodar o primeiro "Olá, mundo" no servidor embutido
+☐ Praticar variáveis, tipos e operadores
+☐ Dominar strings (aspas, interpolação, concatenação)
+☐ Percorrer arrays indexados e associativos com foreach
+☐ Escrever funções com tipos e valor padrão
+☐ Separar o projeto em includes/namespaces
+☐ Processar um formulário com $_POST e validar
+☐ Modelar uma classe com propriedades e métodos
+☐ Aplicar herança, interface e trait
+☐ Tratar erros com try/catch
+☐ Fazer CRUD completo com PDO
+☐ Blindar o código: escape, prepared statements e hash</code></pre>
+
+        <div class="demo-box" style="text-align: center">
+          <span class="label">🚀 A jornada do PHP</span>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              justify-content: center;
+              flex-wrap: wrap;
+              margin-top: 10px;
+              font-size: 0.75rem;
+            "
+          >
+            <span
+              style="
+                background: var(--accent2);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Sintaxe</span
+            >
+            <span
+              style="
+                background: var(--accent);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Arrays</span
+            >
+            <span
+              style="
+                background: var(--accent3);
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Formulários</span
+            >
+            <span
+              style="
+                background: var(--accent4);
+                color: #fff;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >POO</span
+            >
+            <span
+              style="
+                background: var(--accent2);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >PDO</span
+            >
+            <span
+              style="
+                background: var(--accent);
+                color: #0b0d14;
+                padding: 8px 14px;
+                border-radius: 100px;
+                font-weight: 700;
+              "
+              >Segurança</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <p>🐘 PHP Completo — Guia prático de estudo</p>
+      </footer>
+    </main>
+
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>
